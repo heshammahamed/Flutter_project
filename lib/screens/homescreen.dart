@@ -24,6 +24,7 @@ class _HomescreenState extends State<Homescreen> {
          const Head(),
          SizedBox(height: MediaQuery.of(context).size.height * 0.09),
          const Progress(),
+         SizedBox(height: MediaQuery.of(context).size.height * 0.09),
         ] ,
       ) ,
       ) 
