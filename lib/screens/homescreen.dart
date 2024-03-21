@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../widget/Homescreen/Head.dart';
 import '../widget/Homescreen/progress.dart';
+import '../widget/Homescreen/catSec.dart';
+import '../widget/Homescreen/Games.dart';
+import '../../var.dart';
 
 // FaIcon(FontAwesomeIcons.brain,color: Colors.white,size: 25.0,)
 
@@ -15,7 +18,7 @@ class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF161616),
+      backgroundColor :homescreen ,
 
       body: Padding(
         padding: const EdgeInsetsDirectional.all(8.0),
@@ -24,7 +27,10 @@ class _HomescreenState extends State<Homescreen> {
          const Head(),
          SizedBox(height: MediaQuery.of(context).size.height * 0.09),
          const Progress(),
-         SizedBox(height: MediaQuery.of(context).size.height * 0.09),
+         SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+         const Catego(),
+         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+         const Games()
         ] ,
       ) ,
       ) 
