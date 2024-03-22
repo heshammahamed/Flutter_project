@@ -15,22 +15,30 @@ class Games extends StatelessWidget {
           child: PageView(
             scrollDirection: Axis.horizontal,
             children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.width * 0.1,
-                margin: const EdgeInsets.symmetric(horizontal: 20.0),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),color: Colors.red,),
-                
-                child: const Center(child: Text("Page 1")),
+              GestureDetector(
+                onTap: () => {
+                  Navigator.pushNamed(context , "/firstgame_tutorial")
+                },
+                child:Container(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.1,
+                  margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),color: Colors.red,),
+                  child: const Center(child: Text("Ahmed")),
               ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.08,
-                width: MediaQuery.of(context).size.width * 0.1,
-                margin: const EdgeInsets.symmetric(horizontal: 20.0),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),color: Colors.blue,),
-                child: const Center(child: Text("Page 2")),
               ),
-
+              GestureDetector(
+                onTap: () => {
+                  Navigator.pushNamed(context , "/SecondGame_tut")
+                },
+                child:Container(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.1,
+                  margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),color: Colors.blue,),
+                  child: const Center(child: Text("Monaia")),
+              ),
+              ),
             ],
           ),
         ),
