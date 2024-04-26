@@ -63,6 +63,18 @@ class Games extends StatelessWidget {
                   child: const Center(child: Text("Mohamed")),
               ),
               ),
+              GestureDetector(
+                onTap: () => {
+                  Navigator.pushNamed(context , "/FifthGame")
+                },
+                child:Container(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.1,
+                  margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),color: Colors.greenAccent,),
+                  child: const Center(child: Text("Fifth")),
+              ),
+              ),
             ],
           ),
         ),

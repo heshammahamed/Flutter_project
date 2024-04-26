@@ -7,7 +7,8 @@ class SecondGame extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF161616),
-      body : Center (child: Text ("Delete Center widget and start Code !!" , style: TextStyle(fontSize : 15.0 , color: Colors.white , fontFamily: "POP",),),) ,
+      body : Center (child: Text("Delete Center widget and start Code !!" , style: TextStyle(fontSize : 15.0 , color: Colors.white , fontFamily: "POP",),),) ,
     );
   }
 }
+
