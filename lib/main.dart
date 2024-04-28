@@ -5,6 +5,7 @@ import 'screens/Ahmed/SecondGame.dart';
 import 'screens/Kholoud/ThirdGame.dart';
 import 'screens/Mohamed/FourthGame.dart';
 import 'screens/FifthGame/FifthGame.dart';
+import 'screens/SameColor/sameColor.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/ThirdGame' : (context) =>   ThirdGame(),
         '/FourthGame' : (context) =>  FourthGame(),        
         '/FifthGame' : (context) =>  FifthGame(),        
+        '/SixthGame' : (context) =>  SameColor(),        
       },
     );
   }

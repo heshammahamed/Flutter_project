@@ -20,6 +20,8 @@ import 'package:provider/provider.dart';
 
 
 
+// For change the state of the variables
+
 class Model extends ChangeNotifier {
   int score = 100;
   addOne () {
@@ -36,6 +38,9 @@ class Model extends ChangeNotifier {
 
 
 
+
+// Main wedgit in the screen
+
 class FifthGame extends StatelessWidget {
   const FifthGame({super.key});
 
@@ -43,26 +48,35 @@ class FifthGame extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(create: (context) => Model() , child :
      Scaffold(
-      backgroundColor: const Color(0xFF161616),
-      body : Container (
+      // back ground color for the screen
+      backgroundColor: const Color(0xFF161616),   
+      body : 
+      
+      Container (
+
         margin: const EdgeInsets.symmetric(horizontal: 20 , vertical: 40),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white , width: 5),
         ),
-        child: Column (
+
+
+        child: 
+        
+        Column (
           children: [
-          Head(),
-           SizedBox(height: MediaQuery.of(context).size.height * 0.09),
-          BodyOfTheGame(),
+            Head(),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.09),
+            BodyOfTheGame(),
           ]
-        )  
+        ) 
+
       ) ,
     ));
   }
 }
 
 
-
+// Wedgit display the timer and score
 
 class Head extends StatefulWidget {
   const Head({super.key});
@@ -70,11 +84,15 @@ class Head extends StatefulWidget {
   @override
   State<Head> createState() => _HeadState();
 }
+
 class _HeadState extends State<Head> {
 
-  // variables
+  // the value wich the timer start in
+
   int timeLeft = 5;
-  // time methode
+
+  // the function wich reduce the timeleft value
+
   void CountDown () {
     Timer.periodic(const Duration (seconds: 1), (timer) {
       
@@ -92,14 +110,19 @@ class _HeadState extends State<Head> {
   
   @override
   Widget build(BuildContext context) {
+
     CountDown();
+
     return Row (
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+
+        // timer section
         Container(
           child: Text ("Timer : ${timeLeft}" , style: const TextStyle(color: Colors.white , fontSize: 25))
         ),
 
+        // score section
         Consumer<Model>(builder: (context, model, child) => 
             Container(
                 child: Text ("Score : ${model.score}" , style: const TextStyle(color: Colors.white , fontSize: 25))
@@ -112,6 +135,7 @@ class _HeadState extends State<Head> {
 
 
 
+// Wedgit wich display the arrow and the direction text 
 
 class BodyOfTheGame extends StatefulWidget {
   const BodyOfTheGame({super.key});
@@ -125,25 +149,25 @@ class _BodyOfTheGameState extends State<BodyOfTheGame> {
 final audio = AudioPlayer();
 
   // variables
-
-  String swap = "right";
-
   List<String> directionsList = ["Down","Up","Left", "Right"];
+
+  
+  String swap = "right";  // wich direction the user swap
+
 
   List iconDirections = [FontAwesomeIcons.arrowDown, FontAwesomeIcons.arrowUp , FontAwesomeIcons.arrowLeft, FontAwesomeIcons.arrowRight];
   List arrowColors = [Colors.red, Colors.green, Colors.red, Colors.green, Colors.red];
 
-  String direction = "Right";
+  String direction = "Right"; // the direction wich display in the screen
 
   var iconDirection = FontAwesomeIcons.arrowDown;
-  String iconDirectionString = "Down";
-
-
+  String iconDirectionString = "Down";  // arrow direction 
   var arrowColor = Colors.red;
 
   bool directionSwapped = false;
 
-int i = 0;
+
+int i = 0;  // used to pick up the same value from the iconDirections list and direction list
 
 changeDirectionOfArrow (){
   i = Random().nextInt(4);
@@ -151,9 +175,7 @@ changeDirectionOfArrow (){
 
   @override
   Widget build(BuildContext context) {
-
-
-   var model = Provider.of<Model>(context);
+  var model = Provider.of<Model>(context);
 
 checkSwap() {
   if (!directionSwapped) {
@@ -169,7 +191,7 @@ checkSwap() {
       model.addOne();
     } else {
       model.minOne();
-    }
+      }
     }
 
 changeDirectionOfArrow();
@@ -225,23 +247,33 @@ changeDirectionOfArrow();
 
     child: 
     Container (
+
       decoration: BoxDecoration(
         border: Border.all(color: Colors.red , width: 2),
       ),
+
       height: MediaQuery.of(context).size.height * 0.6 ,
+
       padding: const EdgeInsets.symmetric(horizontal: 40),
-      child: Column (
-      children : [
-       Row (
-        children: [
-          const Text ("Swap : " , style: TextStyle(color: Colors.yellow , fontSize: 40)),
-          Text (direction , style: const TextStyle(color: Colors.white , fontSize: 35)),
-        ],
-       ),
+      
+      child: 
+      Column (
+        children : [
 
-      SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+          // show swap text and direction text
 
-      Center (child: FaIcon(iconDirection,color: arrowColor,size: 190.0,))
+          Row (
+            children: [
+            const Text ("Swap : " , style: TextStyle(color: Colors.yellow , fontSize: 40)),
+            Text (direction , style: const TextStyle(color: Colors.white , fontSize: 35)),
+            ],
+          ),
+
+          SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+
+          // show the arrow icon
+
+          Center (child: FaIcon(iconDirection,color: arrowColor,size: 190.0,))
       ]
     )));
   }
