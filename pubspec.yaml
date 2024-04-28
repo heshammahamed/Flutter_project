@@ -73,7 +73,7 @@ flutter:
     - assets/images/critical-thinking.png
     - assets/images/stairs.png
     - assets/images/rising.png
-    - assets/Sounds
+    - assets/images/right_arrow.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -92,6 +92,15 @@ flutter:
          - asset: assets/fonts/Poppins/Poppins-Bold.ttf
          - asset: assets/fonts/Poppins/Poppins-Regular.ttf
          - asset: assets/fonts/Poppins/Poppins-Thin.ttf
+     - family: Harry P
+       fonts:
+         - asset: assets/fonts/HARRYP__.TTF
+     - family: VictorianD
+       fonts:
+         - asset: assets/fonts/VICTORNN.TTF
+     - family: ZeBrush
+       fonts:
+         - asset: assets/fonts/ZeBrush FREE.TTF
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
