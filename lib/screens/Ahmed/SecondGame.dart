@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'dart:math';
 import 'dart:async';
 
 class SecondGame extends StatefulWidget {
@@ -38,16 +39,64 @@ class _SecondGameState extends State<SecondGame> {
     });
   }
 
-  void _startFunction() {
-    _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
-      // هنا يتم تنفيذ الدالة التي تريدها بانتظام لحين رفع اليد عن الزر
-      print('تنفيذ الدالة');
+  rotateLeft () {
+    setState(() {
+      userArrowAngle = userArrowAngle - 10;
+    });
+
+  }
+  rotateRight () {
+    setState(() {
+      userArrowAngle = userArrowAngle + 10;
     });
   }
 
-  void _stopFunction() {
-    _timer?.cancel();
+
+// 1 ==> total point 
+// (2 , 0.5)
+
+// 20 / 20 == 1  ===> 100
+// 20 / 30  == 0.6   (10)
+// 20 / 10  == 2   (10)
+
+// 20 / 40  == 0.5  diffrent (20) 0
+
+// [.5 , 1]
+
+checkThedirection () {
+
+  if (mainArrowAngle / userArrowAngle == 1) {
+    setState(() {
+        score = score + 100;
+    });
+
+  }else if ((mainArrowAngle / userArrowAngle > 0.5) & (mainArrowAngle / userArrowAngle < 1)) {
+    setState(() {
+          score = score + 20;
+    });
+
+  }else if ((mainArrowAngle / userArrowAngle  > 1) & (mainArrowAngle / userArrowAngle < 1.5)) {
+    setState(() {
+          score = score + 20;
+    });
   }
+
+
+
+setState(() {
+    mainArrowAngle = mainArrowAngles[Random().nextInt(6)];     // 0 , 1 , 2 ,3 , 4 ,5
+    userArrowAngle = userArrowAngles[Random().nextInt(6)];     // 0 , 1 , 2 ,3 , 4 ,5
+});
+
+}
+
+
+  List<double> mainArrowAngles = [ 180 , 90 , 0 , 340 , 250 , 100 ];
+  List<double> userArrowAngles = [ 180 , 90 , 0 , 340 , 250 , 100 ];
+
+double mainArrowAngle = 20;
+double userArrowAngle = 50;
+int score = 0 ;
 
   @override
   Widget build(BuildContext context) {
@@ -112,15 +161,15 @@ class _SecondGameState extends State<SecondGame> {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   padding: const EdgeInsets.all(5),
-                  child: const Row(
+                  child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.leaderboard,
                         color: Color.fromARGB(221, 26, 26, 26),
                       ),
                       Text(
-                        '  Progress :    ',
-                        style: TextStyle(
+                        '  Progress :  $score  ',
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -139,7 +188,7 @@ class _SecondGameState extends State<SecondGame> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Transform.rotate(
-                  angle: 20,
+                  angle: mainArrowAngle * (pi / 180),
                   child: Image.asset(
                     'assets/images/right_arrow.png',
                     width: 100,
@@ -155,7 +204,7 @@ class _SecondGameState extends State<SecondGame> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Transform.rotate(
-                  angle: 20,
+                  angle: userArrowAngle * (pi / 180),
                   child: const Icon(
                     Icons.arrow_forward,
                     color: Color.fromARGB(221, 26, 26, 26),
@@ -172,11 +221,9 @@ class _SecondGameState extends State<SecondGame> {
               children: [
                 MaterialButton(
                   onPressed: () {
-                    _startFunction();
+                   rotateLeft();
                   },
-                  onLongPress: () {
-                    _stopFunction();
-                  },
+
                   color: Colors.indigo, // Background color
                   textColor: Colors.white, // Text color
                   elevation: 10,
@@ -196,7 +243,9 @@ class _SecondGameState extends State<SecondGame> {
                   ),
                 ),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                   rotateRight();
+                  },
                   color: Colors.indigo, // Background color
                   textColor: Colors.white, // Text color
                   elevation: 10,
@@ -224,7 +273,9 @@ class _SecondGameState extends State<SecondGame> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    checkThedirection ();
+                  },
                   color: Colors.green[800], // Background color
                   textColor: Colors.white, // Text color
                   elevation: 10,

@@ -64,9 +64,10 @@ class FifthGame extends StatelessWidget {
         
         Column (
           children: [
-            Head(),
+
             SizedBox(height: MediaQuery.of(context).size.height * 0.09),
             BodyOfTheGame(),
+            Head(),
           ]
         ) 
 
@@ -113,23 +114,41 @@ class _HeadState extends State<Head> {
 
     CountDown();
 
-    return Row (
+    return Container(
+      decoration : BoxDecoration (
+        color : Colors.blue,
+        border : Border.all(width : 2 , color : Colors.yellow)
+      ),
+      width : 250,
+      child : 
+         Row (
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-
-        // timer section
-        Container(
-          child: Text ("Timer : ${timeLeft}" , style: const TextStyle(color: Colors.white , fontSize: 25))
-        ),
-
-        // score section
         Consumer<Model>(builder: (context, model, child) => 
             Container(
                 child: Text ("Score : ${model.score}" , style: const TextStyle(color: Colors.white , fontSize: 25))
                 )
-        ,)
+        ,) ,
+
+        Row (
+          children : [
+            FaIcon(FontAwesomeIcons.tiktok,color: Colors.red,size: 20,)
+            ,
+        // timer section
+        Container(
+          child: Text ("Timer : ${timeLeft}" , style: const TextStyle(color: Colors.white , fontSize: 25))
+        ),
+          ]
+        )
+
+
+        // score section
+
       ],
-    );
+    )
+    )
+    
+ ;
   }
 }
 
@@ -261,13 +280,21 @@ changeDirectionOfArrow();
         children : [
 
           // show swap text and direction text
+          Container (
 
-          Row (
+            decoration: BoxDecoration(
+              color : Colors.red,
+            ),
+
+            child :        
+            Row (
             children: [
             const Text ("Swap : " , style: TextStyle(color: Colors.yellow , fontSize: 40)),
             Text (direction , style: const TextStyle(color: Colors.white , fontSize: 35)),
             ],
           ),
+          ),
+
 
           SizedBox(height: MediaQuery.of(context).size.height * 0.2),
 
