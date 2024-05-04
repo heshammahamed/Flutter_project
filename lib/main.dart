@@ -15,21 +15,19 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Games app',
       initialRoute: '/',
-
       routes: {
-        '/' : (context) => const Homescreen(),
-        '/FirstGame' : (context) =>   FirstGame(),
-        '/SecondGame' : (context) =>  SecondGame(),
-        '/ThirdGame' : (context) =>   ThirdGame(),
-        '/FourthGame' : (context) =>  FourthGame(),        
-        '/FifthGame' : (context) =>  FifthGame(),        
-        '/SixthGame' : (context) =>  SameColor(),        
+        '/': (context) => const Homescreen(),
+        '/FirstGame': (context) => FirstGame(),
+        '/SecondGame': (context) => SecondGame(),
+        '/ThirdGame': (context) => ThirdGame(),
+        '/FourthGame': (context) => FourthGame(),
+        '/FifthGame': (context) => FifthGame(),
+        '/SixthGame': (context) => SameColor(),
       },
     );
   }
