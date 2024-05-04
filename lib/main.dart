@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './screens/homescreen.dart';
 import 'screens/Monaia/FirstGame.dart';
 import 'screens/Ahmed/SecondGame.dart';
+import 'screens/Ahmed/instructions.dart';
 import 'screens/Kholoud/ThirdGame.dart';
 import 'screens/Mohamed/FourthGame.dart';
 import 'screens/FifthGame/FifthGame.dart';
@@ -25,9 +26,10 @@ class MyApp extends StatelessWidget {
         '/FirstGame': (context) => FirstGame(),
         '/SecondGame': (context) => SecondGame(),
         '/ThirdGame': (context) => ThirdGame(),
-        '/FourthGame': (context) => FourthGame(),
+        '/FourthGame': (context) => MohamedGame(),
         '/FifthGame': (context) => FifthGame(),
         '/SixthGame': (context) => SameColor(),
+        '/seven': (context) => Instructions(),
       },
     );
   }
