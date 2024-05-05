@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './SecondGame.dart';
 
 class Instructions extends StatefulWidget {
   const Instructions({super.key});
@@ -123,7 +124,12 @@ class _InstructionsState extends State<Instructions> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context , 
+                      MaterialPageRoute(builder: (context) => SecondGame()),
+                    );
+                  },
                   color:
                       const Color.fromARGB(255, 0, 149, 5), // Background color
                   textColor: Colors.white, // Text color

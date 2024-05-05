@@ -24,12 +24,11 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const Homescreen(),
         '/FirstGame': (context) => FirstGame(),
-        '/SecondGame': (context) => SecondGame(),
+        '/SecondGame': (context) => Instructions(),
         '/ThirdGame': (context) => ThirdGame(),
         '/FourthGame': (context) => MohamedGame(),
         '/FifthGame': (context) => FifthGame(),
         '/SixthGame': (context) => SameColor(),
-        '/seven': (context) => Instructions(),
       },
     );
   }
