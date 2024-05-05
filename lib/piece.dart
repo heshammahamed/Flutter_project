@@ -1,9 +1,18 @@
+import 'package:flutter/material.dart';
+import 'package:game_project/board.dart';
 import 'package:game_project/values.dart';
 class piece{
   Tetromino type;
   piece({required this.type});
   
   List<int> position = [];
+
+
+Color get color{
+  return tetrominoColors[type] ??
+    const Color(0xFFFFFFFF);
+}
+
 
   void intializepiece(){
     switch (type) {
@@ -83,4 +92,104 @@ class piece{
       default:
     }
   }
+  int rotationstate = 1;
+  void rotatepiece(){
+    List<int> newposition = [];
+
+    switch (type) {
+      case Tetromino.L:
+        switch (rotationstate){
+          case 0:
+
+          newposition = [
+            position[1]- rowlength,
+            position[1],
+            position[1]+ rowlength,
+            position[1]+ rowlength+1,
+          ];
+          if(piecepositionisvalid(newposition)){
+          position = newposition;
+           rotationstate = (rotationstate + 1) % 4; 
+          }
+           break;
+
+            case 1:
+
+          newposition = [
+            position[1]- 1,
+            position[1],
+            position[1]+ 1,
+            position[1]+ rowlength - 1,
+          ];
+          if(piecepositionisvalid(newposition)){
+          position = newposition;
+           rotationstate = (rotationstate + 1) % 4; 
+          }
+           break;
+
+            case 2:
+
+          newposition = [
+            position[1] + rowlength,
+            position[1],
+            position[1] - rowlength,
+            position[1] - rowlength - 1,
+          ];
+
+           if(piecepositionisvalid(newposition)){
+          position = newposition;
+           rotationstate = (rotationstate + 1) % 4; 
+          }
+           break;
+
+            case 3:
+
+          newposition = [
+            position[1]- rowlength + 1,
+            position[1],
+            position[1]+ 1,
+            position[1] - 1,
+          ];
+
+           if(piecepositionisvalid(newposition)){
+          position = newposition;
+           rotationstate = (rotationstate + 1) % 4; 
+          }
+           break;
+        }  
+        break;
+      default:
+    }
+  }
+
+  bool  positionisvalid( int Position){
+   int row = (Position / rowlength).floor();
+   int col = Position % rowlength;
+   if(row < 0 || col <0 || gameboard[row][col] != null){
+    return false;
+   }
+   else{
+    return true;
+   }    
+  }
+
+   bool piecepositionisvalid(List<int> pieceposition){
+     bool firstcoloccupied = false;
+     bool lastcoloccupied = false;
+
+     for(int pos in pieceposition){
+      if(!positionisvalid(pos)){
+        return false;
+      }
+
+      int col = pos%rowlength;
+      if(col == 0){
+        firstcoloccupied = true;
+      }
+      if(col == rowlength -1){
+        lastcoloccupied = true;
+      }
+     }
+     return !(firstcoloccupied && lastcoloccupied);
+   }
 }

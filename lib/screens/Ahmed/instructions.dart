@@ -127,7 +127,7 @@ class _InstructionsState extends State<Instructions> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context , 
-                      MaterialPageRoute(builder: (context) => SecondGame()),
+                      MaterialPageRoute(builder: (context) => const SecondGame()),
                     );
                   },
                   color:

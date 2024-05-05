@@ -1,7 +1,5 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 double levelpercent = 0.4;
@@ -53,7 +51,7 @@ class _ProgressState extends State<Progress> {
                     
                      Container(
                       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02 ),
-                      child: Text('Observation', style: TextStyle(fontFamily: 'POP' , fontWeight: FontWeight.w500 , color: Colors.white , fontSize: 16.0 ,),),
+                      child: const Text('Observation', style: TextStyle(fontFamily: 'POP' , fontWeight: FontWeight.w500 , color: Colors.white , fontSize: 16.0 ,),),
                     ),
 
                     LinearPercentIndicator(
@@ -78,7 +76,7 @@ class _ProgressState extends State<Progress> {
                   children: [
                      Container(
                       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02 ),
-                      child: Text('Mathimatics', style: TextStyle(fontFamily: 'POP' , fontWeight: FontWeight.w500 , color: Colors.white , fontSize: 16.0 ,),),
+                      child: const Text('Mathimatics', style: TextStyle(fontFamily: 'POP' , fontWeight: FontWeight.w500 , color: Colors.white , fontSize: 16.0 ,),),
                     ),
 
                     LinearPercentIndicator(
@@ -103,7 +101,7 @@ class _ProgressState extends State<Progress> {
                   children: [
                      Container(
                       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02 ),
-                      child: Text('Memory', style: TextStyle(fontFamily: 'POP' , fontWeight: FontWeight.w500 , color: Colors.white , fontSize: 16.0 ,),),
+                      child: const Text('Memory', style: TextStyle(fontFamily: 'POP' , fontWeight: FontWeight.w500 , color: Colors.white , fontSize: 16.0 ,),),
                     ),
 
                     LinearPercentIndicator(
@@ -128,7 +126,7 @@ class _ProgressState extends State<Progress> {
                   children: [
                      Container(
                       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02 ),
-                      child: Text('Accuracy', style: TextStyle(fontFamily: 'POP' , fontWeight: FontWeight.w500 , color: Colors.white , fontSize: 16.0 ,),),
+                      child: const Text('Accuracy', style: TextStyle(fontFamily: 'POP' , fontWeight: FontWeight.w500 , color: Colors.white , fontSize: 16.0 ,),),
                     ),
 
                     LinearPercentIndicator(
@@ -153,7 +151,7 @@ class _ProgressState extends State<Progress> {
                   children: [
                      Container(
                       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02 ),
-                      child: Text('Logic', style: TextStyle(fontFamily: 'POP' , fontWeight: FontWeight.w500 , color: Colors.white , fontSize: 16.0 ,),),
+                      child: const Text('Logic', style: TextStyle(fontFamily: 'POP' , fontWeight: FontWeight.w500 , color: Colors.white , fontSize: 16.0 ,),),
                     ),
 
                     LinearPercentIndicator(

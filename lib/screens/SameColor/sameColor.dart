@@ -48,9 +48,9 @@ class SameColor extends StatelessWidget {
         
         Column (
           children: [
-            Head(),
+            const Head(),
             SizedBox(height: MediaQuery.of(context).size.height * 0.09),
-            BodyOfTheGAme()
+            const BodyOfTheGAme()
           ]
         ) 
 
@@ -85,7 +85,7 @@ class _HeadState extends State<Head> {
           print(timeLeft);
         }else {
           timer.cancel();
-        };
+        }
      });
   }
 
@@ -101,7 +101,7 @@ class _HeadState extends State<Head> {
 
         // timer section
         Container(
-          child: Text ("Timer : ${timeLeft}" , style: const TextStyle(color: Colors.white , fontSize: 25))
+          child: Text ("Timer : $timeLeft" , style: const TextStyle(color: Colors.white , fontSize: 25))
         ),
 
         // score section
@@ -200,7 +200,7 @@ class _BodyOfTheGAmeState extends State<BodyOfTheGAme> {
                 height: 100,
                 alignment: Alignment.center,
                 child: 
-                Text(meaining , style: TextStyle(fontSize: 50)),
+                Text(meaining , style: const TextStyle(fontSize: 50)),
               )
             ],
           ),
@@ -222,7 +222,7 @@ class _BodyOfTheGAmeState extends State<BodyOfTheGAme> {
                 child: 
                 Text(text , style: TextStyle(color : textColor ,fontSize: 50)),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               Container(
                 decoration: BoxDecoration(
@@ -233,12 +233,12 @@ class _BodyOfTheGAmeState extends State<BodyOfTheGAme> {
                 width: 150,
                 height: 50,
                 alignment: Alignment.center,
-                child : Text("color" , style: TextStyle(fontSize: 20 , fontWeight: FontWeight.bold),),
+                child : const Text("color" , style: TextStyle(fontSize: 20 , fontWeight: FontWeight.bold),),
               ),
             ],
           ),
 
-          SizedBox(height: 45),
+          const SizedBox(height: 45),
 
           Row (
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -278,7 +278,7 @@ class _BodyOfTheGAmeState extends State<BodyOfTheGAme> {
                 width: 150,
                 height: 70,
 
-                child: Text("False" , style: TextStyle(fontSize: 40 , fontWeight: FontWeight.w400),)
+                child: const Text("False" , style: TextStyle(fontSize: 40 , fontWeight: FontWeight.w400),)
               )),
             ],
           )

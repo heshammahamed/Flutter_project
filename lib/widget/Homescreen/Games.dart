@@ -10,7 +10,7 @@ class Games extends StatelessWidget {
       children: [
         const Text("Games : ", style: TextStyle(fontFamily: 'POP', fontWeight: FontWeight.w500, fontSize: 30.0, color: Colors.white)),
         SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
-        Container(
+        SizedBox(
           height: MediaQuery.of(context).size.height * 0.1, // Adjust the height as needed
           child: PageView(
             scrollDirection: Axis.horizontal,

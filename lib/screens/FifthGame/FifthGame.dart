@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -66,8 +65,8 @@ class FifthGame extends StatelessWidget {
           children: [
 
             SizedBox(height: MediaQuery.of(context).size.height * 0.09),
-            BodyOfTheGame(),
-            Head(),
+            const BodyOfTheGame(),
+            const Head(),
           ]
         ) 
 
@@ -104,7 +103,7 @@ class _HeadState extends State<Head> {
           print(timeLeft);
         }else {
           timer.cancel();
-        };
+        }
      });
   }
 
@@ -132,11 +131,11 @@ class _HeadState extends State<Head> {
 
         Row (
           children : [
-            FaIcon(FontAwesomeIcons.tiktok,color: Colors.red,size: 20,)
+            const FaIcon(FontAwesomeIcons.tiktok,color: Colors.red,size: 20,)
             ,
         // timer section
         Container(
-          child: Text ("Timer : ${timeLeft}" , style: const TextStyle(color: Colors.white , fontSize: 25))
+          child: Text ("Timer : $timeLeft" , style: const TextStyle(color: Colors.white , fontSize: 25))
         ),
           ]
         )
@@ -282,7 +281,7 @@ changeDirectionOfArrow();
           // show swap text and direction text
           Container (
 
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color : Colors.red,
             ),
 

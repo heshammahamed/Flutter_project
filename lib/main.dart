@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import './screens/homescreen.dart';
 import 'screens/Monaia/FirstGame.dart';
-import 'screens/Ahmed/SecondGame.dart';
 import 'screens/Ahmed/instructions.dart';
 import 'screens/Kholoud/ThirdGame.dart';
 import 'screens/Mohamed/FourthGame.dart';
 import 'screens/FifthGame/FifthGame.dart';
 import 'screens/SameColor/sameColor.dart';
+import 'package:game_project/board.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,18 +19,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Gameboard(),
       title: 'Games app',
       initialRoute: '/',
       routes: {
         '/': (context) => const Homescreen(),
-        '/FirstGame': (context) => FirstGame(),
-        '/SecondGame': (context) => Instructions(),
-        '/ThirdGame': (context) => ThirdGame(),
-        '/FourthGame': (context) => MohamedGame(),
-        '/FifthGame': (context) => FifthGame(),
-        '/SixthGame': (context) => SameColor(),
+        '/FirstGame': (context) => const FirstGame(),
+        '/SecondGame': (context) => const Instructions(),
+        '/ThirdGame': (context) => const ThirdGame(),
+        '/FourthGame': (context) => const MohamedGame(),
+        '/FifthGame': (context) => const FifthGame(),
+        '/SixthGame': (context) => const SameColor(),
       },
     );
   }

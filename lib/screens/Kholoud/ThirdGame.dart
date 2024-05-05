@@ -5,7 +5,7 @@ class ThirdGame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Color(0xFF161616),
       body : Center (child: Text("Delete Center widget and start Code !!" , style: TextStyle(fontSize : 15.0 , color: Colors.white , fontFamily: "POP",),),) ,
     );

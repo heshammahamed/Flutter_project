@@ -1,8 +1,6 @@
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
 
@@ -50,9 +48,9 @@ class FirstGame extends StatelessWidget {
         
         Column (
           children: [
-            Head(),
+            const Head(),
             SizedBox(height: MediaQuery.of(context).size.height * 0.09),
-            BodyOfTheGAme()
+            const BodyOfTheGAme()
           ]
         ) 
 
@@ -87,7 +85,7 @@ class _HeadState extends State<Head> {
           print(timeLeft);
         }else {
           timer.cancel();
-        };
+        }
      });
   }
 
@@ -103,7 +101,7 @@ class _HeadState extends State<Head> {
 
         // timer section
         Container(
-          child: Text ("Timer : ${timeLeft}" , style: const TextStyle(color: Colors.white , fontSize: 25))
+          child: Text ("Timer : $timeLeft" , style: const TextStyle(color: Colors.white , fontSize: 25))
         ),
 
         // score section
@@ -235,7 +233,7 @@ class _BodyOfTheGAmeState extends State<BodyOfTheGAme> {
             ],
           ),
 
-          SizedBox(height: 150),
+          const SizedBox(height: 150),
 
 
           Center (

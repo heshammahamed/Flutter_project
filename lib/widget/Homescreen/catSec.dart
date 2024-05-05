@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Catego extends StatelessWidget {
-  const Catego({Key? key}) : super(key: key);
+  const Catego({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class Catego extends StatelessWidget {
       children: [
         const Text("Categories : ", style: TextStyle(fontFamily: 'POP', fontWeight: FontWeight.w500, fontSize: 30.0, color: Colors.white)),
         SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
-        Container(
+        SizedBox(
           height: MediaQuery.of(context).size.height * 0.1, // Adjust the height as needed
           child: PageView(
             scrollDirection: Axis.horizontal,
@@ -28,7 +28,7 @@ class Catego extends StatelessWidget {
                         Container(
                           width:MediaQuery.of(context).size.width * 0.1 ,
                           height:MediaQuery.of(context).size.width * 0.1 ,
-                          decoration: BoxDecoration(color: Color(0xffF8F8E8) , borderRadius: BorderRadius.circular(50.0)),
+                          decoration: BoxDecoration(color: const Color(0xffF8F8E8) , borderRadius: BorderRadius.circular(50.0)),
                         )
                       ],
                     ),

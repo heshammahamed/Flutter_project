@@ -22,7 +22,7 @@ var brightestColor = Colors.red[400];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text(
+        title: const Text(
           "Timer : 2                 Score : 100",
           style: TextStyle(
             color: Colors.white,
@@ -36,7 +36,7 @@ var brightestColor = Colors.red[400];
           width: 500,
           height: 700,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
                 Radius.circular(10)), //علشان اعمل حواف دائريه للكونتينر
             border: Border.all(color: Colors.black, width: 5), //البرواز الخارجى
           ),
@@ -56,7 +56,7 @@ var brightestColor = Colors.red[400];
     return Container(
           decoration: BoxDecoration(
             color: mainColor,
-            borderRadius: BorderRadius.all(Radius.circular(7)),
+            borderRadius: const BorderRadius.all(Radius.circular(7)),
           ),
           width: 111,
           height: 370,

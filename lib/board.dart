@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:game_project/pixel.dart';
 import 'package:game_project/piece.dart';
 import 'package:game_project/values.dart';
@@ -37,15 +38,15 @@ class _GameboardState extends State<Gameboard>{
     gameloop(frameRate);
   }
 
-void gameloop(Duration frameRate)
-{
-  Timer.periodic(frameRate,
-   (timer) {
-    setState(() {
-      checkLanding();
-      currentpiece.movepiece(Direction.down);
-    });
-    });
+void CreateNewpiece(){
+  Random rand = Random();
+
+  Tetromino randomtype =
+  Tetromino.values[rand.nextInt(Tetromino.values.length)];
+  currentpiece = piece(type: randomtype);
+  currentpiece.intializepiece();
+}
+
 
   bool checkcollision(Direction direction){
     int row;
@@ -65,16 +66,9 @@ void gameloop(Duration frameRate)
     if(row >= collength || col < 0 || col >= rowlength){
       return true;}
     }
-    return false;
-  }
-void CreateNewpiece(){
-  Random rand = Random();
+    return false; }
 
-  Tetromino randomtype =
-  Tetromino.values[rand.nextInt(Tetromino.values.length)];
-  currentpiece = piece(type: randomtype);
-  currentpiece.intializepiece();
-}
+
 void checkLanding(){
   if(checkcollision(Direction.down)){
     for(int i=0; i < currentpiece.position.length; i++){
@@ -89,28 +83,95 @@ void checkLanding(){
 
 
 
+void gameloop(Duration frameRate)
+{
+  Timer.periodic(frameRate,
+   (timer) {
+    setState(() {
+      checkLanding();
+      currentpiece.movepiece(Direction.down);
+    });
+    });
+}
+void moveleft(){
+  if(!checkcollision(Direction.left)){
+    setState(() {
+      currentpiece.movepiece(Direction.left);
+    });
+  }
+}
+
+void moveright(){
+  if(!checkcollision(Direction.right)){
+    setState(() {
+      currentpiece.movepiece(Direction.right);
+    });
+  }
+}
+
+void rotatepiece(){
+  setState(() {
+    currentpiece.rotatepiece();
+  });
+}
+
+
   @override
   Widget build(BuildContext context){
     return Scaffold( 
       backgroundColor: Colors.black,
-      body: GridView.builder(
-        itemCount: rowlength*collength,
-        physics: const NeverScrollableScrollPhysics(),
-       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: rowlength),
-       itemBuilder: (context, index){
-        if(currentpiece.position.contains(index)){
-           return pixel(
-         color: Colors.yellow,
-         child: index,
-        );
-        }else{
-        return pixel(
-         color: Colors.grey[900],
-         child: index,
-        );}
-      },
-    ),
+      body: Column(
+        children: [
+          Expanded(
+            child: GridView.builder(
+              itemCount: rowlength*collength,
+              physics: const NeverScrollableScrollPhysics(),
+             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: rowlength),
+             itemBuilder: (context, index){
+            
+                int row = (index /rowlength).floor();
+                int col = index % rowlength;
+            
+              if(currentpiece.position.contains(index)){
+                 return pixel(
+               color: currentpiece.color,
+               child: index,
+              );
+              }
+              
+              else if(gameboard[row][col] != null){
+                final Tetromino? tetrominotype = gameboard[row][col];
+                return pixel(color: tetrominoColors[tetrominotype], child: '');
+              }
+              
+              
+              else{
+              return pixel(
+               color: Colors.grey[900],
+               child: index,
+              );}
+            },
+                ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(bottom: 50.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+              IconButton(onPressed: moveleft,color: Colors.white,
+               icon: Icon(Icons.arrow_back_ios)),
+            
+              IconButton(onPressed: rotatepiece, color: Colors.white,
+               icon: Icon(Icons.rotate_right)),
+            
+              IconButton(onPressed: moveright, color: Colors.white,
+               icon: Icon(Icons.arrow_forward_ios)),   
+            ],),
+          )
+
+        ],
+      ),
   );
-}
 }
 }
