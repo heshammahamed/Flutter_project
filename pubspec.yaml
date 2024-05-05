@@ -101,6 +101,9 @@ flutter:
      - family: ZeBrush
        fonts:
          - asset: assets/fonts/ZeBrush FREE.TTF
+     - family: Montserrat
+       fonts:
+         - asset: assets/fonts/montserrat.regular.TTF
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
