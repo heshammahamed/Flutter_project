@@ -13,7 +13,12 @@ class SecondGame extends StatefulWidget {
 class _SecondGameState extends State<SecondGame> {
   int _secondsRemaining = 60;
   late Timer _timer;
-  late Timer _feedbackTimer; // New timer for feedback display
+
+  String feedbackMessage = "";
+  Color feedbackColor = Colors.transparent; // Set default color
+  bool displayFeedback = false;
+  late Timer _feedbackTimer =
+      Timer(Duration.zero, () {}); // Initialize with an empty timer
 
   @override
   void initState() {
@@ -43,6 +48,10 @@ class _SecondGameState extends State<SecondGame> {
   }
 
   void _startFeedbackTimer() {
+    setState(() {
+      displayFeedback = true;
+    });
+
     _feedbackTimer = Timer(Duration(milliseconds: 1000), () {
       setState(() {
         displayFeedback = false;
@@ -89,12 +98,21 @@ class _SecondGameState extends State<SecondGame> {
   rotateLeft() {
     setState(() {
       userArrowAngle = userArrowAngle - 20;
+      if (userArrowAngle < 0) {
+        userArrowAngle = 340;
+      }
     });
   }
 
   rotateRight() {
     setState(() {
       userArrowAngle = userArrowAngle + 20;
+      if (userArrowAngle > 360) {
+        userArrowAngle = 20;
+      }
+      if (userArrowAngle == 360) {
+        userArrowAngle = 0;
+      }
     });
   }
 
@@ -109,38 +127,27 @@ class _SecondGameState extends State<SecondGame> {
 
 // [.5 , 1]
 
-  String feedbackMessage = "";
-  Color feedbackColor = Colors.transparent; // Set default color
-  bool displayFeedback = false;
-
   checkThedirection() {
-    if (mainArrowAngle / userArrowAngle == 1) {
+    double angleDifference = (mainArrowAngle - userArrowAngle).abs();
+    if (angleDifference == 0) {
       setState(() {
         score = score + 100;
-        feedbackMessage = "Correct";
+        feedbackMessage = "Correct +100";
         feedbackColor = Colors.green;
         displayFeedback = true;
       });
-    } else if ((mainArrowAngle / userArrowAngle > 0.5) &
-        (mainArrowAngle / userArrowAngle < 1)) {
+    } else if (angleDifference <= 20) {
+      // Adjust this threshold as needed
       setState(() {
-        score = score + 20;
-        feedbackMessage = "Correct";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else if ((mainArrowAngle / userArrowAngle > 1) &
-        (mainArrowAngle / userArrowAngle < 1.5)) {
-      setState(() {
-        score = score + 20;
-        feedbackMessage = "Correct";
-        feedbackColor = Colors.green;
+        score = score + 25;
+        feedbackMessage = "Close +25";
+        feedbackColor = Colors.yellow;
         displayFeedback = true;
       });
     } else {
       setState(() {
-        score = score - 30;
-        feedbackMessage = "Wrong";
+        score = score - 40;
+        feedbackMessage = "Wrong -40";
         feedbackColor = Colors.red;
         displayFeedback = true;
         if (score < 0) {
@@ -150,10 +157,11 @@ class _SecondGameState extends State<SecondGame> {
     }
 
     setState(() {
-      mainArrowAngle =
-          mainArrowAngles[Random().nextInt(18)]; // 0 , 1 , 2 ,3 , 4 ,5
-      userArrowAngle =
-          userArrowAngles[Random().nextInt(18)]; // 0 , 1 , 2 ,3 , 4 ,5
+      mainArrowAngle = mainArrowAngles[
+          Random().nextInt(mainArrowAngles.length)]; // 0 , 1 , 2 ,3 , 4 ,5
+
+      userArrowAngle = userArrowAngles[
+          Random().nextInt(userArrowAngles.length)]; // 0 , 1 , 2 ,3 , 4 ,5
     });
   }
 
@@ -199,7 +207,7 @@ class _SecondGameState extends State<SecondGame> {
   ];
 
   double mainArrowAngle = 20;
-  double userArrowAngle = 50;
+  double userArrowAngle = 60;
   int score = 0;
 
   @override
@@ -348,7 +356,7 @@ class _SecondGameState extends State<SecondGame> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 25,
+                    height: 30,
                     child: Visibility(
                       visible: displayFeedback,
                       child: Text(
@@ -446,9 +454,9 @@ class _SecondGameState extends State<SecondGame> {
                           borderRadius: BorderRadius.circular(25),
                           // You can customize the shape of the button here
                         ),
-                        child: const Text(
-                          'Check the direction',
-                          style: TextStyle(
+                        child: Text(
+                          ' $mainArrowAngle   $userArrowAngle',
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1.2,
@@ -467,3 +475,24 @@ class _SecondGameState extends State<SecondGame> {
     );
   }
 }
+
+
+/*
+Container(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                border: Border.all(color: const Color(0xFFEDF6FA), width: 0.5),
+                boxShadow: const [
+                  BoxShadow(
+                      color: Color(0xFFE8F3FA),
+                      blurRadius: 10,
+                      offset: Offset(0, 0))
+                ],
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+              ),
+              margin: const EdgeInsets.symmetric(horizontal: 12),
+              padding: const EdgeInsets.symmetric(vertical: 7),
+              child: 
+              )
+*/
