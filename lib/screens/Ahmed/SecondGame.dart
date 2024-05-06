@@ -129,6 +129,7 @@ class _SecondGameState extends State<SecondGame> {
 
   checkThedirection() {
     double angleDifference = (mainArrowAngle - userArrowAngle).abs();
+
     if (angleDifference == 0) {
       setState(() {
         score = score + 100;
@@ -136,7 +137,7 @@ class _SecondGameState extends State<SecondGame> {
         feedbackColor = Colors.green;
         displayFeedback = true;
       });
-    } else if (angleDifference <= 20) {
+    } else if ((angleDifference == 20) || (angleDifference == -20)) {
       // Adjust this threshold as needed
       setState(() {
         score = score + 25;
@@ -455,7 +456,7 @@ class _SecondGameState extends State<SecondGame> {
                           // You can customize the shape of the button here
                         ),
                         child: const Text(
-                          '              CHECK              ',
+                          '                 CHECK                 ',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
