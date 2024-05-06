@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './SecondGame.dart';
+import "./timer.dart";
 
 class Instructions extends StatefulWidget {
   const Instructions({super.key});
@@ -127,7 +127,7 @@ class _InstructionsState extends State<Instructions> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context , 
-                      MaterialPageRoute(builder: (context) => const SecondGame()),
+                      MaterialPageRoute(builder: (context) => const TimerGame()),
                     );
                   },
                   color:
