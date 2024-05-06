@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import './timer.dart';
 
@@ -78,7 +76,7 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                 child: const Column(
                   children: [
                     Text(
-                        '-  You have to rotate the second arrow to match the direction of the first blue arrow',
+                        '-  There will be two text showen on the screen.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -89,7 +87,7 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You have to collect as many points as possible before time runs out',
+                        '-  If the top text is the second text color then press true button.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -99,7 +97,7 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                     SizedBox(
                       height: 20,
                     ),
-                    Text('-  Each correct matching you will get +100 points',
+                    Text('-  If the top text is not the second text color then press false button.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -110,7 +108,18 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  If you get close to the correct matching you will get +20 points',
+                        '-  You will get + 500 if you swap in the correct direction.',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                        '-  You will get - 1000 if you swap in the wrong direction.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,

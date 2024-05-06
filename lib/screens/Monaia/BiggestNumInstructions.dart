@@ -71,12 +71,12 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
             Container(
                 width: 350,
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: const Column(
                   children: [
                     Text(
-                        '-  You have to rotate the second arrow to match the direction of the first blue arrow',
+                        '-  There will be two numbers showen on the screen.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -87,7 +87,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You have to collect as many points as possible before time runs out',
+                        '-  You must press on the biggest number box.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -97,7 +97,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                     SizedBox(
                       height: 20,
                     ),
-                    Text('-  Each correct matching you will get +100 points',
+                    Text('-  You will get (+ 500) if you choose the correct answer.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -108,7 +108,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  If you get close to the correct matching you will get +20 points',
+                        '-  You will get (- 1000) if you choose the wrong answer.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,

@@ -76,7 +76,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                 child: const Column(
                   children: [
                     Text(
-                        '-  You have to rotate the second arrow to match the direction of the first blue arrow',
+                        '-  There will be arrow and direction (Up , Down ..etc).',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -87,7 +87,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You have to collect as many points as possible before time runs out',
+                        '-  If the arrow color is green then swap twards the arrow direction.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -97,7 +97,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                     SizedBox(
                       height: 20,
                     ),
-                    Text('-  Each correct matching you will get +100 points',
+                    Text('- If the arrow color is red then swap twards the direction text.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -108,7 +108,18 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  If you get close to the correct matching you will get +20 points',
+                        '-  You will get + 500 if you swap in the correct direction.',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                        '-  You will get - 1000 if you swap in the wrong direction.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,

@@ -16,12 +16,12 @@ import 'dart:async';
 class Model extends ChangeNotifier {
   int score = 0;
   addOne () {
-    score++;
+    score = score + 500;
     notifyListeners();
   }
 
   minOne () {
-    score--;
+    score < 0 ? score = score - 1000 : score = 0;
     notifyListeners();
   }
 }

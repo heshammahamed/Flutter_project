@@ -22,14 +22,14 @@ import 'package:provider/provider.dart';
 // For change the state of the variables
 
 class Model extends ChangeNotifier {
-  int score = 100;
+  int score = 0;
   addOne () {
-    score++;
+    score = score + 500;
     notifyListeners();
   }
 
   minOne () {
-    score--;
+    score < 0 ? score = score - 1000 : score = 0;
     notifyListeners();
   }
 }
