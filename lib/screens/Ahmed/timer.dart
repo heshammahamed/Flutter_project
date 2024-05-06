@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import "./SecondGame.dart";
+import "SecondGame.dart";
 import 'dart:async';
 
 class TimerGame extends StatefulWidget {
@@ -11,7 +11,6 @@ class TimerGame extends StatefulWidget {
 }
 
 class _TimerGameState extends State<TimerGame> {
-
   int _secondsRemaining = 3;
   double percent = 1.0;
   late Timer _timer;
@@ -36,9 +35,9 @@ class _TimerGameState extends State<TimerGame> {
           percent = _secondsRemaining / 3.0;
         } else {
           timer.cancel();
-          
+
           Navigator.pushReplacement(
-            context , 
+            context,
             MaterialPageRoute(builder: (context) => const SecondGame()),
           );
           // Timer completed
@@ -50,18 +49,19 @@ class _TimerGameState extends State<TimerGame> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 242, 249, 255),
-      body: Center (
-        child: 
-        CircularPercentIndicator(
-          radius: 300,
-          lineWidth: 10,
-          percent: percent,
-          circularStrokeCap: CircularStrokeCap.round,
-          progressColor: Color(0xFF1976D2),
-          center: Text("$_secondsRemaining" , style: const TextStyle(fontFamily: 'POP' , color: Colors.black, fontSize: 70),)),
-
-      )
-    );
+        backgroundColor: Color.fromARGB(255, 242, 249, 255),
+        body: Center(
+          child: CircularPercentIndicator(
+              radius: 300,
+              lineWidth: 10,
+              percent: percent,
+              circularStrokeCap: CircularStrokeCap.round,
+              progressColor: Color(0xFF1976D2),
+              center: Text(
+                "$_secondsRemaining",
+                style: const TextStyle(
+                    fontFamily: 'POP', color: Colors.black, fontSize: 70),
+              )),
+        ));
   }
 }

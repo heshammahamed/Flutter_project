@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './screens/homescreen.dart';
-import 'screens/Monaia/FirstGame.dart';
-import 'screens/Ahmed/instructions.dart';
+import 'screens/Monaia/BiggestNumInstructions.dart';
+import 'screens/Ahmed/ArrowInstructions.dart';
 import 'screens/Kholoud/ThirdGame.dart';
-import 'screens/Mohamed/FourthGame.dart';
-import 'screens/FifthGame/FifthGame.dart';
-import 'screens/SameColor/sameColor.dart';
+import 'screens/Mohamed/ColorBoxInstructions.dart';
+import 'screens/FifthGame/DirectionInstructions.dart';
+import 'screens/SameColor/SameColorInstructions.dart';
 import 'package:game_project/board.dart';
 
 void main() {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: Gameboard(),  
+      // home: Gameboard(),
       /*
       
       there is error occured when we run the main dart because 
@@ -35,12 +35,12 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const Homescreen(),
-        '/FirstGame': (context) => const FirstGame(),
-        '/SecondGame': (context) => const Instructions(),
-        '/ThirdGame': (context) =>  Gameboard(),   // to be here 
-        '/FourthGame': (context) => const MohamedGame(),
-        '/FifthGame': (context) => const FifthGame(),
-        '/SixthGame': (context) => const SameColor(),
+        '/FirstGame': (context) => const BiggestNumInstructions(),
+        '/SecondGame': (context) => const ArrowInstructions(),
+        '/ThirdGame': (context) => Gameboard(), // to be here
+        '/FourthGame': (context) => const ColorBoxInstructions(),
+        '/FifthGame': (context) => const DirectionInstructions(),
+        '/SixthGame': (context) => const SameColorInstructions(),
       },
     );
   }

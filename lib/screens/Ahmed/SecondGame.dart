@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'dart:math';
 import 'dart:async';
 
@@ -12,6 +13,7 @@ class SecondGame extends StatefulWidget {
 class _SecondGameState extends State<SecondGame> {
   int _secondsRemaining = 60;
   late Timer _timer;
+  late Timer _feedbackTimer; // New timer for feedback display
 
   @override
   void initState() {
@@ -22,6 +24,7 @@ class _SecondGameState extends State<SecondGame> {
   @override
   void dispose() {
     _timer.cancel();
+    _feedbackTimer.cancel(); // Cancel the feedback timer on dispose
     super.dispose();
   }
 
@@ -32,21 +35,66 @@ class _SecondGameState extends State<SecondGame> {
           _secondsRemaining--;
         } else {
           timer.cancel();
+          _showPopup();
           // Timer completed
         }
       });
     });
   }
 
+  void _startFeedbackTimer() {
+    _feedbackTimer = Timer(Duration(milliseconds: 1000), () {
+      setState(() {
+        displayFeedback = false;
+      });
+    });
+  }
+
+  void _showPopup() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Time Is Over"),
+          content: Text("Your Score : $score"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                // Navigate to the main menu
+                // You can replace '/home' with your main menu route
+                Navigator.pushNamed(context, '/');
+              },
+              child: Text("Main Menu"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                // Rebuild the current screen
+                setState(() {
+                  _secondsRemaining = 60; // Reset timer
+                  score = 0; // Reset Score
+                  _startTimer(); // Start timer again
+                });
+              },
+              child: Text("Play Again"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   rotateLeft() {
     setState(() {
-      userArrowAngle = userArrowAngle - 10;
+      userArrowAngle = userArrowAngle - 20;
     });
   }
 
   rotateRight() {
     setState(() {
-      userArrowAngle = userArrowAngle + 10;
+      userArrowAngle = userArrowAngle + 20;
     });
   }
 
@@ -61,94 +109,93 @@ class _SecondGameState extends State<SecondGame> {
 
 // [.5 , 1]
 
+  String feedbackMessage = "";
+  Color feedbackColor = Colors.transparent; // Set default color
+  bool displayFeedback = false;
+
   checkThedirection() {
     if (mainArrowAngle / userArrowAngle == 1) {
       setState(() {
         score = score + 100;
+        feedbackMessage = "Correct";
+        feedbackColor = Colors.green;
+        displayFeedback = true;
       });
     } else if ((mainArrowAngle / userArrowAngle > 0.5) &
         (mainArrowAngle / userArrowAngle < 1)) {
       setState(() {
         score = score + 20;
+        feedbackMessage = "Correct";
+        feedbackColor = Colors.green;
+        displayFeedback = true;
       });
     } else if ((mainArrowAngle / userArrowAngle > 1) &
         (mainArrowAngle / userArrowAngle < 1.5)) {
       setState(() {
         score = score + 20;
+        feedbackMessage = "Correct";
+        feedbackColor = Colors.green;
+        displayFeedback = true;
+      });
+    } else {
+      setState(() {
+        score = score - 30;
+        feedbackMessage = "Wrong";
+        feedbackColor = Colors.red;
+        displayFeedback = true;
+        if (score < 0) {
+          score = 0;
+        }
       });
     }
 
     setState(() {
       mainArrowAngle =
-          mainArrowAngles[Random().nextInt(30)]; // 0 , 1 , 2 ,3 , 4 ,5
+          mainArrowAngles[Random().nextInt(18)]; // 0 , 1 , 2 ,3 , 4 ,5
       userArrowAngle =
-          userArrowAngles[Random().nextInt(30)]; // 0 , 1 , 2 ,3 , 4 ,5
+          userArrowAngles[Random().nextInt(18)]; // 0 , 1 , 2 ,3 , 4 ,5
     });
   }
 
   List<double> mainArrowAngles = [
-    40,
-    120,
-    210,
-    30,
-    320,
-    90,
-    270,
-    160,
-    350,
-    50,
-    190,
+    0,
     20,
-    310,
-    250,
-    110,
+    40,
     60,
-    180,
-    290,
-    140,
-    230,
     80,
-    170,
-    330,
+    100,
+    120,
+    140,
+    160,
+    180,
     200,
-    70,
-    280,
-    130,
-    10,
+    220,
     240,
-    100
+    260,
+    280,
+    300,
+    320,
+    340
   ];
   List<double> userArrowAngles = [
-    40,
-    120,
-    210,
-    30,
-    320,
-    90,
-    270,
-    160,
-    350,
-    50,
-    190,
+    0,
     20,
-    310,
-    250,
-    110,
+    40,
     60,
-    180,
-    290,
-    140,
-    230,
     80,
-    170,
-    330,
+    100,
+    120,
+    140,
+    160,
+    180,
     200,
-    70,
-    280,
-    130,
-    10,
+    220,
     240,
-    100
+    260,
+    280,
+    300,
+    320,
+    340
   ];
 
   double mainArrowAngle = 20;
@@ -279,7 +326,7 @@ class _SecondGameState extends State<SecondGame> {
               ),
             ), // Game's Arrow
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             Container(
               decoration: BoxDecoration(
@@ -296,8 +343,20 @@ class _SecondGameState extends State<SecondGame> {
               ),
               margin: const EdgeInsets.all(12),
               padding: const EdgeInsets.symmetric(vertical: 10),
+              height: 357,
+              width: 340,
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 25,
+                    child: Visibility(
+                      visible: displayFeedback,
+                      child: Text(
+                        feedbackMessage,
+                        style: TextStyle(fontSize: 20, color: feedbackColor),
+                      ),
+                    ), // Display feedback only when required,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -374,6 +433,8 @@ class _SecondGameState extends State<SecondGame> {
                       MaterialButton(
                         onPressed: () {
                           checkThedirection();
+                          // Start the feedback timer when the main timer starts
+                          _startFeedbackTimer();
                         },
                         color: const Color.fromARGB(
                             255, 0, 149, 5), // Background color
