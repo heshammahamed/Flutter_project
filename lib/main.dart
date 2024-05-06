@@ -21,14 +21,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Gameboard(),
+      // home: Gameboard(),  
+      /*
+      
+      there is error occured when we run the main dart because 
+      there are already initial route  for the app so we can not add home property.
+
+
+      so i change the Gameboard() secreen to be in kholoud section in the home screen 
+      
+      */
       title: 'Games app',
       initialRoute: '/',
       routes: {
         '/': (context) => const Homescreen(),
         '/FirstGame': (context) => const FirstGame(),
         '/SecondGame': (context) => const Instructions(),
-        '/ThirdGame': (context) => const ThirdGame(),
+        '/ThirdGame': (context) =>  Gameboard(),   // to be here 
         '/FourthGame': (context) => const MohamedGame(),
         '/FifthGame': (context) => const FifthGame(),
         '/SixthGame': (context) => const SameColor(),

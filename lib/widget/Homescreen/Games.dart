@@ -15,6 +15,19 @@ class Games extends StatelessWidget {
           child: PageView(
             scrollDirection: Axis.horizontal,
             children: [
+               GestureDetector(
+                onTap: () => {
+                  Navigator.pushNamed(context , "/ThirdGame")
+                },
+                child:Container(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.1,
+                  margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),color: Colors.yellow,),
+                  child: const Center(child: Text("Kholoud")),
+              ),
+              ),
+
               GestureDetector(
                 onTap: () => {
                   Navigator.pushNamed(context , "/FirstGame")
@@ -37,18 +50,6 @@ class Games extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 20.0),
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),color: Colors.blue,),
                   child: const Center(child: Text("Ahmed")),
-              ),
-              ),
-              GestureDetector(
-                onTap: () => {
-                  Navigator.pushNamed(context , "/ThirdGame")
-                },
-                child:Container(
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  width: MediaQuery.of(context).size.width * 0.1,
-                  margin: const EdgeInsets.symmetric(horizontal: 20.0),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),color: Colors.yellow,),
-                  child: const Center(child: Text("Kholoud")),
               ),
               ),
               GestureDetector(
