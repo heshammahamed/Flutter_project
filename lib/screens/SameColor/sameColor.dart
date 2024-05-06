@@ -21,7 +21,7 @@ class Model extends ChangeNotifier {
   }
 
   minOne () {
-    score < 0 ? score = score - 1000 : score = 0;
+    score = score - 1000;
     notifyListeners();
   }
 }
