@@ -146,8 +146,8 @@ class _SecondGameState extends State<SecondGame> {
       });
     } else {
       setState(() {
-        score = score - 40;
-        feedbackMessage = "Wrong -40";
+        score = score - 150;
+        feedbackMessage = "Wrong -150";
         feedbackColor = Colors.red;
         displayFeedback = true;
         if (score < 0) {
@@ -433,7 +433,7 @@ class _SecondGameState extends State<SecondGame> {
                     ],
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -454,9 +454,9 @@ class _SecondGameState extends State<SecondGame> {
                           borderRadius: BorderRadius.circular(25),
                           // You can customize the shape of the button here
                         ),
-                        child: Text(
-                          ' $mainArrowAngle   $userArrowAngle',
-                          style: const TextStyle(
+                        child: const Text(
+                          '              CHECK              ',
+                          style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1.2,

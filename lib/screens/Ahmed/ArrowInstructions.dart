@@ -33,7 +33,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
         backgroundColor: const Color.fromARGB(255, 242, 249, 255),
         body: Column(
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -66,7 +66,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
               ],
             ),
             const SizedBox(
-              height: 70,
+              height: 40,
             ),
             Container(
                 width: 350,
@@ -115,10 +115,21 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                        "-  If you didn't get the correct matching, you will lose -150 points",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
                   ],
                 )),
             const SizedBox(
-              height: 90,
+              height: 60,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -142,7 +153,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                     // You can customize the shape of the button here
                   ),
                   child: const Text(
-                    'Play',
+                    '              Play              ',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
