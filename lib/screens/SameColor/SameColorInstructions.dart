@@ -1,5 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import './sameColor.dart';
+import './timer.dart';
 
 class SameColorInstructions extends StatefulWidget {
   const SameColorInstructions({super.key});
@@ -128,7 +130,7 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const SameColor()),
+                          builder: (context) => const TimerGame()),
                     );
                   },
                   color:

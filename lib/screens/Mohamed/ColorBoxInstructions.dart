@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './FourthGame.dart';
+import './timer.dart';
 
 class ColorBoxInstructions extends StatefulWidget {
   const ColorBoxInstructions({super.key});
@@ -128,7 +128,7 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const MohamedGame()),
+                          builder: (context) => const TimerGame()),
                     );
                   },
                   color:

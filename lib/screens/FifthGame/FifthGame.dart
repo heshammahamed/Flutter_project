@@ -87,31 +87,39 @@ class Head extends StatefulWidget {
 
 class _HeadState extends State<Head> {
 
-  // the value wich the timer start in
+  int _secondsRemaining = 60;
+  late Timer _timer;
 
-  int timeLeft = 5;
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
 
-  // the function wich reduce the timeleft value
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
-  void CountDown () {
-    Timer.periodic(const Duration (seconds: 1), (timer) {
-      
-        if (timeLeft != 0) {
-          setState(() {
-            timeLeft = timeLeft - 1;
-          }); 
-          print(timeLeft);
-        }else {
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_secondsRemaining > 0) {
+          _secondsRemaining--;
+        } else {
           timer.cancel();
+          // Timer completed
         }
-     });
+      });
+    });
   }
 
   
   @override
   Widget build(BuildContext context) {
 
-    CountDown();
+
 
     return Container(
       decoration : BoxDecoration (
@@ -135,7 +143,7 @@ class _HeadState extends State<Head> {
             ,
         // timer section
         Container(
-          child: Text ("Timer : $timeLeft" , style: const TextStyle(color: Colors.white , fontSize: 25))
+          child: Text ("Timer : $_secondsRemaining" , style: const TextStyle(color: Colors.white , fontSize: 25))
         ),
           ]
         )

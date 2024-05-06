@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './FifthGame.dart';
+import './timer.dart';
 
 class DirectionInstructions extends StatefulWidget {
   const DirectionInstructions({super.key});
@@ -128,7 +128,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const FifthGame()),
+                          builder: (context) => const TimerGame()),
                     );
                   },
                   color:

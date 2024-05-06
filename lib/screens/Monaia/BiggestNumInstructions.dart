@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './FirstGame.dart';
+import './timer.dart';
 
 class BiggestNumInstructions extends StatefulWidget {
   const BiggestNumInstructions({super.key});
@@ -128,7 +128,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const FirstGame()),
+                          builder: (context) => const TimerGame()),
                     );
                   },
                   color:
