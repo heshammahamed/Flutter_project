@@ -11,24 +11,32 @@ class MohamedGame extends StatefulWidget {
 
 class _MohamedGameState extends State<MohamedGame> {
   int score = 100; // عدد النقاط
+
+  // list of colors
+  List mainColors = [Colors.red[500] , Colors.blue[500] , Colors.amber[500] , Colors.brown[500] , Colors.green[500] , Colors.lightGreen[500], Colors.purple[500]];
+  List brightestColors = [Colors.red[400] , Colors.blue[400] , Colors.amber[400] , Colors.brown[400] , Colors.green[400] , Colors.lightGreen[400], Colors.purple[400]];
+
   Color mainColor = Colors.red[500]!; // اللون الأساسي
   Color brightestColor = Colors.red[400]!; // اللون الأساسي المشرق
 
   // مكان ظهور اللون المختلف
   int differentColorIndex = 0;
 
+  // loop on the colrs list
+  int i = 0 ;
+
   int timerValue = 120; // قيمة الوقت بالثواني
   late Timer _timer; // تايمر
 
-  @override
-  void initState() {
+@override
+void initState() {
     super.initState();
     // بدء التايمر عند تهيئة الحالة
     _startTimer();
   }
 
-  // دالة لبدء التايمر
-  void _startTimer() {
+// دالة لبدء التايمر
+void _startTimer() {
     const oneSec = const Duration(seconds: 1);
     _timer = new Timer.periodic(
       oneSec,
@@ -43,6 +51,15 @@ class _MohamedGameState extends State<MohamedGame> {
       },
     );
   }
+
+
+changeColor () {
+  (i == mainColors.length - 1) ? i = 0 : i++;
+  setState(() {
+    mainColor = mainColors[i];
+    brightestColor = brightestColors[i];
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -89,20 +106,8 @@ class _MohamedGameState extends State<MohamedGame> {
                     setState(() {
                       // تحديث النقاط
                       score += 10;
-                      // توليد درجة عشوائية قريبة للون الأساسي
-                      int randomIncrement = Random().nextInt(100);
-                      mainColor = Color.fromRGBO(
-                        mainColor.red + randomIncrement,
-                        mainColor.green + randomIncrement,
-                        mainColor.blue + randomIncrement,
-                        1,
-                      );
-                      brightestColor = Color.fromRGBO(
-                        brightestColor.red + randomIncrement,
-                        brightestColor.green + randomIncrement,
-                        brightestColor.blue + randomIncrement,
-                        1,
-                      );
+                      // change the colors
+                      changeColor (); 
                       // توليد رقم عشوائي لتحديد مكان جديد للون المختلف
                       differentColorIndex = Random().nextInt(9);
                     });
@@ -125,20 +130,7 @@ class _MohamedGameState extends State<MohamedGame> {
                     setState(() {
                       // تحديث النقاط
                       score -= 5;
-                      // توليد درجة عشوائية جديدة للون الأساسي
-                      mainColor = Color.fromRGBO(
-                        Random().nextInt(256),
-                        Random().nextInt(256),
-                        Random().nextInt(256),
-                        1,
-                      );
-                      // تحديد اللون المشرق
-                      brightestColor = Color.fromRGBO(
-                        mainColor.red - 100,
-                        mainColor.green - 100,
-                        mainColor.blue - 100,
-                        1,
-                      );
+                      changeColor();
                     });
                   },
                   child: Container(
