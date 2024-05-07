@@ -11,7 +11,7 @@ class SecondGame extends StatefulWidget {
 }
 
 class _SecondGameState extends State<SecondGame> {
-  int _secondsRemaining = 60;
+  int _secondsRemaining = 30;
   late Timer _timer;
 
   String feedbackMessage = "";
@@ -82,7 +82,7 @@ class _SecondGameState extends State<SecondGame> {
                 Navigator.of(context).pop();
                 // Rebuild the current screen
                 setState(() {
-                  _secondsRemaining = 60; // Reset timer
+                  _secondsRemaining = 30; // Reset timer
                   score = 0; // Reset Score
                   _startTimer(); // Start timer again
                 });
