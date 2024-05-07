@@ -10,7 +10,7 @@ class MohamedGame extends StatefulWidget {
 }
 
 class _MohamedGameState extends State<MohamedGame> {
-  int score = 100; // عدد النقاط
+  int score = 0; // عدد النقاط
 
   // list of colors
   List mainColors = [Colors.red[500] , Colors.blue[500] , Colors.amber[500] , Colors.brown[500] , Colors.green[500] , Colors.lightGreen[500], Colors.purple[500]];
@@ -25,33 +25,88 @@ class _MohamedGameState extends State<MohamedGame> {
   // loop on the colrs list
   int i = 0 ;
 
-  int timerValue = 120; // قيمة الوقت بالثواني
+  int _secondsRemaining = 30; // قيمة الوقت بالثواني
   late Timer _timer; // تايمر
+  String feedbackMessage = "";
+  Color feedbackColor = Colors.transparent; // Set default color
+  bool displayFeedback = false;
+  late Timer _feedbackTimer =
+      Timer(Duration.zero, () {}); // Initialize with an empty timer
 
-@override
-void initState() {
+  @override
+  void initState() {
     super.initState();
-    // بدء التايمر عند تهيئة الحالة
     _startTimer();
   }
 
-// دالة لبدء التايمر
-void _startTimer() {
-    const oneSec = const Duration(seconds: 1);
-    _timer = new Timer.periodic(
-      oneSec,
-      (timer) {
-        setState(() {
-          if (timerValue < 1) {
-            timer.cancel();
-          } else {
-            timerValue--;
-          }
-        });
+  @override
+  void dispose() {
+    _timer.cancel();
+    _feedbackTimer.cancel(); // Cancel the feedback timer on dispose
+    super.dispose();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_secondsRemaining > 0) {
+          _secondsRemaining--;
+        } else {
+          timer.cancel();
+          _showPopup();
+          // Timer completed
+        }
+      });
+    });
+  }
+
+  void _startFeedbackTimer() {
+    setState(() {
+      displayFeedback = true;
+    });
+
+    _feedbackTimer = Timer(Duration(milliseconds: 1000), () {
+      setState(() {
+        displayFeedback = false;
+      });
+    });
+  }
+
+  void _showPopup() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Time Is Over"),
+          content: Text("Your Score : $score"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                // Navigate to the main menu
+                // You can replace '/home' with your main menu route
+                Navigator.pushNamed(context, '/');
+              },
+              child: Text("Main Menu"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                // Rebuild the current screen
+                setState(() {
+                  _secondsRemaining = 30; // Reset timer
+                  score = 0; // Reset Score
+                  _startTimer(); // Start timer again
+                });
+              },
+              child: Text("Play Again"),
+            ),
+          ],
+        );
       },
     );
   }
-
 
 changeColor () {
   (i == mainColors.length - 1) ? i = 0 : i++;
@@ -65,30 +120,116 @@ changeColor () {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text(
-          "different the degree color",
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 30,
-            fontWeight: FontWeight.w700,
+          automaticallyImplyLeading: false,
+          shadowColor: Colors.black45,
+          scrolledUnderElevation: 50,
+          elevation: 10,
+          centerTitle: true,
+          backgroundColor: const Color(0xFF1976D2),
+          title: const Text(
+            'Brightest Color Game',
+            style: TextStyle(
+              fontFamily: "Montserrat",
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+              color: Colors.white,
+            ),
           ),
         ),
-      ),
-      body: Center(
+      body: 
+      Column(
+        children : [
+          const SizedBox(height: 30),
+          Row (
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(color: Colors.black, width: 0.5),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Colors.black12,
+                            offset: Offset(0, 0),
+                            blurRadius: 20)
+                      ]),
+                  padding: const EdgeInsets.all(5),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.timer,
+                        color: Color.fromARGB(221, 26, 26, 26),
+                      ),
+                      Text(
+                        ' Timer : $_secondsRemaining',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          fontFamily: "Montserrat",
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        ),
+                      )])),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(color: Colors.black, width: 0.5),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Colors.black12,
+                            offset: Offset(0, 0),
+                            blurRadius: 20)
+                      ]),
+                  padding: const EdgeInsets.all(5),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.leaderboard,
+                        color: Color.fromARGB(221, 26, 26, 26),
+                      ),
+                      Text(
+                        ' Score : $score',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          fontFamily: "Montserrat",
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+            ],
+          ),
+          const SizedBox(height: 50),
+          const Text("Choose the brightest Color!" , style: TextStyle(fontFamily: "Montserrat", fontSize: 20 , letterSpacing: 1.0 ,),),
+          const SizedBox(height: 50),
+      Center(
         child: Container(
-          padding: EdgeInsets.only(
-            top: 30,
+          padding: const EdgeInsets.only(
+            top: 50,
             right: 10,
             left: 10,
           ),
+          margin: EdgeInsets.symmetric(horizontal: 20),
           width: 500,
           height: 500,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(
-                Radius.circular(10)), //علشان اعمل حواف دائريه للكونتينر
-            border: Border.all(color: Colors.black, width: 5), //البرواز الخارجى
-          ),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                border: Border.all(color: const Color(0xFFEDF6FA), width: 0.5),
+                boxShadow: const [
+                  BoxShadow(
+                      color: Color(0xFFE8F3FA),
+                      blurRadius: 10,
+                      offset: Offset(0, 0))
+                ],
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+              ),
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3, // Number of columns in the grid
@@ -96,7 +237,7 @@ changeColor () {
               mainAxisSpacing: 10.0, // Spacing between rows
             ),
 
-            itemCount: 9, // Total number of items in the grid
+            itemCount: 12, // Total number of items in the grid
             itemBuilder: (BuildContext context, int index) {
               // تحديد مكان ظهور اللون المختلف
               if (index == differentColorIndex) {
@@ -105,7 +246,7 @@ changeColor () {
                     // عندما يضغط المستخدم على اللون المختلف
                     setState(() {
                       // تحديث النقاط
-                      score += 10;
+                      score += 500;
                       // change the colors
                       changeColor (); 
                       // توليد رقم عشوائي لتحديد مكان جديد للون المختلف
@@ -129,7 +270,7 @@ changeColor () {
                     // عندما يضغط المستخدم على الألوان الأخرى
                     setState(() {
                       // تحديث النقاط
-                      score -= 5;
+                      score -= 400;
                       changeColor();
                     });
                   },
@@ -147,13 +288,8 @@ changeColor () {
           ),
         ),
       ),
-    );
+    ]));
   }
 
-  @override
-  void dispose() {
-    // إلغاء التايمر عند تجميع الحالة
-    _timer.cancel();
-    super.dispose();
-  }
+
 }
