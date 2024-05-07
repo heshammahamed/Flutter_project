@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './timer.dart';
+import 'timer.dart';
 
 class DirectionInstructions extends StatefulWidget {
   const DirectionInstructions({super.key});

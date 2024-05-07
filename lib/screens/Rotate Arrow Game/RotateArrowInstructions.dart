@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import './timer.dart';
+import "timer.dart";
 
-class BiggestNumInstructions extends StatefulWidget {
-  const BiggestNumInstructions({super.key});
+class ArrowInstructions extends StatefulWidget {
+  const ArrowInstructions({super.key});
 
   @override
-  State<BiggestNumInstructions> createState() => _BiggestNumInstructionsState();
+  State<ArrowInstructions> createState() => _ArrowInstructionsState();
 }
 
-class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
+class _ArrowInstructionsState extends State<ArrowInstructions> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,7 +33,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
         backgroundColor: const Color.fromARGB(255, 242, 249, 255),
         body: Column(
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -66,17 +66,17 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
               ],
             ),
             const SizedBox(
-              height: 70,
+              height: 40,
             ),
             Container(
                 width: 350,
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: const Column(
                   children: [
                     Text(
-                        '-  There will be two numbers showen on the screen.',
+                        '-  You have to rotate the second arrow to match the direction of the first blue arrow',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -87,7 +87,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You must press on the biggest number box.',
+                        '-  You have to collect as many points as possible before time runs out',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -97,7 +97,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                     SizedBox(
                       height: 20,
                     ),
-                    Text('-  You will get (+ 500) if you choose the correct answer.',
+                    Text('-  Each correct matching you will get +100 points',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -108,7 +108,18 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You will get (- 1000) if you choose the wrong answer.',
+                        '-  If you get close to the correct matching you will get +20 points',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                        "-  If you didn't get the correct matching, you will lose -150 points",
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -118,7 +129,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                   ],
                 )),
             const SizedBox(
-              height: 90,
+              height: 60,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -142,7 +153,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                     // You can customize the shape of the button here
                   ),
                   child: const Text(
-                    'Play',
+                    '              Play              ',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

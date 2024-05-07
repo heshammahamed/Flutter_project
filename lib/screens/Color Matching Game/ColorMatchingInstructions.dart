@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import "./timer.dart";
+import 'timer.dart';
 
-class ArrowInstructions extends StatefulWidget {
-  const ArrowInstructions({super.key});
+class SameColorInstructions extends StatefulWidget {
+  const SameColorInstructions({super.key});
 
   @override
-  State<ArrowInstructions> createState() => _ArrowInstructionsState();
+  State<SameColorInstructions> createState() => _SameColorInstructionsState();
 }
 
-class _ArrowInstructionsState extends State<ArrowInstructions> {
+class _SameColorInstructionsState extends State<SameColorInstructions> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,7 +33,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
         backgroundColor: const Color.fromARGB(255, 242, 249, 255),
         body: Column(
           children: [
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -66,7 +66,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
               ],
             ),
             const SizedBox(
-              height: 40,
+              height: 70,
             ),
             Container(
                 width: 350,
@@ -75,8 +75,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: const Column(
                   children: [
-                    Text(
-                        '-  You have to rotate the second arrow to match the direction of the first blue arrow',
+                    Text('-  There will be two text showen on the screen.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -87,17 +86,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You have to collect as many points as possible before time runs out',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
-                        )),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text('-  Each correct matching you will get +100 points',
+                        '-  If the top text is the second text color then press true button.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -108,7 +97,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  If you get close to the correct matching you will get +20 points',
+                        '-  If the top text is not the second text color then press false button.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -119,7 +108,18 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                       height: 20,
                     ),
                     Text(
-                        "-  If you didn't get the correct matching, you will lose -150 points",
+                        '-  You will get + 500 if you swap in the correct direction.',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                        '-  You will get - 1000 if you swap in the wrong direction.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -129,7 +129,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                   ],
                 )),
             const SizedBox(
-              height: 60,
+              height: 90,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -153,7 +153,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                     // You can customize the shape of the button here
                   ),
                   child: const Text(
-                    '              Play              ',
+                    'Play',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

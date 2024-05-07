@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './screens/homescreen.dart';
-import 'screens/Monaia/BiggestNumInstructions.dart';
-import 'screens/Ahmed/ArrowInstructions.dart';
+import 'screens/Biggest Number Game/BiggestNumberInstructions.dart';
+import 'screens/Rotate Arrow Game/RotateArrowInstructions.dart';
 import 'screens/Kholoud/ThirdGame.dart';
-import 'screens/Mohamed/ColorBoxInstructions.dart';
-import 'screens/FifthGame/DirectionInstructions.dart';
-import 'screens/SameColor/SameColorInstructions.dart';
+import 'screens/Brightest Color Game/BrightestColorInstructions.dart';
+import 'screens/Directions Game/DirectionInstructions.dart';
+import 'screens/Color Matching Game/ColorMatchingInstructions.dart';
 import 'package:game_project/board.dart';
 
 void main() {

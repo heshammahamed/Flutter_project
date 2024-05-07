@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import './timer.dart';
+import 'timer.dart';
 
-class ColorBoxInstructions extends StatefulWidget {
-  const ColorBoxInstructions({super.key});
+class BiggestNumInstructions extends StatefulWidget {
+  const BiggestNumInstructions({super.key});
 
   @override
-  State<ColorBoxInstructions> createState() => _ColorBoxInstructionsState();
+  State<BiggestNumInstructions> createState() => _BiggestNumInstructionsState();
 }
 
-class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
+class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -70,13 +70,21 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
             ),
             Container(
                 width: 350,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: const Column(
                   children: [
-                    Text(
-                        '-  You have to rotate the second arrow to match the direction of the first blue arrow',
+                    Text('-  There will be two numbers showen on the screen.',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text('-  You must press on the biggest number box.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -87,17 +95,7 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You have to collect as many points as possible before time runs out',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
-                        )),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text('-  Each correct matching you will get +100 points',
+                        '-  You will get (+ 500) if you choose the correct answer.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -108,7 +106,7 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  If you get close to the correct matching you will get +20 points',
+                        '-  You will get (- 1000) if you choose the wrong answer.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
