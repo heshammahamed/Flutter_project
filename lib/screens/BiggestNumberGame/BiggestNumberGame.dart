@@ -209,7 +209,7 @@ class _FirstGameState extends State<FirstGame> {
               centerTitle: true,
               backgroundColor: const Color(0xFF1976D2),
               title: const Text(
-                'Rotate Arrow Game',
+                'Biggest Number Game',
                 style: TextStyle(
                   fontFamily: "Montserrat",
                   fontSize: 22,
@@ -220,10 +220,8 @@ class _FirstGameState extends State<FirstGame> {
               ),
             ),
             backgroundColor: const Color(0xFFF7F8FA),
-
             body: Column(children: [
               const SizedBox(height: 20),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -293,10 +291,12 @@ class _FirstGameState extends State<FirstGame> {
                   )
                 ],
               ), // Timer & Score Row
-             
-              SizedBox(height: 40),
-
-                    const Text(
+              const SizedBox(height: 50),
+              const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
                       "Chosse The Biggest Number",
                       style: TextStyle(
                         fontSize: 18,
@@ -304,112 +304,158 @@ class _FirstGameState extends State<FirstGame> {
                         letterSpacing: 1.2,
                         fontFamily: "Montserrat",
                         color: Color.fromARGB(221, 26, 26, 26),
-                      ),),
-
+                      ),
+                    ),
+                  ]),
               const SizedBox(height: 50),
 
-              Column(
-                children: [
-                  GestureDetector(
-                      onTap: () => firstBoxCheckScore(),
-                      child: 
-                            Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(20)),
-                                  border: Border.all(
-                                      color: const Color(0xFFEDF6FA),
-                                      width: 0.5),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Color(0xFFE8F3FA),
-                                        blurRadius: 10,
-                                        offset: Offset(0, 0))
-                                  ],
-                                  color: Colors.white,
-                                  shape: BoxShape.rectangle,
-                                ),
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 12),
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 7),
-                                child: Row(children: [
-                                  Text(
-                                    num1,
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1.2,
-                                      fontFamily: "Montserrat",
-                                      color: Color.fromARGB(221, 26, 26, 26),
-                                    ),
-                                  ),
-                                ])),
-                          ),
-
-                  const SizedBox(height: 55),
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () => secondBoxCheckScore(),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20)),
-                            border: Border.all(
-                                color: const Color(0xFFEDF6FA), width: 0.5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Color(0xFFE8F3FA),
-                                  blurRadius: 10,
-                                  offset: Offset(0, 0))
-                            ],
-                            color: Colors.white,
-                            shape: BoxShape.rectangle,
-                          ),
-                          margin: const EdgeInsets.symmetric(horizontal: 12),
-                          padding: const EdgeInsets.symmetric(vertical: 7),
-                          child: Text(
-                            num2,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.2,
-                              fontFamily: "Montserrat",
-                              color: Color.fromARGB(221, 26, 26, 26),
+              Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    border:
+                        Border.all(color: const Color(0xFFEDF6FA), width: 0.5),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color(0xFFE8F3FA),
+                          blurRadius: 10,
+                          offset: Offset(0, 0))
+                    ],
+                    color: Colors.white,
+                    shape: BoxShape.rectangle,
+                  ),
+                  margin: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(vertical: 7),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: MaterialButton(
+                            onPressed: () {
+                              firstBoxCheckScore();
+                              _startFeedbackTimer();
+                            },
+                            // color: Colors.white, // Background color
+                            textColor: Colors.white, // Text color
+                            elevation: 4,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                              // You can customize the shape of the button here
+                            ),
+                            child: Text(
+                              num1,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2,
+                                fontFamily: "Montserrat",
+                                color: Color.fromARGB(221, 26, 26, 26),
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      ])),
+
+              const SizedBox(height: 55),
+
+              Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    border:
+                        Border.all(color: const Color(0xFFEDF6FA), width: 0.5),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color(0xFFE8F3FA),
+                          blurRadius: 10,
+                          offset: Offset(0, 0))
                     ],
+                    color: Colors.white,
+                    shape: BoxShape.rectangle,
                   ),
-                ],
+                  margin: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(vertical: 7),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: MaterialButton(
+                            onPressed: () {
+                              secondBoxCheckScore();
+                              _startFeedbackTimer();
+                            },
+                            // color: Colors.white, // Background color
+                            textColor: Colors.white, // Text color
+                            elevation: 4,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                              // You can customize the shape of the button here
+                            ),
+                            child: Text(
+                              num2,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2,
+                                fontFamily: "Montserrat",
+                                color: Color.fromARGB(221, 26, 26, 26),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ])),
+
+              const SizedBox(
+                height: 30,
               ),
-              const SizedBox(height: 50),
-              Row(children: [
-                GestureDetector(
-                  onTap: () => equalBoxCheckScore(),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(40),
+
+              SizedBox(
+                height: 30,
+                child: Visibility(
+                  visible: displayFeedback,
+                  child: Text(
+                    feedbackMessage,
+                    style: TextStyle(fontSize: 20, color: feedbackColor),
+                  ),
+                ), // Display feedback only when required,
+              ),
+
+              const SizedBox(height: 60),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  MaterialButton(
+                    onPressed: () {
+                      equalBoxCheckScore();
+                      // Start the feedback timer when the main timer starts
+                      _startFeedbackTimer();
+                    },
+                    color: Colors.amber, // Background color
+                    textColor: Colors.white, // Text color
+                    elevation: 4,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      // You can customize the shape of the button here
                     ),
-                    alignment: Alignment.center,
-                    width: 250,
-                    height: 70,
                     child: const Text(
-                      "equall",
+                      '                Equall                ',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1.2,
                         fontFamily: "Montserrat",
-                        color: Color.fromARGB(221, 26, 26, 26),
                       ),
                     ),
                   ),
-                ),
-              ])
+                ],
+              )
             ])));
 
     /*Scaffold(
