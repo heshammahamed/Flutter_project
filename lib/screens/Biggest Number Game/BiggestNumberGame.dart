@@ -200,7 +200,220 @@ class _FirstGameState extends State<FirstGame> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(
+              shadowColor: Colors.black45,
+              scrolledUnderElevation: 50,
+              elevation: 10,
+              centerTitle: true,
+              backgroundColor: const Color(0xFF1976D2),
+              title: const Text(
+                'Rotate Arrow Game',
+                style: TextStyle(
+                  fontFamily: "Montserrat",
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            backgroundColor: const Color(0xFFF7F8FA),
+            body: Column(children: [
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(color: Colors.black, width: 0.5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 0),
+                              blurRadius: 20)
+                        ]),
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.timer,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        ),
+                        Text(
+                          ' Timer : $_secondsRemaining',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.2,
+                            fontFamily: "Montserrat",
+                            color: Color.fromARGB(221, 26, 26, 26),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(color: Colors.black, width: 0.5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 0),
+                              blurRadius: 20)
+                        ]),
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.leaderboard,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        ),
+                        Text(
+                          ' Score : $score',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.2,
+                            fontFamily: "Montserrat",
+                            color: Color.fromARGB(221, 26, 26, 26),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ), // Timer & Score Row
+              SizedBox(height: 40),
+              const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Chosse The Biggest Number",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
+                        fontFamily: "Montserrat",
+                        color: Color.fromARGB(221, 26, 26, 26),
+                      ),
+                    ),
+                  ]),
+              const SizedBox(height: 50),
+              Column(
+                children: [
+                  GestureDetector(
+                      onTap: () => firstBoxCheckScore(),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20)),
+                                  border: Border.all(
+                                      color: const Color(0xFFEDF6FA),
+                                      width: 0.5),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color: Color(0xFFE8F3FA),
+                                        blurRadius: 10,
+                                        offset: Offset(0, 0))
+                                  ],
+                                  color: Colors.white,
+                                  shape: BoxShape.rectangle,
+                                ),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 12),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 7),
+                                child: Row(children: [
+                                  Text(
+                                    num1,
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 1.2,
+                                      fontFamily: "Montserrat",
+                                      color: Color.fromARGB(221, 26, 26, 26),
+                                    ),
+                                  ),
+                                ])),
+                          ])),
+                  const SizedBox(height: 55),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () => secondBoxCheckScore(),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(
+                                color: const Color(0xFFEDF6FA), width: 0.5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Color(0xFFE8F3FA),
+                                  blurRadius: 10,
+                                  offset: Offset(0, 0))
+                            ],
+                            color: Colors.white,
+                            shape: BoxShape.rectangle,
+                          ),
+                          margin: const EdgeInsets.symmetric(horizontal: 12),
+                          padding: const EdgeInsets.symmetric(vertical: 7),
+                          child: Text(
+                            num2,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.2,
+                              fontFamily: "Montserrat",
+                              color: Color.fromARGB(221, 26, 26, 26),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 50),
+              Row(children: [
+                GestureDetector(
+                  onTap: () => equalBoxCheckScore(),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    alignment: Alignment.center,
+                    width: 250,
+                    height: 70,
+                    child: const Text(
+                      "equall",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
+                        fontFamily: "Montserrat",
+                        color: Color.fromARGB(221, 26, 26, 26),
+                      ),
+                    ),
+                  ),
+                ),
+              ])
+            ])));
+
+    /*Scaffold(
         backgroundColor: const Color(0xFF161616),
         body: Container(
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
@@ -293,6 +506,7 @@ class _FirstGameState extends State<FirstGame> {
                   )
                 ],
               ))
-            ])));
+            ]))
+            );*/
   }
 }

@@ -3,6 +3,14 @@ import 'package:flutter/widgets.dart';
 import 'dart:math';
 import 'dart:async';
 
+/*
+Score
+Game Timer
+Feedback Timer
+Game Logic
+Popup
+*/
+
 class SecondGame extends StatefulWidget {
   const SecondGame({super.key});
 
@@ -75,7 +83,7 @@ class _SecondGameState extends State<SecondGame> {
                 // You can replace '/home' with your main menu route
                 Navigator.pushNamed(context, '/');
               },
-              child: Text("Main Menu"),
+              child: const Text("Main Menu"),
             ),
             TextButton(
               onPressed: () {
@@ -87,7 +95,7 @@ class _SecondGameState extends State<SecondGame> {
                   _startTimer(); // Start timer again
                 });
               },
-              child: Text("Play Again"),
+              child: const Text("Play Again"),
             ),
           ],
         );
@@ -302,7 +310,7 @@ class _SecondGameState extends State<SecondGame> {
                   ),
                 )
               ],
-            ),
+            ), // Timer & Score Row
             const SizedBox(
               height: 50,
             ),
