@@ -12,6 +12,7 @@ import 'package:game_project/screens/TertiesGame/board.dart';
 import 'package:game_project/screens/TertiesGame/instructions.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
+import './screens/splashScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -176,7 +177,7 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(create: (context) => Score()), 
       ChangeNotifierProvider(create: (context) => DarkAndLightMode()), 
     ],
-     
+
     child : 
     
     MaterialApp(
@@ -194,7 +195,7 @@ class MyApp extends StatelessWidget {
       title: 'Games app',
       initialRoute: '/',
       routes: {
-        '/': (context) => const Homescreen(),
+        '/': (context) => const splash(),
         '/FirstGame': (context) => const BiggestNumInstructions(),
         '/SecondGame': (context) => const ArrowInstructions(),
         '/ThirdGame': (context) => const InstructionsBuildGame(), // to be here
