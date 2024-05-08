@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:game_project/pixel.dart';
-import 'package:game_project/piece.dart';
-import 'package:game_project/values.dart';
+import 'package:game_project/screens/Kholoud/pixel.dart';
+import 'package:game_project/screens/Kholoud/piece.dart';
+import 'package:game_project/screens/Kholoud/values.dart';
 import 'package:provider/provider.dart';
 
 List<List<Tetromino?>> gameBoard = List.generate(
@@ -207,65 +208,136 @@ startgame();
   @override
   Widget build(BuildContext context){
     return Scaffold( 
-      backgroundColor: Colors.black,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        shadowColor: Colors.black45,
+        scrolledUnderElevation: 50,
+        elevation: 10,
+        centerTitle: true,
+        backgroundColor: const Color(0xFF1976D2),
+        title: const Text(
+          'Tetris Game',
+          style: TextStyle(
+            fontFamily: "Montserrat",
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.2,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      backgroundColor: const Color(0xFFF7F8FA),
       body: Column(
         children: [
-          Expanded(
-            child: GridView.builder(
-              itemCount: rowlength * collength,
-              physics: const NeverScrollableScrollPhysics(),
-             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: rowlength),
-             itemBuilder: (context, index){
-            
-                int row = (index /rowlength).floor();
-                int col = index % rowlength;
-            
-              if(currentpiece.position.contains(index)){
-                 return pixel(
-               color: currentpiece.color,
 
-              );
-              }
+          SizedBox(height: 10),
+
+ Container(
+            height: 560,
+            width: 500,
+            padding : EdgeInsets.only(top: 10), 
+            margin: EdgeInsets.only(bottom : 5),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(
+                  color: const Color(0xFFEDF6FA), width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              boxShadow: const [
+                BoxShadow(
+                    color: Color(0xFFE8F3FA),
+                    offset: Offset(0, 0),
+                    blurRadius: 20)
+              ]),
+              child: GridView.builder(
+                itemCount: rowlength * collength,
+                physics: const NeverScrollableScrollPhysics(),
+               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: rowlength),
+               itemBuilder: (context, index){
               
-              else if(gameBoard[row][col] != null){
-                final Tetromino? tetrominotype = gameBoard[row][col];
-                return pixel(color: tetrominoColors[tetrominotype],);
-              }
+                  int row = (index /rowlength).floor();
+                  int col = index % rowlength;
               
+                if(currentpiece.position.contains(index)){
+                   return pixel(
+                 color: currentpiece.color,
               
-              else{
-              return pixel(
-               color: Colors.grey[900],
+                );
+                }
+                
+                else if(gameBoard[row][col] != null){
+                  final Tetromino? tetrominotype = gameBoard[row][col];
+                  return pixel(color: tetrominoColors[tetrominotype],);
+                }
+                
+                
+                else{
+                return pixel(
+                 color: Colors.grey[900],
+              
+                );}
+              },
+                  ),
+            ),
 
-              );}
-            },
-                ),
-          ),
+
+          
+          Container(
+            padding : EdgeInsets.only(top : 10),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(
+                  color: const Color(0xFFEDF6FA), width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              boxShadow: const [
+                BoxShadow(
+                    color: Color(0xFFE8F3FA),
+                    offset: Offset(0, 0),
+                    blurRadius: 20)
+              ]),
+            child:
+            Column(
+              children: [
+
+             Text(
+              'Score: $currentscore',
+              style: const TextStyle(fontFamily: "Montserrat",fontSize: 25, fontWeight: FontWeight.bold,letterSpacing: 1.2,color: Colors.black,),
+            ),
 
 
-          Text(
-            'Score: $currentscore',
-            style: TextStyle(color: Colors.white),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.only(bottom: 50.0, top: 50),
+            Padding(
+            padding: const EdgeInsets.only(bottom: 10.0, top: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-              IconButton(onPressed: startgame,color: Colors.white,
-               icon: Icon(Icons.circle)),
-              IconButton(onPressed: moveleft,color: Colors.white,
+
+              GestureDetector(
+                  onTap: () => startgame,
+
+                  child : Container(
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    padding: EdgeInsets.all(10),
+                    child: Text ("START!!" , style : TextStyle(color :Colors.white)))
+                ),
+
+              IconButton(onPressed: moveleft,color: Colors.black,
                icon: Icon(Icons.arrow_back_ios)),
             
-              IconButton(onPressed: rotatepiece, color: Colors.white,
+              IconButton(onPressed: rotatepiece, color: Colors.black,
                icon: Icon(Icons.rotate_right)),
             
-              IconButton(onPressed: moveright, color: Colors.white,
+              IconButton(onPressed: moveright, color: Colors.black,
                icon: Icon(Icons.arrow_forward_ios)),   
             ],
             ),
           )
+              ],
+            )
+
+          ),
+
         ],
       ),
   );

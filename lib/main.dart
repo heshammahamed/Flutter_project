@@ -2,16 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:game_project/widget/Homescreen/progress.dart';
 import './screens/homescreen.dart';
 import 'screens/BiggestNumberGame/BiggestNumberInstructions.dart';
 import 'screens/Rotate Arrow Game/RotateArrowInstructions.dart';
-import 'screens/Kholoud/ThirdGame.dart';
 import 'screens/BrightestColorGame/BrightestColorInstructions.dart';
-import 'screens/BrightestColorGame/BrightestColorGame.dart';
 import 'screens/DirectionsGame/DirectionInstructions.dart';
 import 'screens/Color Matching Game/ColorMatchingInstructions.dart';
-import 'package:game_project/board.dart';
+import 'package:game_project/screens/Kholoud/board.dart';
+import 'package:game_project/screens/Kholoud/instructions.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -154,7 +152,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const Homescreen(),
         '/FirstGame': (context) => const BiggestNumInstructions(),
         '/SecondGame': (context) => const ArrowInstructions(),
-        '/ThirdGame': (context) => const GameBoard(), // to be here
+        '/ThirdGame': (context) => const InstructionsBuildGame(), // to be here
         '/FourthGame': (context) =>  const ColorBoxInstructions(),
         '/FifthGame': (context) => const DirectionInstructions(),
         '/SixthGame': (context) => const SameColorInstructions(),

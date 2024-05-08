@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import './ThirdGame.dart';
+import './timer.dart';
 
-class Instructions extends StatefulWidget {
-  const Instructions({super.key});
+class InstructionsBuildGame extends StatefulWidget {
+  const InstructionsBuildGame({super.key});
 
   @override
-  State<Instructions> createState() => _InstructionsState();
+  State<InstructionsBuildGame> createState() => _InstructionsBuildGameState();
 }
 
-class _InstructionsState extends State<Instructions> {
+class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +20,7 @@ class _InstructionsState extends State<Instructions> {
           centerTitle: true,
           backgroundColor: const Color(0xFF1976D2),
           title: const Text(
-            'Rotate Arrow Game',
+            'Tetris Game',
             style: TextStyle(
               fontFamily: "Montserrat",
               fontSize: 22,
@@ -66,7 +66,7 @@ class _InstructionsState extends State<Instructions> {
               ],
             ),
             const SizedBox(
-              height: 70,
+              height: 15,
             ),
             Container(
                 width: 350,
@@ -76,7 +76,7 @@ class _InstructionsState extends State<Instructions> {
                 child: const Column(
                   children: [
                     Text(
-                        '-  You have to rotate the second arrow to match the direction of the first blue arrow',
+                        '-  Your goal is to manipulate falling tetrominoes to create complete horizontal lines at the bottom of the screen.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -87,7 +87,7 @@ class _InstructionsState extends State<Instructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You have to collect as many points as possible before time runs out',
+                        '-  You can move tetrominoes left or right using the left and right arrow on your screen.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -97,7 +97,7 @@ class _InstructionsState extends State<Instructions> {
                     SizedBox(
                       height: 20,
                     ),
-                    Text('-  Each correct matching you will get +100 points',
+                    Text('- To rotate them, simply press the rotate icon which shown in the bottom of the screen.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -108,7 +108,29 @@ class _InstructionsState extends State<Instructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  If you get close to the correct matching you will get +20 points',
+                        '-  when you successfully create a horizontal line with no gaps across the playing area it will vanish.',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                        '-  You will earn +100 ponits when you successfully create a horizontal line with no gaps across the playing area.',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                        '-  The game will over when if the tetrominoes stack up to the top of the screen.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -118,7 +140,7 @@ class _InstructionsState extends State<Instructions> {
                   ],
                 )),
             const SizedBox(
-              height: 90,
+              height: 30,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -128,7 +150,7 @@ class _InstructionsState extends State<Instructions> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ThirdGame()),
+                          builder: (context) => const TimerGame()),
                     );
                   },
                   color:
