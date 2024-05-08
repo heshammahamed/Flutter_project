@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 
 class Catego extends StatelessWidget {
   const Catego({super.key});
 
   @override
   Widget build(BuildContext context) {
+    DarkAndLightMode color = Provider.of<DarkAndLightMode>(context, listen: true);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Categories : ", style: TextStyle(fontFamily: 'POP', fontWeight: FontWeight.w500, fontSize: 30.0, color: Colors.white)),
+        Text("Categories : ", style: TextStyle(fontFamily: 'POP', fontWeight: FontWeight.w500, fontSize: 30.0, color: color.textForHomeScreen)),
         SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.1, // Adjust the height as needed

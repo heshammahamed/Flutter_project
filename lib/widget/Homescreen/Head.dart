@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../var.dart';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 
 
 class Head extends StatefulWidget {
@@ -13,30 +15,19 @@ class Head extends StatefulWidget {
 class _HeadState extends State<Head> {
   @override
   Widget build(BuildContext context) {
+    DarkAndLightMode color = Provider.of<DarkAndLightMode>(context, listen: true);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const FaIcon(FontAwesomeIcons.brain,color: Colors.white,size: 30.0,),
+          FaIcon(FontAwesomeIcons.brain,color: color.textForHomeScreen,size: 30.0,),
 
 
-          const Text("MiniGames",
-          style: TextStyle(fontFamily: 'POP', fontWeight: FontWeight.bold , color: Colors.white, fontSize: 35),),
+          Text("MiniGames",
+          style: TextStyle(fontFamily: 'POP', fontWeight: FontWeight.bold , color: color.textForHomeScreen, fontSize: 35),),
 
-          IconButton(onPressed: () {
-            if (homescreen == const Color(0xFF161616)){
-              setState(() {
-              homescreen =  Colors.white;
-              textcolor = const Color(0xFF161616);
-              });
-            }else {
-              setState(() {
-              homescreen =  const Color(0xFF161616);
-              textcolor = Colors.white;                
-              });
-
-            }
-          }, icon: const FaIcon(FontAwesomeIcons.lightbulb,color: Colors.white,size: 30.0,)),
+          IconButton(onPressed: () => color.changeMode(),
+          icon: FaIcon(FontAwesomeIcons.lightbulb,color: color.textForHomeScreen,size: 30.0,)),
 
           ]
     );

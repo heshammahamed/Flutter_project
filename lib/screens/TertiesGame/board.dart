@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:game_project/screens/Kholoud/pixel.dart';
-import 'package:game_project/screens/Kholoud/piece.dart';
-import 'package:game_project/screens/Kholoud/values.dart';
+import 'package:game_project/screens/TertiesGame/pixel.dart';
+import 'package:game_project/screens/TertiesGame/piece.dart';
+import 'package:game_project/screens/TertiesGame/values.dart';
 import 'package:provider/provider.dart';
 import '../../main.dart';
 

@@ -8,8 +8,8 @@ import 'screens/Rotate Arrow Game/RotateArrowInstructions.dart';
 import 'screens/BrightestColorGame/BrightestColorInstructions.dart';
 import 'screens/DirectionsGame/DirectionInstructions.dart';
 import 'screens/Color Matching Game/ColorMatchingInstructions.dart';
-import 'package:game_project/screens/Kholoud/board.dart';
-import 'package:game_project/screens/Kholoud/instructions.dart';
+import 'package:game_project/screens/TertiesGame/board.dart';
+import 'package:game_project/screens/TertiesGame/instructions.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -149,12 +149,34 @@ updateTotalIndicator() {
 }
 
 
+// when press on the icon 
+//  how tochange????
+
+class DarkAndLightMode extends  ChangeNotifier {
+  bool IsDark = true;
+  var backgroundForHomeScreen = const Color(0xFF161616);
+  var textForHomeScreen = Colors.white;
+
+  changeMode() {
+    (IsDark) ? IsDark = false : IsDark = true;
+    backgroundForHomeScreen = (IsDark) ? const Color(0xFF161616)  : const Color.fromARGB(255, 242, 249, 255);
+    textForHomeScreen = (IsDark) ? Colors.white : Color.fromARGB(221, 26, 26, 26);
+    notifyListeners();
+  }
+
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(create: (context) => Score(), 
+    return MultiProvider(providers: 
+    [
+      ChangeNotifierProvider(create: (context) => Score()), 
+      ChangeNotifierProvider(create: (context) => DarkAndLightMode()), 
+    ],
+     
     child : 
     
     MaterialApp(

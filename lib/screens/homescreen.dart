@@ -3,7 +3,8 @@ import '../widget/Homescreen/Head.dart';
 import '../widget/Homescreen/progress.dart';
 import '../widget/Homescreen/catSec.dart';
 import '../widget/Homescreen/Games.dart';
-import '../../var.dart';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 
 // FaIcon(FontAwesomeIcons.brain,color: Colors.white,size: 25.0,)
 
@@ -17,8 +18,9 @@ class  Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
+    DarkAndLightMode color = Provider.of<DarkAndLightMode>(context, listen: true);
     return Scaffold(
-      backgroundColor :homescreen ,
+      backgroundColor :color.backgroundForHomeScreen ,
 
       body: Padding(
         padding: const EdgeInsetsDirectional.all(8.0),

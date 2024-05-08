@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:game_project/screens/Kholoud/board.dart';
-import 'package:game_project/screens/Kholoud/values.dart';
+import 'package:game_project/screens/TertiesGame/board.dart';
+import 'package:game_project/screens/TertiesGame/values.dart';
 class piece{
   Tetromino type;
   piece({required this.type});

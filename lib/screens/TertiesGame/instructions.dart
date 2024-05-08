@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './timer.dart';
+import 'timer.dart';
 
 class InstructionsBuildGame extends StatefulWidget {
   const InstructionsBuildGame({super.key});
