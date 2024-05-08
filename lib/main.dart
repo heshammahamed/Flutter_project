@@ -23,10 +23,12 @@ class Score extends ChangeNotifier {
 int scoreForObservationGame = 0;
 int scoreForMathematicsGame = 0; 
 int scoreForAccuracyGame = 0; 
+int scoreForLogicGame = 0; 
 
 double observationLevelPercent = 0.0; 
 double mathematicsLevelPercent = 0.0;
 double accuracyLevelPercent = 0.0;
+double logicLevelPercent = 0.0;
 
 double totalPercent = 0.0;
 int level = 0;
@@ -47,6 +49,10 @@ addScoreForMathematicsGameGames() {
   scoreForMathematicsGame = scoreForMathematicsGame + 300;
   notifyListeners();
 }
+addScoreForLogicGameGames() {
+  scoreForLogicGame = scoreForLogicGame + 100;
+  notifyListeners();
+}
 
 restartScoreForObservationGames() {
   double val = (scoreForObservationGame / 1000).roundToDouble();
@@ -64,6 +70,12 @@ restartScoreForMathematicsGames() {
   double val = (scoreForMathematicsGame / 1000).roundToDouble();
   scoreForMathematicsGame = 0;
   updateMathematicsLevelPercent(val);
+  notifyListeners();
+}
+restartScoreForLogicGames() {
+  double val = (scoreForLogicGame / 100).roundToDouble();
+  scoreForLogicGame = 0;
+  updateLogicLevelPercent(val);
   notifyListeners();
 }
 
@@ -109,6 +121,17 @@ updateMathematicsLevelPercent([double val = 0.0]) {
     if (mathematicsLevelPercent >= 0.9) {
       updateTotalIndicator();
       mathematicsLevelPercent = 0.1;
+    }
+    notifyListeners();
+  }
+}
+updateLogicLevelPercent([double val = 0.0]) {
+  while (val > 0.0 && logicLevelPercent < 0.9) {
+    logicLevelPercent += 0.1;
+    val -= 0.1;
+    if (logicLevelPercent >= 0.9) {
+      updateTotalIndicator();
+      logicLevelPercent = 0.1;
     }
     notifyListeners();
   }

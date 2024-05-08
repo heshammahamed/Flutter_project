@@ -7,6 +7,7 @@ import 'package:game_project/screens/Kholoud/pixel.dart';
 import 'package:game_project/screens/Kholoud/piece.dart';
 import 'package:game_project/screens/Kholoud/values.dart';
 import 'package:provider/provider.dart';
+import '../../main.dart';
 
 List<List<Tetromino?>> gameBoard = List.generate(
   collength,
@@ -29,7 +30,6 @@ class _GameBoardState extends State<GameBoard>{
 
   piece currentpiece = piece(type: Tetromino.L);
 
- int currentscore =0;
  bool gameover = false;
 
   @override
@@ -40,7 +40,7 @@ class _GameBoardState extends State<GameBoard>{
   void startgame(){
     currentpiece.intializepiece();
 
-    Duration frameRate = const Duration(milliseconds: 500);
+    Duration frameRate = const Duration(milliseconds: 200);
     gameloop(frameRate);
   }
 
@@ -89,7 +89,7 @@ bool checkcollision(Direction direction){
       }
     }
     return false;
-     }
+}
 
 
 
@@ -140,6 +140,7 @@ void rotatepiece(){
 
 
 void clearlines(){
+  Score score = Provider.of<Score>(context, listen: false);
   for(int row = collength - 1 ; row >= 0; row--){
     bool rowisfull =true;
      
@@ -156,8 +157,7 @@ void clearlines(){
       }
 
       gameBoard[0] = List.generate(row, (index) => null);
-
-      currentscore++;
+        score.addScoreForLogicGameGames();
      }
   }
 }
@@ -173,24 +173,32 @@ bool isgameover(){
 
 
 void showgameoverdialog(){
+    Score score = Provider.of<Score>(context, listen: false);
   showDialog(
     context: context,
      builder: (context) => AlertDialog(
       title: Text('Game Over'),
-      content: Text("Your Score is: $currentscore"),
+      content: Text("Your Score is: ${score.scoreForLogicGame}"),
       actions: [
         TextButton(
           onPressed: (){
             resetgame();
             Navigator.pop(context);
           }, 
-          child: Text('Play Again'))
+          child: Text('Play Again')),
+        TextButton(
+          onPressed: (){
+            resetgame();
+            Navigator.pushNamed(context , '/');
+          }, 
+          child: const Text('Main Menu'))
       ],
      ));
 }
 
 
 void resetgame(){
+  Score score = Provider.of<Score>(context, listen: false);
   gameBoard = List.generate(
     collength,
     (i) => List.generate(
@@ -199,14 +207,14 @@ void resetgame(){
   ),
   );
 
-gameover =false;
-currentscore = 0;
-CreateNewpiece();
-startgame();
+  gameover =false;
+  score.restartScoreForLogicGames();
+  CreateNewpiece();
 }
 
   @override
   Widget build(BuildContext context){
+    Score score = Provider.of<Score>(context, listen: false);
     return Scaffold( 
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -230,13 +238,11 @@ startgame();
       body: Column(
         children: [
 
-          SizedBox(height: 10),
-
- Container(
+          Container(
             height: 560,
             width: 500,
             padding : EdgeInsets.only(top: 10), 
-            margin: EdgeInsets.only(bottom : 5),
+            margin: EdgeInsets.only(bottom : 5 , top : 10),
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(
@@ -278,9 +284,6 @@ startgame();
               },
                   ),
             ),
-
-
-          
           Container(
             padding : EdgeInsets.only(top : 10),
           decoration: BoxDecoration(
@@ -299,7 +302,7 @@ startgame();
               children: [
 
              Text(
-              'Score: $currentscore',
+              'Score: ${score.scoreForLogicGame}',
               style: const TextStyle(fontFamily: "Montserrat",fontSize: 25, fontWeight: FontWeight.bold,letterSpacing: 1.2,color: Colors.black,),
             ),
 
@@ -311,7 +314,7 @@ startgame();
               children: [
 
               GestureDetector(
-                  onTap: () => startgame,
+                  onTap: () => startgame(),
 
                   child : Container(
                     decoration: BoxDecoration(

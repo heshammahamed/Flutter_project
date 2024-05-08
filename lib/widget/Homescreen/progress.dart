@@ -229,7 +229,7 @@ class _ProgressState extends State<Progress> {
                     LinearPercentIndicator(
                       width: MediaQuery.of(context).size.width * 0.44 ,
                       lineHeight: 4.0 ,
-                      percent: 0.4,
+                      percent: score.logicLevelPercent,
                       progressColor: Colors.greenAccent,
                       linearStrokeCap: LinearStrokeCap.butt,
 
