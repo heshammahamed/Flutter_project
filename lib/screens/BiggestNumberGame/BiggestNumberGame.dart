@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 
 class FirstGame extends StatefulWidget {
   const FirstGame({super.key});
@@ -9,7 +11,6 @@ class FirstGame extends StatefulWidget {
 }
 
 class _FirstGameState extends State<FirstGame> {
-  int score = 0;
   int _secondsRemaining = 30;
   late Timer _timer;
 
@@ -67,62 +68,11 @@ class _FirstGameState extends State<FirstGame> {
     });
   }
 
-  firstBoxCheckScore() {
-    if (numbers1[first] > numbers2[seco]) {
-      setState(() {
-        score = score + 500;
-        feedbackMessage = "Correct +500";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else {
-      setState(() {
-        score = score - 400;
-        feedbackMessage = "Wrong -400";
-        feedbackColor = Colors.red;
-        displayFeedback = true;
-      });
-    }
-    changeState();
-  }
 
-  secondBoxCheckScore() {
-    if (numbers2[seco] > numbers1[first]) {
-      setState(() {
-        score = score + 500;
-        feedbackMessage = "Correct +500";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else {
-      setState(() {
-        score = score - 400;
-        feedbackMessage = "Wrong -400";
-        feedbackColor = Colors.red;
-        displayFeedback = true;
-      });
-    }
-    changeState();
-  }
 
-  equalBoxCheckScore() {
-    if (numbers2[seco] == numbers1[first]) {
-      setState(() {
-        score = score + 500;
-        feedbackMessage = "Correct +500";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else {
-      setState(() {
-        score = score - 400;
-        feedbackMessage = "Wrong -400";
-        feedbackColor = Colors.red;
-        displayFeedback = true;
-      });
-    }
-    changeState();
-  }
+
+
+
 
   @override
   void initState() {
@@ -163,16 +113,18 @@ class _FirstGameState extends State<FirstGame> {
   }
 
   void _showPopup() {
+    Score score = Provider.of<Score>(context, listen: false);
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Time Is Over"),
-          content: Text("Your Score : $score"),
+          content: Text("Your Score : ${score.scoreForMathematicsGame}"),
           actions: [
             TextButton(
               onPressed: () {
+                score.restartScoreForMathematicsGames();
                 Navigator.of(context).pop();
                 // Navigate to the main menu
                 // You can replace '/home' with your main menu route
@@ -182,11 +134,11 @@ class _FirstGameState extends State<FirstGame> {
             ),
             TextButton(
               onPressed: () {
+                score.restartScoreForMathematicsGames();
                 Navigator.of(context).pop();
                 // Rebuild the current screen
                 setState(() {
                   _secondsRemaining = 30; // Reset timer
-                  score = 0; // Reset Score
                   _startTimer(); // Start timer again
                 });
               },
@@ -200,6 +152,65 @@ class _FirstGameState extends State<FirstGame> {
 
   @override
   Widget build(BuildContext context) {
+  Score score = Provider.of<Score>(context, listen: true);
+
+  equalBoxCheckScore() {
+    if (numbers2[seco] == numbers1[first]) {
+      setState(() {
+        score.addScoreForMathematicsGameGames();
+        feedbackMessage = "Correct +500";
+        feedbackColor = Colors.green;
+        displayFeedback = true;
+      });
+    } else {
+      setState(() {
+        score.minScoreForMathematicsGames();
+        feedbackMessage = "Wrong -400";
+        feedbackColor = Colors.red;
+        displayFeedback = true;
+      });
+    }
+    changeState();
+  }
+
+  secondBoxCheckScore() {
+    if (numbers2[seco] > numbers1[first]) {
+      setState(() {
+        score.addScoreForMathematicsGameGames();
+        feedbackMessage = "Correct +500";
+        feedbackColor = Colors.green;
+        displayFeedback = true;
+      });
+    } else {
+      setState(() {
+        score.minScoreForMathematicsGames();
+        feedbackMessage = "Wrong -400";
+        feedbackColor = Colors.red;
+        displayFeedback = true;
+      });
+    }
+    changeState();
+  }
+
+  firstBoxCheckScore() {
+    if (numbers1[first] > numbers2[seco]) {
+      setState(() {
+        score.addScoreForMathematicsGameGames();
+        feedbackMessage = "Correct +500";
+        feedbackColor = Colors.green;
+        displayFeedback = true;
+      });
+    } else {
+      setState(() {
+        score.minScoreForMathematicsGames();
+        feedbackMessage = "Wrong -400";
+        feedbackColor = Colors.red;
+        displayFeedback = true;
+      });
+    }
+    changeState();
+  } 
+    
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
@@ -277,7 +288,7 @@ class _FirstGameState extends State<FirstGame> {
                           color: Color.fromARGB(221, 26, 26, 26),
                         ),
                         Text(
-                          ' Score : $score',
+                          ' Score : ${score.scoreForMathematicsGame}',
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,

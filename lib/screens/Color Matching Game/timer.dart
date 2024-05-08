@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import "ColorMatchingGame.dart";
+import "../Color Matching Game/ColorMatchingGame.dart";
 import 'dart:async';
 
 class TimerGame extends StatefulWidget {

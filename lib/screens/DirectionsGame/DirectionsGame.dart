@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 
 class FifthGame extends StatefulWidget {
   const FifthGame({super.key});
@@ -14,10 +16,8 @@ class FifthGame extends StatefulWidget {
 class _FifthGameState extends State<FifthGame> {
 // variables
 
-  int _secondsRemaining = 60;
+  int _secondsRemaining = 30;
   late Timer _timer;
-  int score = 0;
-
   String feedbackMessage = "";
   Color feedbackColor = Colors.transparent; // Set default color
   bool displayFeedback = false;
@@ -90,16 +90,18 @@ class _FifthGameState extends State<FifthGame> {
   }
 
   void _showPopup() {
+    Score score = Provider.of<Score>(context, listen: false);
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Time Is Over"),
-          content: Text("Your Score : $score"),
+          content: Text("Your Score : ${score.scoreForObservationGame}"),
           actions: [
             TextButton(
               onPressed: () {
+                score.restartScoreForObservationGames();
                 Navigator.of(context).pop();
                 // Navigate to the main menu
                 // You can replace '/home' with your main menu route
@@ -109,11 +111,11 @@ class _FifthGameState extends State<FifthGame> {
             ),
             TextButton(
               onPressed: () {
+                score.restartScoreForObservationGames();
                 Navigator.of(context).pop();
                 // Rebuild the current screen
                 setState(() {
                   _secondsRemaining = 60; // Reset timer
-                  score = 0; // Reset Score
                   _startTimer(); // Start timer again
                 });
               },
@@ -125,44 +127,41 @@ class _FifthGameState extends State<FifthGame> {
     );
   }
 
-  checkSwap() {
+  @override
+  Widget build(BuildContext context) {
+    Score score = Provider.of<Score>(context, listen: true);
+    checkSwap() {
     if (!directionSwapped) {
       if (arrowColor == Colors.green) {
         if (iconDirectionString == swap) {
           setState(() {
-            score = score + 500;
-            feedbackMessage = "Correct +100";
+            score.addScoreForObservationGames();
+            feedbackMessage = "Correct +500";
             feedbackColor = Colors.green;
             displayFeedback = true;
           });
         } else {
           setState(() {
-            score = score - 1000;
-            feedbackMessage = "Wrong -1000";
+            score.minScoreForObservationGames();
+            feedbackMessage = "Wrong -400";
             feedbackColor = Colors.red;
             displayFeedback = true;
-            if (score < 0) {
-              score = 0;
-            }
           });
         }
       } else {
         if (direction == swap) {
           setState(() {
-            score = score + 500;
-            feedbackMessage = "Correct +100";
+            score.addScoreForObservationGames();
+            feedbackMessage = "Correct +500";
             feedbackColor = Colors.green;
             displayFeedback = true;
           });
         } else {
           setState(() {
-            score = score - 1000;
+            score.minScoreForObservationGames();
             feedbackMessage = "Wrong -40";
             feedbackColor = Colors.red;
             displayFeedback = true;
-            if (score < 0) {
-              score = 0;
-            }
           });
         }
       }
@@ -177,9 +176,6 @@ class _FifthGameState extends State<FifthGame> {
       });
     }
   }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -264,7 +260,7 @@ class _FifthGameState extends State<FifthGame> {
                           child: Row(children: [
                             Icon(Icons.leaderboard),
                             Container(
-                              child: Text("Score : ${score}",
+                              child: Text("Score : ${score.scoreForObservationGame}",
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,

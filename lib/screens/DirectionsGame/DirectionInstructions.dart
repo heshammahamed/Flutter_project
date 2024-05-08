@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'timer.dart';
+import '../DirectionsGame/timer.dart';
 
-class BiggestNumInstructions extends StatefulWidget {
-  const BiggestNumInstructions({super.key});
+class DirectionInstructions extends StatefulWidget {
+  const DirectionInstructions({super.key});
 
   @override
-  State<BiggestNumInstructions> createState() => _BiggestNumInstructionsState();
+  State<DirectionInstructions> createState() => _DirectionInstructionsState();
 }
 
-class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
+class _DirectionInstructionsState extends State<DirectionInstructions> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +20,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
           centerTitle: true,
           backgroundColor: const Color(0xFF1976D2),
           title: const Text(
-            'Rotate Arrow Game',
+            'Directions Game',
             style: TextStyle(
               fontFamily: "Montserrat",
               fontSize: 22,
@@ -33,7 +33,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
         backgroundColor: const Color.fromARGB(255, 242, 249, 255),
         body: Column(
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -66,25 +66,16 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
               ],
             ),
             const SizedBox(
-              height: 70,
+              height: 40,
             ),
             Container(
                 width: 350,
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: const Column(
                   children: [
-                    Text('-  There will be two numbers showen on the screen.',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
-                        )),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text('-  You must press on the biggest number box.',
+                    Text('-  There will be arrow with a various directions',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -95,7 +86,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You will get (+ 500) if you choose the correct answer.',
+                        '-  You have two directions : Arrow Direction, Word Direction',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -106,7 +97,40 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You will get (- 1000) if you choose the wrong answer.',
+                        '-  If the arrow color is green then swap towards the Arrow Direction',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                        '- If the arrow color is red then swap towards the Word Direction',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                        '-  If you swapped in the correct direction you will gain +500 points',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                        '-  If you swapped in the wrong direction you will lose -1000 points',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -116,7 +140,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                   ],
                 )),
             const SizedBox(
-              height: 90,
+              height: 40,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -140,7 +164,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                     // You can customize the shape of the button here
                   ),
                   child: const Text(
-                    'Play',
+                    '              Play              ',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

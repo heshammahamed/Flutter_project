@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 
 // features :
 
@@ -18,7 +20,6 @@ class SameColor extends StatefulWidget {
 }
 
 class _SameColorState extends State<SameColor> {
-  int score = 0;
   int _secondsRemaining = 30;
   late Timer _timer;
 
@@ -83,16 +84,18 @@ class _SameColorState extends State<SameColor> {
   }
 
   void _showPopup() {
+    Score score = Provider.of<Score>(context, listen: false);
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Time Is Over"),
-          content: Text("Your Score : $score"),
+          content: Text("Your Score : ${score.scoreForObservationGame}"),
           actions: [
             TextButton(
               onPressed: () {
+                score.restartScoreForObservationGames();
                 Navigator.of(context).pop();
                 // Navigate to the main menu
                 // You can replace '/home' with your main menu route
@@ -102,11 +105,12 @@ class _SameColorState extends State<SameColor> {
             ),
             TextButton(
               onPressed: () {
+                score.restartScoreForObservationGames();
                 Navigator.of(context).pop();
                 // Rebuild the current screen
                 setState(() {
                   _secondsRemaining = 30; // Reset timer
-                  score = 0; // Reset Score
+                  score.restartScoreForObservationGames(); // Reset Score
                   _startTimer(); // Start timer again
                 });
               },
@@ -127,54 +131,52 @@ class _SameColorState extends State<SameColor> {
     });
   }
 
-  trueCheckScore() {
-    if (meaining == textColorString) {
-      setState(() {
-        score = score + 500;
-        feedbackMessage = "Correct +500";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else {
-      setState(() {
-        score = score - 1000;
-        feedbackMessage = "Wrong -1000";
-        feedbackColor = Colors.red;
-        displayFeedback = true;
-        if (score < 0) {
-          score = 0;
-        }
-      });
-    }
-    changeDirectionOfArrow();
-    changeState();
-  }
 
-  falseCheckScore() {
-    if (meaining != textColorString) {
-      setState(() {
-        score = score + 500;
-        feedbackMessage = "Correct +500";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else {
-      setState(() {
-        score = score - 1000;
-        feedbackMessage = "Wrong -1000";
-        feedbackColor = Colors.red;
-        displayFeedback = true;
-        if (score < 0) {
-          score = 0;
-        }
-      });
-    }
-    changeDirectionOfArrow();
-    changeState();
-  }
+
 
   @override
   Widget build(BuildContext context) {
+    Score score = Provider.of<Score>(context, listen: false);
+
+  trueCheckScore() {
+    if (meaining == textColorString) {
+      setState(() {
+        score.addScoreForObservationGames();
+        feedbackMessage = "Correct +500";
+        feedbackColor = Colors.green;
+        displayFeedback = true;
+      });
+    } else {
+      setState(() {
+        score.minScoreForObservationGames();
+        feedbackMessage = "Wrong -400";
+        feedbackColor = Colors.red;
+        displayFeedback = true;
+      });
+    }
+    changeDirectionOfArrow();
+    changeState();
+  }
+    
+  falseCheckScore() {
+    if (meaining != textColorString) {
+      setState(() {
+        score.addScoreForObservationGames();
+        feedbackMessage = "Correct +500";
+        feedbackColor = Colors.green;
+        displayFeedback = true;
+      });
+    } else {
+      setState(() {
+        score.minScoreForObservationGames();
+        feedbackMessage = "Wrong -400";
+        feedbackColor = Colors.red;
+        displayFeedback = true;
+      });
+    }
+    changeDirectionOfArrow();
+    changeState();
+  }  
     return Scaffold(
         backgroundColor: const Color(0xFF161616),
         body: Container(
@@ -194,7 +196,7 @@ class _SameColorState extends State<SameColor> {
 
                   // score section
                   Container(
-                      child: Text("Score : ${score}",
+                      child: Text("Score : ${score.scoreForObservationGame}",
                           style: const TextStyle(
                               color: Colors.white, fontSize: 25)))
                 ],

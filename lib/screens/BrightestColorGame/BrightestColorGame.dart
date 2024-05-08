@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:async';
 import 'dart:math';
+import '../../main.dart';
 
 class MohamedGame extends StatefulWidget {
   const MohamedGame({super.key});
@@ -10,7 +12,8 @@ class MohamedGame extends StatefulWidget {
 }
 
 class _MohamedGameState extends State<MohamedGame> {
-  int score = 0; // عدد النقاط
+
+  // int score = 0; // عدد النقاط
 
   // list of colors
   List mainColors = [Colors.red[500] , Colors.blue[500] , Colors.amber[500] , Colors.brown[500] , Colors.green[500] , Colors.lightGreen[500], Colors.purple[500]];
@@ -25,7 +28,7 @@ class _MohamedGameState extends State<MohamedGame> {
   // loop on the colrs list
   int i = 0 ;
 
-  int _secondsRemaining = 30; // قيمة الوقت بالثواني
+  int _secondsRemaining = 10; // قيمة الوقت بالثواني
   late Timer _timer; // تايمر
   String feedbackMessage = "";
   Color feedbackColor = Colors.transparent; // Set default color
@@ -46,6 +49,60 @@ class _MohamedGameState extends State<MohamedGame> {
     super.dispose();
   }
 
+
+  void _startFeedbackTimer() {
+    setState(() {
+      displayFeedback = true;
+    });
+
+    _feedbackTimer = Timer(Duration(milliseconds: 1000), () {
+      setState(() {
+        displayFeedback = false;
+      });
+    });
+  }
+
+void _showPopup() {
+  Score score = Provider.of<Score>(context, listen: false);
+  
+  showDialog(
+
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Time Is Over"),
+        content: Text("Your Score : ${score.scoreForObservationGame}"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              score.restartScoreForObservationGames();
+              Navigator.of(context).pop();
+              // Navigate to the main menu
+              // You can replace '/home' with your main menu route
+              Navigator.pushNamed(context, '/');
+            },
+            child: Text("Main Menu"),
+          ),
+          TextButton(
+            onPressed: () {
+              score.restartScoreForObservationGames(); // Reset Score
+              Navigator.of(context).pop();
+              // Rebuild the current screen
+              setState(() {
+                _secondsRemaining = 30; // Reset timer
+                _startTimer(); // Start timer again
+              });
+            },
+            child: Text("Play Again"),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
@@ -60,54 +117,6 @@ class _MohamedGameState extends State<MohamedGame> {
     });
   }
 
-  void _startFeedbackTimer() {
-    setState(() {
-      displayFeedback = true;
-    });
-
-    _feedbackTimer = Timer(Duration(milliseconds: 1000), () {
-      setState(() {
-        displayFeedback = false;
-      });
-    });
-  }
-
-  void _showPopup() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Time Is Over"),
-          content: Text("Your Score : $score"),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                // Navigate to the main menu
-                // You can replace '/home' with your main menu route
-                Navigator.pushNamed(context, '/');
-              },
-              child: Text("Main Menu"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                // Rebuild the current screen
-                setState(() {
-                  _secondsRemaining = 30; // Reset timer
-                  score = 0; // Reset Score
-                  _startTimer(); // Start timer again
-                });
-              },
-              child: Text("Play Again"),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
 changeColor () {
   (i == mainColors.length - 1) ? i = 0 : i++;
   setState(() {
@@ -118,6 +127,9 @@ changeColor () {
 
   @override
   Widget build(BuildContext context) {
+
+    Score score = Provider.of<Score>(context, listen: true);
+
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -191,7 +203,7 @@ changeColor () {
                         color: Color.fromARGB(221, 26, 26, 26),
                       ),
                       Text(
-                        ' Score : $score',
+                        ' Score : ${score.scoreForObservationGame}',
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -246,7 +258,7 @@ changeColor () {
                     // عندما يضغط المستخدم على اللون المختلف
                     setState(() {
                       // تحديث النقاط
-                      score += 500;
+                      score.addScoreForObservationGames();
                       // change the colors
                       changeColor (); 
                       // توليد رقم عشوائي لتحديد مكان جديد للون المختلف
@@ -270,7 +282,7 @@ changeColor () {
                     // عندما يضغط المستخدم على الألوان الأخرى
                     setState(() {
                       // تحديث النقاط
-                      score -= 400;
+                      score.minScoreForObservationGames();
                       changeColor();
                     });
                   },

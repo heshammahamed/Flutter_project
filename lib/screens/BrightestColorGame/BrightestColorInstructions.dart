@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+
 import 'timer.dart';
 
-class DirectionInstructions extends StatefulWidget {
-  const DirectionInstructions({super.key});
+
+class ColorBoxInstructions extends StatefulWidget {
+  const ColorBoxInstructions({super.key});
 
   @override
-  State<DirectionInstructions> createState() => _DirectionInstructionsState();
+  State<ColorBoxInstructions> createState() => _ColorBoxInstructionsState();
 }
 
-class _DirectionInstructionsState extends State<DirectionInstructions> {
+class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
+
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -20,7 +24,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
           centerTitle: true,
           backgroundColor: const Color(0xFF1976D2),
           title: const Text(
-            'Directions Game',
+            'Rotate Arrow Game',
             style: TextStyle(
               fontFamily: "Montserrat",
               fontSize: 22,
@@ -33,7 +37,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
         backgroundColor: const Color.fromARGB(255, 242, 249, 255),
         body: Column(
           children: [
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -66,7 +70,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
               ],
             ),
             const SizedBox(
-              height: 40,
+              height: 70,
             ),
             Container(
                 width: 350,
@@ -75,7 +79,8 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: const Column(
                   children: [
-                    Text('-  There will be arrow with a various directions',
+                    Text(
+                        '- You have to rotate the second arrow to match the direction of the first blue arrow',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -86,7 +91,17 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You have two directions : Arrow Direction, Word Direction',
+                        '-  You have to collect as many points as possible before time runs out',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text('-  Each correct matching you will get +100 points',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -97,40 +112,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  If the arrow color is green then swap towards the Arrow Direction',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
-                        )),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                        '- If the arrow color is red then swap towards the Word Direction',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
-                        )),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                        '-  If you swapped in the correct direction you will gain +500 points',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
-                        )),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                        '-  If you swapped in the wrong direction you will lose -1000 points',
+                        '-  If you get close to the correct matching you will get +20 points',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -140,7 +122,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                   ],
                 )),
             const SizedBox(
-              height: 40,
+              height: 90,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -149,6 +131,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
+                    
                       MaterialPageRoute(
                           builder: (context) => const TimerGame()),
                     );
@@ -164,7 +147,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                     // You can customize the shape of the button here
                   ),
                   child: const Text(
-                    '              Play              ',
+                    'Play ',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

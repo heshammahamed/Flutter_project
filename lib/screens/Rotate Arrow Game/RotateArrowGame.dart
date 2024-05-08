@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:math';
 import 'dart:async';
+import '../../main.dart';
+import 'package:provider/provider.dart';
 
 /*
 Score
@@ -68,16 +70,18 @@ class _SecondGameState extends State<SecondGame> {
   }
 
   void _showPopup() {
+  Score score = Provider.of<Score>(context, listen: false);
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Time Is Over"),
-          content: Text("Your Score : $score"),
+          content: Text("Your Score : ${score.scoreForAccuracyGame}"),
           actions: [
             TextButton(
               onPressed: () {
+                score.restartScoreForAccuracyGames();
                 Navigator.of(context).pop();
                 // Navigate to the main menu
                 // You can replace '/home' with your main menu route
@@ -87,11 +91,11 @@ class _SecondGameState extends State<SecondGame> {
             ),
             TextButton(
               onPressed: () {
+                score.restartScoreForAccuracyGames();
                 Navigator.of(context).pop();
                 // Rebuild the current screen
                 setState(() {
                   _secondsRemaining = 30; // Reset timer
-                  score = 0; // Reset Score
                   _startTimer(); // Start timer again
                 });
               },
@@ -135,44 +139,7 @@ class _SecondGameState extends State<SecondGame> {
 
 // [.5 , 1]
 
-  checkThedirection() {
-    double angleDifference = (mainArrowAngle - userArrowAngle).abs();
 
-    if (angleDifference == 0) {
-      setState(() {
-        score = score + 100;
-        feedbackMessage = "Correct +100";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else if ((angleDifference == 20) || (angleDifference == -20)) {
-      // Adjust this threshold as needed
-      setState(() {
-        score = score + 25;
-        feedbackMessage = "Close +25";
-        feedbackColor = Colors.yellow;
-        displayFeedback = true;
-      });
-    } else {
-      setState(() {
-        score = score - 150;
-        feedbackMessage = "Wrong -150";
-        feedbackColor = Colors.red;
-        displayFeedback = true;
-        if (score < 0) {
-          score = 0;
-        }
-      });
-    }
-
-    setState(() {
-      mainArrowAngle = mainArrowAngles[
-          Random().nextInt(mainArrowAngles.length)]; // 0 , 1 , 2 ,3 , 4 ,5
-
-      userArrowAngle = userArrowAngles[
-          Random().nextInt(userArrowAngles.length)]; // 0 , 1 , 2 ,3 , 4 ,5
-    });
-  }
 
   List<double> mainArrowAngles = [
     0,
@@ -217,10 +184,47 @@ class _SecondGameState extends State<SecondGame> {
 
   double mainArrowAngle = 20;
   double userArrowAngle = 60;
-  int score = 0;
 
   @override
   Widget build(BuildContext context) {
+    Score score = Provider.of<Score>(context, listen: true);
+
+      checkThedirection() {
+    double angleDifference = (mainArrowAngle - userArrowAngle).abs();
+
+    if (angleDifference == 0) {
+      setState(() {
+        score.addScoreForAccuracyGames();
+        feedbackMessage = "Correct +500";
+        feedbackColor = Colors.green;
+        displayFeedback = true;
+      });
+    } else if ((angleDifference == 20) || (angleDifference == -20)) {
+      // Adjust this threshold as needed
+      setState(() {
+        score.addScoreForAccuracyGamesClose();
+        feedbackMessage = "Close +25";
+        feedbackColor = Colors.yellow;
+        displayFeedback = true;
+      });
+    } else {
+      setState(() {
+        score.minScoreForAccuracyGames();
+        feedbackMessage = "Wrong 400";
+        feedbackColor = Colors.red;
+        displayFeedback = true;
+      });
+    }
+
+    setState(() {
+      mainArrowAngle = mainArrowAngles[
+          Random().nextInt(mainArrowAngles.length)]; // 0 , 1 , 2 ,3 , 4 ,5
+
+      userArrowAngle = userArrowAngles[
+          Random().nextInt(userArrowAngles.length)]; // 0 , 1 , 2 ,3 , 4 ,5
+    });
+  }
+    
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -297,7 +301,7 @@ class _SecondGameState extends State<SecondGame> {
                         color: Color.fromARGB(221, 26, 26, 26),
                       ),
                       Text(
-                        ' Score : $score',
+                        ' Score : ${score.scoreForAccuracyGame}',
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

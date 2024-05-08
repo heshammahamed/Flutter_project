@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'timer.dart';
+import '../Color Matching Game/timer.dart';
 
 class SameColorInstructions extends StatefulWidget {
   const SameColorInstructions({super.key});

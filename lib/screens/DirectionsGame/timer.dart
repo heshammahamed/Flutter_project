@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import "BiggestNumberGame.dart";
+import "../DirectionsGame/DirectionsGame.dart";
 import 'dart:async';
 
 class TimerGame extends StatefulWidget {
@@ -38,7 +38,7 @@ class _TimerGameState extends State<TimerGame> {
 
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const FirstGame()),
+            MaterialPageRoute(builder: (context) => const FifthGame()),
           );
           // Timer completed
         }
