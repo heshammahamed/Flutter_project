@@ -7,7 +7,7 @@ import 'package:game_project/piece.dart';
 import 'package:game_project/values.dart';
 import 'package:provider/provider.dart';
 
-List<List<Tetromino?>> gameboard = List.generate(
+List<List<Tetromino?>> gameBoard = List.generate(
   collength,
   (i) => List.generate(
     rowlength,
@@ -17,14 +17,15 @@ List<List<Tetromino?>> gameboard = List.generate(
 
 
 
-class Gameboard extends StatefulWidget{
-  const Gameboard({super.key});
+class GameBoard extends StatefulWidget{
+  const GameBoard({super.key});
 
   @override 
-  State<Gameboard> createState() => _GameboardState();
+  State<GameBoard> createState() => _GameBoardState();
 }
 
-class _GameboardState extends State<Gameboard>{
+class _GameBoardState extends State<GameBoard>{
+
   piece currentpiece = piece(type: Tetromino.L);
 
  int currentscore =0;
@@ -37,25 +38,33 @@ class _GameboardState extends State<Gameboard>{
   }
   void startgame(){
     currentpiece.intializepiece();
+
     Duration frameRate = const Duration(milliseconds: 500);
     gameloop(frameRate);
   }
 
-void CreateNewpiece(){
-  Random rand = Random();
-
-  Tetromino randomtype =
-  Tetromino.values[rand.nextInt(Tetromino.values.length)];
-  currentpiece = piece(type: randomtype);
-  currentpiece.intializepiece();
-
-  if(isgameover()){
-    gameover = true;
-  }
+void gameloop(Duration frameRate)
+{
+  if(mounted) {
+    Timer.periodic(
+    frameRate,
+   (timer) {
+      setState(() {
+      clearlines();
+      checkLanding();
+      if(gameover == true){
+        timer.cancel();
+        showgameoverdialog();
+      }
+      currentpiece.movepiece(Direction.down);
+    });
+},
+);
+}
 }
 
 
-  bool checkcollision(Direction direction){
+bool checkcollision(Direction direction){
     int row;
     int col;
     for(int i =0; i < currentpiece.position.length; i++){
@@ -72,75 +81,39 @@ void CreateNewpiece(){
 
     if(row >= collength || col < 0 || col >= rowlength){
       return true;}
+      if(row >= 0 && col >= 0){
+        if(gameBoard[row][col] != null){
+          return true;
+        }
+      }
     }
-    return false; }
+    return false;
+     }
+
 
 
 void checkLanding(){
   if(checkcollision(Direction.down)){
     for(int i=0; i < currentpiece.position.length; i++){
      int row = (currentpiece.position[i]/rowlength).floor();
-     int col = currentpiece.position[i]%rowlength;
+     int col = currentpiece.position[i] % rowlength;
      if(row >= 0 && col >= 0)
-     gameboard[row][col] = currentpiece.type;
+     gameBoard[row][col] = currentpiece.type;
     }
     CreateNewpiece();
   }
 }
 
+void CreateNewpiece(){
+  Random rand = Random();
 
-
-void gameloop(Duration frameRate)
-{
-  Timer.periodic(frameRate,
-   (timer) {
-    if(mounted) {
-      setState(() {
-      clearlines();
-      checkLanding();
-      if(gameover == true){
-        timer.cancel();
-        showgameoverdialog();
-      }
-      currentpiece.movepiece(Direction.down);
-    });
-    }
-    });
-}
-
-void showgameoverdialog(){
-  showDialog(
-    context: context,
-     builder: (context) => AlertDialog(
-      title: Text('Game Over'),
-      content: Text("Your Score is: $currentscore"),
-      actions: [
-        TextButton(
-          onPressed: (){
-            resetgame();
-            Navigator.pop(context);
-          }, 
-          child: Text('Play Again'))
-      ],
-     ));
-}
-
-
-void resetgame(){
-  gameboard = List.generate(
-    collength,
-    (i) => List.generate(
-    rowlength,
-    (j) => null,
-  ),
-  );
-
-gameover =false;
-currentscore = 0;
-CreateNewpiece();
-startgame();
-
-}
+  Tetromino randomtype =
+  Tetromino.values[rand.nextInt(Tetromino.values.length)];
+  currentpiece = piece(type: randomtype);
+  currentpiece.intializepiece();
+  if(isgameover()){
+    gameover = true;
+  }}
 
 void moveleft(){
   if(!checkcollision(Direction.left)){
@@ -166,22 +139,22 @@ void rotatepiece(){
 
 
 void clearlines(){
-  for(int row = collength-1; row >= 0; row--){
+  for(int row = collength - 1 ; row >= 0; row--){
     bool rowisfull =true;
      
      for(int col = 0; col< rowlength; col++){
-      if(gameboard[row][col] == null){
+      if(gameBoard[row][col] == null){
         rowisfull = false;
         break;
       }
      }
 
      if(rowisfull){
-      for(int r = row; r>0; r--){
-        gameboard[r] = List.from(gameboard[r-1]);
+      for(int r = row; r > 0; r--){
+        gameBoard[r] = List.from(gameBoard[r - 1]);
       }
 
-      gameboard[0] = List.generate(row, (index) => null);
+      gameBoard[0] = List.generate(row, (index) => null);
 
       currentscore++;
      }
@@ -190,11 +163,45 @@ void clearlines(){
 
 bool isgameover(){
   for(int col = 0; col< rowlength; col++){
-    if(gameboard[0][col] != null){
+    if(gameBoard[0][col] != null){
       return true;
     }
   }
   return false;
+}
+
+
+void showgameoverdialog(){
+  showDialog(
+    context: context,
+     builder: (context) => AlertDialog(
+      title: Text('Game Over'),
+      content: Text("Your Score is: $currentscore"),
+      actions: [
+        TextButton(
+          onPressed: (){
+            resetgame();
+            Navigator.pop(context);
+          }, 
+          child: Text('Play Again'))
+      ],
+     ));
+}
+
+
+void resetgame(){
+  gameBoard = List.generate(
+    collength,
+    (i) => List.generate(
+    rowlength,
+    (j) => null,
+  ),
+  );
+
+gameover =false;
+currentscore = 0;
+CreateNewpiece();
+startgame();
 }
 
   @override
@@ -205,7 +212,7 @@ bool isgameover(){
         children: [
           Expanded(
             child: GridView.builder(
-              itemCount: rowlength*collength,
+              itemCount: rowlength * collength,
               physics: const NeverScrollableScrollPhysics(),
              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: rowlength),
              itemBuilder: (context, index){
@@ -220,8 +227,8 @@ bool isgameover(){
               );
               }
               
-              else if(gameboard[row][col] != null){
-                final Tetromino? tetrominotype = gameboard[row][col];
+              else if(gameBoard[row][col] != null){
+                final Tetromino? tetrominotype = gameBoard[row][col];
                 return pixel(color: tetrominoColors[tetrominotype],);
               }
               
@@ -256,9 +263,9 @@ bool isgameover(){
             
               IconButton(onPressed: moveright, color: Colors.white,
                icon: Icon(Icons.arrow_forward_ios)),   
-            ],),
+            ],
+            ),
           )
-
         ],
       ),
   );

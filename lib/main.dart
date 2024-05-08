@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const Homescreen(),
         '/FirstGame': (context) => const BiggestNumInstructions(),
         '/SecondGame': (context) => const ArrowInstructions(),
-        '/ThirdGame': (context) => Gameboard(), // to be here
+        '/ThirdGame': (context) => GameBoard(), // to be here
         '/FourthGame': (context) => const ColorBoxInstructions(),
         '/FifthGame': (context) => const DirectionInstructions(),
         '/SixthGame': (context) => const SameColorInstructions(),
