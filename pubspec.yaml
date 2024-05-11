@@ -73,7 +73,12 @@ flutter:
     - assets/images/critical-thinking.png
     - assets/images/stairs.png
     - assets/images/rising.png
-    - assets/images/right_arrow.png
+    - assets/images/TetrisGame.png
+    - assets/images/BiggestNumberGame.png
+    - assets/images/BrightestColorGame.png
+    - assets/images/RotateArrowGame.png
+    - assets/images/DirectionsGame.png
+    - assets/images/ColorMatchingGame.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

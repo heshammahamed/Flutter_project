@@ -8,7 +8,7 @@ import '../../main.dart';
 
 // FaIcon(FontAwesomeIcons.brain,color: Colors.white,size: 25.0,)
 
-class  Homescreen extends StatefulWidget {
+class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
 
   @override
@@ -18,24 +18,23 @@ class  Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
-    DarkAndLightMode color = Provider.of<DarkAndLightMode>(context, listen: true);
+    DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
     return Scaffold(
-      backgroundColor :color.backgroundForHomeScreen ,
-
-      body: Padding(
-        padding: const EdgeInsetsDirectional.all(8.0),
-        child:ListView(
-        children:  [
-         const Head(),
-         SizedBox(height: MediaQuery.of(context).size.height * 0.09),
-         const Progress(),
-         SizedBox(height: MediaQuery.of(context).size.height * 0.06),
-         const Catego(),
-         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-         const Games()
-        ] ,
-      ) ,
-      ) 
-    );
+        backgroundColor: color.backgroundForHomeScreen,
+        body: Padding(
+          padding: const EdgeInsetsDirectional.all(8.0),
+          child: ListView(
+            children: [
+              const Head(),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.09),
+              const Progress(),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.028),
+              // const Catego(),
+              // SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              const Games()
+            ],
+          ),
+        ));
   }
 }
