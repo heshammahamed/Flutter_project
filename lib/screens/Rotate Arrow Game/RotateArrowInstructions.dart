@@ -89,6 +89,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                     Text(
                         '-  You have to collect as many points as possible before time runs out',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -97,19 +98,9 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                     SizedBox(
                       height: 20,
                     ),
-                    Text('-  Each correct matching you will get +100 points',
+                    Text('-  Each correct matching you will gain +500 points',
                         style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
-                        )),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                        '-  If you get close to the correct matching you will get +20 points',
-                        style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -119,8 +110,21 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                       height: 20,
                     ),
                     Text(
-                        "-  If you didn't get the correct matching, you will lose -150 points",
+                        '-  If you get close to the correct matching you will gain +300 points',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Color.fromARGB(221, 26, 26, 26),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                        "-  If you didn't get the correct matching, you will lose -400 points",
+                        style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -155,6 +159,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                   child: const Text(
                     '              Play              ',
                     style: TextStyle(
+                      fontFamily: "Montserrat",
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.2,

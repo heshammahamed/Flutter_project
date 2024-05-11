@@ -90,34 +90,6 @@ class _GamesState extends State<Games> {
                                   borderRadius: BorderRadius.circular(10.0)),
                             ),
                           ),
-                          const Positioned(
-                            bottom: 35,
-                            left: 90,
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Logic Game",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: Colors.lime,
-                                  ),
-                                ),
-                                Text(
-                                  "Your last score : 5000",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: Colors.lime,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           Positioned(
                               top: 10,
                               left: 30,
@@ -192,34 +164,6 @@ class _GamesState extends State<Games> {
                                   borderRadius: BorderRadius.circular(10.0)),
                             ),
                           ),
-                          const Positioned(
-                            bottom: 35,
-                            left: 100,
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Mathimatics Game",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: Colors.lime,
-                                  ),
-                                ),
-                                Text(
-                                  "Your last score : 5000",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: Colors.lime,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           const Center(
                               child: Text(
                             "Biggest Number Game",
@@ -264,34 +208,6 @@ class _GamesState extends State<Games> {
                                   color: Colors.black.withOpacity(
                                       0.3), // Adjust opacity as needed
                                   borderRadius: BorderRadius.circular(10.0)),
-                            ),
-                          ),
-                          const Positioned(
-                            bottom: 35,
-                            left: 100,
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Accuracy Game",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: Colors.lime,
-                                  ),
-                                ),
-                                Text(
-                                  "Your last score : 5000",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: Colors.lime,
-                                  ),
-                                ),
-                              ],
                             ),
                           ),
                           const Center(
@@ -340,39 +256,6 @@ class _GamesState extends State<Games> {
                                   borderRadius: BorderRadius.circular(10.0)),
                             ),
                           ),
-                          Positioned(
-                            bottom: 35,
-                            left: 100,
-                            child: Container(
-                              // color: Colors.white,
-                              child: const Column(
-                                children: [
-                                  Text(
-                                    "Observation Game",
-                                    style: TextStyle(
-                                      // backgroundColor: Colors.deepOrange,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1.2,
-                                      fontFamily: "Montserrat",
-                                      color: Colors.lime,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Your last score : 5000",
-                                    style: TextStyle(
-                                      // backgroundColor: Colors.deepOrange,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1.2,
-                                      fontFamily: "Montserrat",
-                                      color: Colors.lime,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
                           const Center(
                               child: Text(
                             "Brightest Color Game",
@@ -418,34 +301,6 @@ class _GamesState extends State<Games> {
                                   borderRadius: BorderRadius.circular(10.0)),
                             ),
                           ),
-                          const Positioned(
-                            bottom: 35,
-                            left: 100,
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Logic Game",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: Colors.lime,
-                                  ),
-                                ),
-                                Text(
-                                  "Your last score : 5000",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: Colors.lime,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           const Center(
                               child: Text(
                             "Directions Game",
@@ -489,34 +344,6 @@ class _GamesState extends State<Games> {
                                   color: Colors.black.withOpacity(
                                       0.3), // Adjust opacity as needed
                                   borderRadius: BorderRadius.circular(10.0)),
-                            ),
-                          ),
-                          const Positioned(
-                            bottom: 35,
-                            left: 100,
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Logic Game",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: Colors.lime,
-                                  ),
-                                ),
-                                Text(
-                                  "Your last score : 5000",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: Colors.lime,
-                                  ),
-                                ),
-                              ],
                             ),
                           ),
                           const Center(

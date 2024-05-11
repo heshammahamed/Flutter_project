@@ -20,7 +20,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
           centerTitle: true,
           backgroundColor: const Color(0xFF1976D2),
           title: const Text(
-            'Rotate Arrow Game',
+            'Biggest Number Game',
             style: TextStyle(
               fontFamily: "Montserrat",
               fontSize: 22,
@@ -54,6 +54,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                       Text(
                         '       Game Instructions       ',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -76,6 +77,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                   children: [
                     Text('-  There will be two numbers showen on the screen.',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -86,6 +88,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                     ),
                     Text('-  You must press on the biggest number box.',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -95,8 +98,9 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You will get (+ 500) if you choose the correct answer.',
+                        '-  You will get +500 points if you choose the correct answer.',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -106,8 +110,9 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You will get (- 1000) if you choose the wrong answer.',
+                        '-  You will lose -400 points if you choose the wrong answer.',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -142,6 +147,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                   child: const Text(
                     'Play',
                     style: TextStyle(
+                      fontFamily: "Montserrat",
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.2,

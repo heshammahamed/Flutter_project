@@ -20,7 +20,7 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
           centerTitle: true,
           backgroundColor: const Color(0xFF1976D2),
           title: const Text(
-            'Rotate Arrow Game',
+            'Color Matching Game',
             style: TextStyle(
               fontFamily: "Montserrat",
               fontSize: 22,
@@ -119,7 +119,7 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  You will get - 1000 if you swap in the wrong direction.',
+                        '-  You will get - 400 if you swap in the wrong direction.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,

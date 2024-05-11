@@ -60,7 +60,9 @@ class _TimerGameState extends State<TimerGame> {
               center: Text(
                 "$_secondsRemaining",
                 style: const TextStyle(
-                    fontFamily: 'POP', color: Colors.black, fontSize: 70),
+                    fontFamily: "Montserrat",
+                    color: Colors.black,
+                    fontSize: 70),
               )),
         ));
   }

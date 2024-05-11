@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'timer.dart';
 
-
 class ColorBoxInstructions extends StatefulWidget {
   const ColorBoxInstructions({super.key});
 
@@ -11,10 +10,8 @@ class ColorBoxInstructions extends StatefulWidget {
 }
 
 class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
-
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -24,7 +21,7 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
           centerTitle: true,
           backgroundColor: const Color(0xFF1976D2),
           title: const Text(
-            'Rotate Arrow Game',
+            'Brightest Color Game',
             style: TextStyle(
               fontFamily: "Montserrat",
               fontSize: 22,
@@ -101,7 +98,7 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                     SizedBox(
                       height: 20,
                     ),
-                    Text('-  Each correct matching you will get +100 points',
+                    Text('-  Each correct matching you will get +500 points',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -112,7 +109,7 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  If you get close to the correct matching you will get +20 points',
+                        "-  If you didn't get the correct matching, you will lose -400 points",
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -131,7 +128,6 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                    
                       MaterialPageRoute(
                           builder: (context) => const TimerGame()),
                     );

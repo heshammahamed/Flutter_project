@@ -70,14 +70,16 @@ class _SecondGameState extends State<SecondGame> {
   }
 
   void _showPopup() {
-  Score score = Provider.of<Score>(context, listen: false);
+    Score score = Provider.of<Score>(context, listen: false);
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Time Is Over"),
-          content: Text("Your Score : ${score.scoreForAccuracyGame}"),
+          content: Text(
+            "Your Score : ${score.scoreForAccuracyGame}",
+          ),
           actions: [
             TextButton(
               onPressed: () {
@@ -139,8 +141,6 @@ class _SecondGameState extends State<SecondGame> {
 
 // [.5 , 1]
 
-
-
   List<double> mainArrowAngles = [
     0,
     20,
@@ -189,42 +189,42 @@ class _SecondGameState extends State<SecondGame> {
   Widget build(BuildContext context) {
     Score score = Provider.of<Score>(context, listen: true);
 
-      checkThedirection() {
-    double angleDifference = (mainArrowAngle - userArrowAngle).abs();
+    checkThedirection() {
+      double angleDifference = (mainArrowAngle - userArrowAngle).abs();
 
-    if (angleDifference == 0) {
+      if (angleDifference == 0) {
+        setState(() {
+          score.addScoreForAccuracyGames();
+          feedbackMessage = "Correct +500";
+          feedbackColor = Colors.green;
+          displayFeedback = true;
+        });
+      } else if ((angleDifference == 20) || (angleDifference == -20)) {
+        // Adjust this threshold as needed
+        setState(() {
+          score.addScoreForAccuracyGamesClose();
+          feedbackMessage = "Close +300";
+          feedbackColor = Colors.yellow;
+          displayFeedback = true;
+        });
+      } else {
+        setState(() {
+          score.minScoreForAccuracyGames();
+          feedbackMessage = "Wrong -400";
+          feedbackColor = Colors.red;
+          displayFeedback = true;
+        });
+      }
+
       setState(() {
-        score.addScoreForAccuracyGames();
-        feedbackMessage = "Correct +500";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else if ((angleDifference == 20) || (angleDifference == -20)) {
-      // Adjust this threshold as needed
-      setState(() {
-        score.addScoreForAccuracyGamesClose();
-        feedbackMessage = "Close +25";
-        feedbackColor = Colors.yellow;
-        displayFeedback = true;
-      });
-    } else {
-      setState(() {
-        score.minScoreForAccuracyGames();
-        feedbackMessage = "Wrong 400";
-        feedbackColor = Colors.red;
-        displayFeedback = true;
+        mainArrowAngle = mainArrowAngles[
+            Random().nextInt(mainArrowAngles.length)]; // 0 , 1 , 2 ,3 , 4 ,5
+
+        userArrowAngle = userArrowAngles[
+            Random().nextInt(userArrowAngles.length)]; // 0 , 1 , 2 ,3 , 4 ,5
       });
     }
 
-    setState(() {
-      mainArrowAngle = mainArrowAngles[
-          Random().nextInt(mainArrowAngles.length)]; // 0 , 1 , 2 ,3 , 4 ,5
-
-      userArrowAngle = userArrowAngles[
-          Random().nextInt(userArrowAngles.length)]; // 0 , 1 , 2 ,3 , 4 ,5
-    });
-  }
-    
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -374,7 +374,10 @@ class _SecondGameState extends State<SecondGame> {
                       visible: displayFeedback,
                       child: Text(
                         feedbackMessage,
-                        style: TextStyle(fontSize: 20, color: feedbackColor),
+                        style: TextStyle(
+                            fontFamily: "Montserrat",
+                            fontSize: 20,
+                            color: feedbackColor),
                       ),
                     ), // Display feedback only when required,
                   ),

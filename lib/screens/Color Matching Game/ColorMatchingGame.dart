@@ -131,53 +131,68 @@ class _SameColorState extends State<SameColor> {
     });
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     Score score = Provider.of<Score>(context, listen: false);
 
-  trueCheckScore() {
-    if (meaining == textColorString) {
-      setState(() {
-        score.addScoreForObservationGames();
-        feedbackMessage = "Correct +500";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else {
-      setState(() {
-        score.minScoreForObservationGames();
-        feedbackMessage = "Wrong -400";
-        feedbackColor = Colors.red;
-        displayFeedback = true;
-      });
+    trueCheckScore() {
+      if (meaining == textColorString) {
+        setState(() {
+          score.addScoreForObservationGames();
+          feedbackMessage = "Correct +500";
+          feedbackColor = Colors.green;
+          displayFeedback = true;
+        });
+      } else {
+        setState(() {
+          score.minScoreForObservationGames();
+          feedbackMessage = "Wrong -400";
+          feedbackColor = Colors.red;
+          displayFeedback = true;
+        });
+      }
+      changeDirectionOfArrow();
+      changeState();
     }
-    changeDirectionOfArrow();
-    changeState();
-  }
-    
-  falseCheckScore() {
-    if (meaining != textColorString) {
-      setState(() {
-        score.addScoreForObservationGames();
-        feedbackMessage = "Correct +500";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else {
-      setState(() {
-        score.minScoreForObservationGames();
-        feedbackMessage = "Wrong -400";
-        feedbackColor = Colors.red;
-        displayFeedback = true;
-      });
+
+    falseCheckScore() {
+      if (meaining != textColorString) {
+        setState(() {
+          score.addScoreForObservationGames();
+          feedbackMessage = "Correct +500";
+          feedbackColor = Colors.green;
+          displayFeedback = true;
+        });
+      } else {
+        setState(() {
+          score.minScoreForObservationGames();
+          feedbackMessage = "Wrong -400";
+          feedbackColor = Colors.red;
+          displayFeedback = true;
+        });
+      }
+      changeDirectionOfArrow();
+      changeState();
     }
-    changeDirectionOfArrow();
-    changeState();
-  }  
+
     return Scaffold(
+        appBar: AppBar(
+          shadowColor: Colors.black45,
+          scrolledUnderElevation: 50,
+          elevation: 10,
+          centerTitle: true,
+          backgroundColor: const Color(0xFF1976D2),
+          title: const Text(
+            'Color Matching Game',
+            style: TextStyle(
+              fontFamily: "Montserrat",
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+              color: Colors.white,
+            ),
+          ),
+        ),
         backgroundColor: const Color(0xFF161616),
         body: Container(
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
@@ -192,13 +207,17 @@ class _SameColorState extends State<SameColor> {
                   Container(
                       child: Text("Timer : $_secondsRemaining",
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 25))),
+                              fontFamily: "Montserrat",
+                              color: Colors.white,
+                              fontSize: 25))),
 
                   // score section
                   Container(
                       child: Text("Score : ${score.scoreForObservationGame}",
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 25)))
+                              fontFamily: "Montserrat",
+                              color: Colors.white,
+                              fontSize: 25)))
                 ],
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.09),
@@ -208,6 +227,7 @@ class _SameColorState extends State<SameColor> {
                   const Text(
                       "Is the meaning at the top the same as the color at the bottom?",
                       style: TextStyle(
+                          fontFamily: "Montserrat",
                           color: Colors.white,
                           fontSize: 17,
                           fontWeight: FontWeight.w500)),
@@ -227,7 +247,9 @@ class _SameColorState extends State<SameColor> {
                         child: const Text(
                           "meaning",
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontFamily: "Montserrat",
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -240,7 +262,10 @@ class _SameColorState extends State<SameColor> {
                         height: 100,
                         alignment: Alignment.center,
                         child: Text(meaining,
-                            style: const TextStyle(fontSize: 50)),
+                            style: const TextStyle(
+                              fontSize: 50,
+                              fontFamily: "Montserrat",
+                            )),
                       )
                     ],
                   ),
@@ -256,7 +281,11 @@ class _SameColorState extends State<SameColor> {
                         height: 100,
                         alignment: Alignment.center,
                         child: Text(text,
-                            style: TextStyle(color: textColor, fontSize: 50)),
+                            style: TextStyle(
+                              color: textColor,
+                              fontSize: 50,
+                              fontFamily: "Montserrat",
+                            )),
                       ),
                       const SizedBox(height: 20),
                       Container(
@@ -270,7 +299,10 @@ class _SameColorState extends State<SameColor> {
                         child: const Text(
                           "color",
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Montserrat",
+                          ),
                         ),
                       ),
                     ],
@@ -291,7 +323,10 @@ class _SameColorState extends State<SameColor> {
                               child: const Text(
                                 "True",
                                 style: TextStyle(
-                                    fontSize: 40, fontWeight: FontWeight.w400),
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "Montserrat",
+                                ),
                               ))),
                       GestureDetector(
                           onTap: () => falseCheckScore(),
@@ -305,7 +340,10 @@ class _SameColorState extends State<SameColor> {
                               child: const Text(
                                 "False",
                                 style: TextStyle(
-                                    fontSize: 40, fontWeight: FontWeight.w400),
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "Montserrat",
+                                ),
                               ))),
                     ],
                   )

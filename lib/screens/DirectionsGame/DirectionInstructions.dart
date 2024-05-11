@@ -54,6 +54,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                       Text(
                         '       Game Instructions       ',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -77,6 +78,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                   children: [
                     Text('-  There will be arrow with a various directions',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -88,6 +90,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                     Text(
                         '-  You have two directions : Arrow Direction, Word Direction',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -99,6 +102,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                     Text(
                         '-  If the arrow color is green then swap towards the Arrow Direction',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -110,6 +114,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                     Text(
                         '- If the arrow color is red then swap towards the Word Direction',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -121,6 +126,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                     Text(
                         '-  If you swapped in the correct direction you will gain +500 points',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -130,8 +136,9 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                       height: 20,
                     ),
                     Text(
-                        '-  If you swapped in the wrong direction you will lose -1000 points',
+                        '-  If you swapped in the wrong direction you will lose -400 points',
                         style: TextStyle(
+                          fontFamily: "Montserrat",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -166,6 +173,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                   child: const Text(
                     '              Play              ',
                     style: TextStyle(
+                      fontFamily: "Montserrat",
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.2,
