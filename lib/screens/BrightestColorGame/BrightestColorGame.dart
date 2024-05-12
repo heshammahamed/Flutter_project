@@ -80,7 +80,7 @@ void _showPopup() {
               Navigator.of(context).pop();
               // Navigate to the main menu
               // You can replace '/home' with your main menu route
-              Navigator.pushNamed(context, '/');
+              Navigator.pushNamed(context, '/home');
             },
             child: Text("Main Menu"),
           ),

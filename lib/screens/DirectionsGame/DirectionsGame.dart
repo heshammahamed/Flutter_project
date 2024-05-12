@@ -105,7 +105,7 @@ class _FifthGameState extends State<FifthGame> {
                 Navigator.of(context).pop();
                 // Navigate to the main menu
                 // You can replace '/home' with your main menu route
-                Navigator.pushNamed(context, '/');
+                Navigator.pushNamed(context, '/home');
               },
               child: const Text("Main Menu"),
             ),

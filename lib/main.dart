@@ -196,6 +196,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const splash(),
+        '/home': (context) => const Homescreen(),
         '/FirstGame': (context) => const BiggestNumInstructions(),
         '/SecondGame': (context) => const ArrowInstructions(),
         '/ThirdGame': (context) => const InstructionsBuildGame(), // to be here
