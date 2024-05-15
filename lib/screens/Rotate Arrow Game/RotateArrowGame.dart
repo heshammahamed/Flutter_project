@@ -234,7 +234,7 @@ class _SecondGameState extends State<SecondGame> {
           scrolledUnderElevation: 50,
           elevation: 10,
           centerTitle: true,
-          backgroundColor: color.rotatearrowgame_appbar,
+          backgroundColor: color.gamesAppbar,
           title: const Text(
             'Rotate Arrow Game',
             style: TextStyle(
@@ -326,15 +326,15 @@ class _SecondGameState extends State<SecondGame> {
             Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(
-                    color: color.rotatearrowgame_containerstroke, width: 0.5),
+                border:
+                    Border.all(color: color.gamesContainerStroke, width: 0.5),
                 boxShadow: const [
                   BoxShadow(
                       color: Color(0xFFE8F3FA),
                       blurRadius: 2,
                       offset: Offset(0, 0))
                 ],
-                color: color.rotatearrowgame_container,
+                color: color.gamesContainer,
                 shape: BoxShape.rectangle,
               ),
               margin: const EdgeInsets.symmetric(horizontal: 12),
@@ -358,21 +358,21 @@ class _SecondGameState extends State<SecondGame> {
             Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(
-                    color: color.rotatearrowgame_containerstroke, width: 0.5),
+                border:
+                    Border.all(color: color.gamesContainerStroke, width: 0.5),
                 boxShadow: const [
                   BoxShadow(
                       color: Color(0xFFE8F3FA),
                       blurRadius: 2,
                       offset: Offset(0, 0))
                 ],
-                color: color.rotatearrowgame_container,
+                color: color.gamesContainer,
                 shape: BoxShape.rectangle,
               ),
               margin: const EdgeInsets.all(12),
               padding: const EdgeInsets.symmetric(vertical: 10),
-              height: 357,
-              width: 340,
+              height: MediaQuery.of(context).size.height * 0.5,
+              width: MediaQuery.of(context).size.width * 10,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
