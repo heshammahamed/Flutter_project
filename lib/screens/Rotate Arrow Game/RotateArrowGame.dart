@@ -87,7 +87,7 @@ class _SecondGameState extends State<SecondGame> {
                 Navigator.of(context).pop();
                 // Navigate to the main menu
                 // You can replace '/home' with your main menu route
-                Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/');
               },
               child: const Text("Main Menu"),
             ),
@@ -188,6 +188,8 @@ class _SecondGameState extends State<SecondGame> {
   @override
   Widget build(BuildContext context) {
     Score score = Provider.of<Score>(context, listen: true);
+    DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
 
     checkThedirection() {
       double angleDifference = (mainArrowAngle - userArrowAngle).abs();
@@ -232,7 +234,7 @@ class _SecondGameState extends State<SecondGame> {
           scrolledUnderElevation: 50,
           elevation: 10,
           centerTitle: true,
-          backgroundColor: const Color(0xFF1976D2),
+          backgroundColor: color.rotatearrowgame_appbar,
           title: const Text(
             'Rotate Arrow Game',
             style: TextStyle(
@@ -244,10 +246,11 @@ class _SecondGameState extends State<SecondGame> {
             ),
           ),
         ),
-        backgroundColor: const Color(0xFFF7F8FA),
+        backgroundColor: color.backgroundForHomeScreen,
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const SizedBox(height: 20),
+            // const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -255,7 +258,8 @@ class _SecondGameState extends State<SecondGame> {
                   decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(color: Colors.black, width: 0.5),
+                      border: Border.all(
+                          color: color.textForHomeScreen, width: 0.5),
                       boxShadow: const [
                         BoxShadow(
                             color: Colors.black12,
@@ -265,18 +269,18 @@ class _SecondGameState extends State<SecondGame> {
                   padding: const EdgeInsets.all(5),
                   child: Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.timer,
-                        color: Color.fromARGB(221, 26, 26, 26),
+                        color: color.textForHomeScreen,
                       ),
                       Text(
                         ' Timer : $_secondsRemaining',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           fontFamily: "Montserrat",
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         ),
                       )
                     ],
@@ -286,7 +290,8 @@ class _SecondGameState extends State<SecondGame> {
                   decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(color: Colors.black, width: 0.5),
+                      border: Border.all(
+                          color: color.textForHomeScreen, width: 0.5),
                       boxShadow: const [
                         BoxShadow(
                             color: Colors.black12,
@@ -296,18 +301,18 @@ class _SecondGameState extends State<SecondGame> {
                   padding: const EdgeInsets.all(5),
                   child: Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.leaderboard,
-                        color: Color.fromARGB(221, 26, 26, 26),
+                        color: color.textForHomeScreen,
                       ),
                       Text(
                         ' Score : ${score.scoreForAccuracyGame}',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           fontFamily: "Montserrat",
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         ),
                       )
                     ],
@@ -315,20 +320,21 @@ class _SecondGameState extends State<SecondGame> {
                 )
               ],
             ), // Timer & Score Row
-            const SizedBox(
-              height: 50,
-            ),
+            // const SizedBox(
+            //   height: 50,
+            // ),
             Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(color: const Color(0xFFEDF6FA), width: 0.5),
+                border: Border.all(
+                    color: color.rotatearrowgame_containerstroke, width: 0.5),
                 boxShadow: const [
                   BoxShadow(
                       color: Color(0xFFE8F3FA),
-                      blurRadius: 10,
+                      blurRadius: 2,
                       offset: Offset(0, 0))
                 ],
-                color: Colors.white,
+                color: color.rotatearrowgame_container,
                 shape: BoxShape.rectangle,
               ),
               margin: const EdgeInsets.symmetric(horizontal: 12),
@@ -338,28 +344,29 @@ class _SecondGameState extends State<SecondGame> {
                 children: [
                   Transform.rotate(
                       angle: mainArrowAngle * (pi / 180),
-                      child: const Icon(
+                      child: Icon(
                         Icons.arrow_right_alt_rounded,
-                        color: Color(0xFF1976D2),
+                        color: color.rotatearrowgame_mainarrow,
                         size: 115,
                       ))
                 ],
               ),
             ), // Game's Arrow
-            const SizedBox(
-              height: 10,
-            ),
+            // const SizedBox(
+            //   height: 10,
+            // ),
             Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(color: const Color(0xFFEDF6FA), width: 0.5),
+                border: Border.all(
+                    color: color.rotatearrowgame_containerstroke, width: 0.5),
                 boxShadow: const [
                   BoxShadow(
                       color: Color(0xFFE8F3FA),
-                      blurRadius: 10,
+                      blurRadius: 2,
                       offset: Offset(0, 0))
                 ],
-                color: Colors.white,
+                color: color.rotatearrowgame_container,
                 shape: BoxShape.rectangle,
               ),
               margin: const EdgeInsets.all(12),
@@ -367,6 +374,7 @@ class _SecondGameState extends State<SecondGame> {
               height: 357,
               width: 340,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
                     height: 30,
@@ -386,17 +394,17 @@ class _SecondGameState extends State<SecondGame> {
                     children: [
                       Transform.rotate(
                         angle: userArrowAngle * (pi / 180),
-                        child: const Icon(
+                        child: Icon(
                           Icons.arrow_right_alt_rounded,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.rotatearrowgame_userarrow,
                           size: 115,
                         ),
                       )
                     ],
                   ), // User's Arrow
-                  const SizedBox(
-                    height: 50,
-                  ),
+                  // const SizedBox(
+                  //   height: 50,
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -404,7 +412,8 @@ class _SecondGameState extends State<SecondGame> {
                         onPressed: () {
                           rotateLeft();
                         },
-                        color: const Color(0xFF607D8B), // Background color
+                        color: color
+                            .rotatearrowgame_rotatebuttons, // Background color
                         textColor: Colors.white, // Text color
                         elevation: 4,
                         padding: const EdgeInsets.symmetric(
@@ -414,7 +423,7 @@ class _SecondGameState extends State<SecondGame> {
                           // You can customize the shape of the button here
                         ),
                         child: const Text(
-                          'Rotate left ',
+                          'Rotate left',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -427,7 +436,8 @@ class _SecondGameState extends State<SecondGame> {
                         onPressed: () {
                           rotateRight();
                         },
-                        color: const Color(0xFF607D8B), // Background color
+                        color: color
+                            .rotatearrowgame_rotatebuttons, // Background color
                         textColor: Colors.white, // Text color
                         elevation: 4,
                         padding: const EdgeInsets.symmetric(
@@ -448,9 +458,9 @@ class _SecondGameState extends State<SecondGame> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  // const SizedBox(
+                  //   height: 15,
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -460,8 +470,8 @@ class _SecondGameState extends State<SecondGame> {
                           // Start the feedback timer when the main timer starts
                           _startFeedbackTimer();
                         },
-                        color: const Color.fromARGB(
-                            255, 0, 149, 5), // Background color
+                        color: color
+                            .rotatearrowgame_checkbutton, // Background color
                         textColor: Colors.white, // Text color
                         elevation: 4,
                         padding: const EdgeInsets.symmetric(
