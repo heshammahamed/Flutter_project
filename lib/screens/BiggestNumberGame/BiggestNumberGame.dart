@@ -68,12 +68,6 @@ class _FirstGameState extends State<FirstGame> {
     });
   }
 
-
-
-
-
-
-
   @override
   void initState() {
     super.initState();
@@ -152,65 +146,65 @@ class _FirstGameState extends State<FirstGame> {
 
   @override
   Widget build(BuildContext context) {
-  Score score = Provider.of<Score>(context, listen: true);
+    Score score = Provider.of<Score>(context, listen: true);
 
-  equalBoxCheckScore() {
-    if (numbers2[seco] == numbers1[first]) {
-      setState(() {
-        score.addScoreForMathematicsGameGames();
-        feedbackMessage = "Correct +500";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else {
-      setState(() {
-        score.minScoreForMathematicsGames();
-        feedbackMessage = "Wrong -400";
-        feedbackColor = Colors.red;
-        displayFeedback = true;
-      });
+    equalBoxCheckScore() {
+      if (numbers2[seco] == numbers1[first]) {
+        setState(() {
+          score.addScoreForMathematicsGameGames();
+          feedbackMessage = "Correct +500";
+          feedbackColor = Colors.green;
+          displayFeedback = true;
+        });
+      } else {
+        setState(() {
+          score.minScoreForMathematicsGames();
+          feedbackMessage = "Wrong -400";
+          feedbackColor = Colors.red;
+          displayFeedback = true;
+        });
+      }
+      changeState();
     }
-    changeState();
-  }
 
-  secondBoxCheckScore() {
-    if (numbers2[seco] > numbers1[first]) {
-      setState(() {
-        score.addScoreForMathematicsGameGames();
-        feedbackMessage = "Correct +500";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else {
-      setState(() {
-        score.minScoreForMathematicsGames();
-        feedbackMessage = "Wrong -400";
-        feedbackColor = Colors.red;
-        displayFeedback = true;
-      });
+    secondBoxCheckScore() {
+      if (numbers2[seco] > numbers1[first]) {
+        setState(() {
+          score.addScoreForMathematicsGameGames();
+          feedbackMessage = "Correct +500";
+          feedbackColor = Colors.green;
+          displayFeedback = true;
+        });
+      } else {
+        setState(() {
+          score.minScoreForMathematicsGames();
+          feedbackMessage = "Wrong -400";
+          feedbackColor = Colors.red;
+          displayFeedback = true;
+        });
+      }
+      changeState();
     }
-    changeState();
-  }
 
-  firstBoxCheckScore() {
-    if (numbers1[first] > numbers2[seco]) {
-      setState(() {
-        score.addScoreForMathematicsGameGames();
-        feedbackMessage = "Correct +500";
-        feedbackColor = Colors.green;
-        displayFeedback = true;
-      });
-    } else {
-      setState(() {
-        score.minScoreForMathematicsGames();
-        feedbackMessage = "Wrong -400";
-        feedbackColor = Colors.red;
-        displayFeedback = true;
-      });
+    firstBoxCheckScore() {
+      if (numbers1[first] > numbers2[seco]) {
+        setState(() {
+          score.addScoreForMathematicsGameGames();
+          feedbackMessage = "Correct +500";
+          feedbackColor = Colors.green;
+          displayFeedback = true;
+        });
+      } else {
+        setState(() {
+          score.minScoreForMathematicsGames();
+          feedbackMessage = "Wrong -400";
+          feedbackColor = Colors.red;
+          displayFeedback = true;
+        });
+      }
+      changeState();
     }
-    changeState();
-  } 
-    
+
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
@@ -232,7 +226,7 @@ class _FirstGameState extends State<FirstGame> {
             ),
             backgroundColor: const Color(0xFFF7F8FA),
             body: Column(children: [
-              const SizedBox(height: 20),
+              SizedBox(height: MediaQuery.of(context).size.height * .07),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -241,7 +235,7 @@ class _FirstGameState extends State<FirstGame> {
                         color: Colors.transparent,
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20)),
-                        border: Border.all(color: Colors.black, width: 0.5),
+                        border: Border.all(color: Colors.black, width: .5),
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black12,
@@ -273,7 +267,7 @@ class _FirstGameState extends State<FirstGame> {
                         color: Colors.transparent,
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20)),
-                        border: Border.all(color: Colors.black, width: 0.5),
+                        border: Border.all(color: Colors.black, width: .5),
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black12,
@@ -302,7 +296,7 @@ class _FirstGameState extends State<FirstGame> {
                   )
                 ],
               ), // Timer & Score Row
-              const SizedBox(height: 50),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.09),
 
               const Text(
                 "Chosse The Biggest Number",
@@ -315,13 +309,14 @@ class _FirstGameState extends State<FirstGame> {
                 ),
               ),
 
-              const SizedBox(height: 50),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.07),
 
               Container(
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  border:
-                      Border.all(color: const Color(0xFFEDF6FA), width: 0.5),
+                  border: Border.all(
+                      color: const Color(0xFFEDF6FA),
+                      width: MediaQuery.of(context).size.width * .01),
                   boxShadow: const [
                     BoxShadow(
                         color: Color(0xFFE8F3FA),
@@ -336,15 +331,16 @@ class _FirstGameState extends State<FirstGame> {
                 padding: const EdgeInsets.symmetric(vertical: 7),
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     Container(
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20)),
                           border: Border.all(
-                              color: const Color(0xFFEDF6FA), width: 0.5),
+                              color: Color(0xFFEDF6FA),
+                              width: MediaQuery.of(context).size.width * .01),
                           boxShadow: const [
                             BoxShadow(
                                 color: Color(0xFFE8F3FA),
@@ -386,13 +382,14 @@ class _FirstGameState extends State<FirstGame> {
                             ),
                           )
                         ])),
-                    const SizedBox(height: 55),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.08),
                     Container(
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20)),
                           border: Border.all(
-                              color: const Color(0xFFEDF6FA), width: 0.5),
+                              color: const Color(0xFFEDF6FA),
+                              width: MediaQuery.of(context).size.width * .01),
                           boxShadow: const [
                             BoxShadow(
                                 color: Color(0xFFE8F3FA),
@@ -436,11 +433,11 @@ class _FirstGameState extends State<FirstGame> {
                                 ),
                               ),
                             ])),
-                    const SizedBox(
-                      height: 15,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.04,
                     ),
                     SizedBox(
-                      height: 30,
+                      height: MediaQuery.of(context).size.height * 0.04,
                       child: Visibility(
                         visible: displayFeedback,
                         child: Text(
@@ -449,7 +446,7 @@ class _FirstGameState extends State<FirstGame> {
                         ),
                       ), // Display feedback only when required,
                     ),
-                    const SizedBox(height: 15),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     MaterialButton(
                       onPressed: () {
                         equalBoxCheckScore();
@@ -475,8 +472,8 @@ class _FirstGameState extends State<FirstGame> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
                     )
                   ],
                 ),

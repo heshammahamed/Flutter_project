@@ -33,7 +33,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
         backgroundColor: const Color.fromARGB(255, 242, 249, 255),
         body: Column(
           children: [
-            const SizedBox(height: 20),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.09),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -66,62 +66,61 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 70,
-            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.08),
             Container(
-                width: 350,
+                width: MediaQuery.of(context).size.width * 10,
                 padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: const Column(
+                child: Column(
                   children: [
-                    Text('-  There will be two numbers showen on the screen.',
+                    const Text(
+                        '-  There will be two numbers showen on the screen.',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height * 0.07,
                     ),
-                    Text('-  You must press on the biggest number box.',
+                    const Text('-  You must press on the biggest number box.',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height * 0.07,
                     ),
-                    Text(
+                    const Text(
                         '-  You will get +500 points if you choose the correct answer.',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height * 0.07,
                     ),
-                    Text(
+                    const Text(
                         '-  You will lose -400 points if you choose the wrong answer.',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                   ],
                 )),
-            const SizedBox(
-              height: 90,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.12,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
