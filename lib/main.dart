@@ -183,6 +183,8 @@ class DarkAndLightMode extends ChangeNotifier {
   var rotatearrowgame_userarrow = Colors.white;
   var rotatearrowgame_rotatebuttons = const Color(0xFFA6A6A6);
   var rotatearrowgame_checkbutton = const Color(0xFF00C853);
+  var biggestnumbergame_equalbutton = const Color(0xFF00C853);
+  var biggestnumbersNumbers = const Color.fromARGB(255, 72, 0, 0);
 
   changeMode() {
     (IsDark) ? IsDark = false : IsDark = true;
@@ -203,6 +205,11 @@ class DarkAndLightMode extends ChangeNotifier {
     rotatearrowgame_rotatebuttons =
         (IsDark) ? const Color(0xFFA6A6A6) : const Color(0xFF607D8B);
     rotatearrowgame_checkbutton = (IsDark)
+        ? const Color(0xFF00C853)
+        : const Color.fromARGB(255, 0, 149, 5);
+    biggestnumbersNumbers =
+        (IsDark) ? const Color.fromARGB(255, 72, 0, 0) : Colors.white;
+    biggestnumbergame_equalbutton = (IsDark)
         ? const Color(0xFF00C853)
         : const Color.fromARGB(255, 0, 149, 5);
     notifyListeners();

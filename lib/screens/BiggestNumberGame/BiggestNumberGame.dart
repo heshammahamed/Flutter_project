@@ -147,6 +147,8 @@ class _FirstGameState extends State<FirstGame> {
   @override
   Widget build(BuildContext context) {
     Score score = Provider.of<Score>(context, listen: true);
+    DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
 
     equalBoxCheckScore() {
       if (numbers2[seco] == numbers1[first]) {
@@ -212,7 +214,7 @@ class _FirstGameState extends State<FirstGame> {
               scrolledUnderElevation: 50,
               elevation: 10,
               centerTitle: true,
-              backgroundColor: Colors.blue[200],
+              backgroundColor: color.gamesAppbar,
               title: const Text(
                 'Biggest Number Game',
                 style: TextStyle(
@@ -224,7 +226,7 @@ class _FirstGameState extends State<FirstGame> {
                 ),
               ),
             ),
-            backgroundColor: const Color(0xFFF7F8FA),
+            backgroundColor: color.backgroundForHomeScreen,
             body: Column(children: [
               SizedBox(height: MediaQuery.of(context).size.height * .07),
               Row(
@@ -235,7 +237,8 @@ class _FirstGameState extends State<FirstGame> {
                         color: Colors.transparent,
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20)),
-                        border: Border.all(color: Colors.black, width: .5),
+                        border: Border.all(
+                            color: color.textForHomeScreen, width: .5),
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black12,
@@ -245,18 +248,18 @@ class _FirstGameState extends State<FirstGame> {
                     padding: const EdgeInsets.all(5),
                     child: Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.timer,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         ),
                         Text(
                           ' Timer : $_secondsRemaining',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1.2,
                             fontFamily: "Montserrat",
-                            color: Color.fromARGB(221, 26, 26, 26),
+                            color: color.textForHomeScreen,
                           ),
                         )
                       ],
@@ -267,7 +270,8 @@ class _FirstGameState extends State<FirstGame> {
                         color: Colors.transparent,
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20)),
-                        border: Border.all(color: Colors.black, width: .5),
+                        border: Border.all(
+                            color: color.textForHomeScreen, width: .5),
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black12,
@@ -277,18 +281,18 @@ class _FirstGameState extends State<FirstGame> {
                     padding: const EdgeInsets.all(5),
                     child: Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.leaderboard,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         ),
                         Text(
                           ' Score : ${score.scoreForMathematicsGame}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1.2,
                             fontFamily: "Montserrat",
-                            color: Color.fromARGB(221, 26, 26, 26),
+                            color: color.textForHomeScreen,
                           ),
                         )
                       ],
@@ -298,14 +302,14 @@ class _FirstGameState extends State<FirstGame> {
               ), // Timer & Score Row
               SizedBox(height: MediaQuery.of(context).size.height * 0.09),
 
-              const Text(
+              Text(
                 "Chosse The Biggest Number",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.2,
                   fontFamily: "Montserrat",
-                  color: Color.fromARGB(221, 26, 26, 26),
+                  color: color.textForHomeScreen,
                 ),
               ),
 
@@ -315,15 +319,15 @@ class _FirstGameState extends State<FirstGame> {
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   border: Border.all(
-                      color: const Color(0xFFEDF6FA),
+                      color: color.gamesContainerStroke,
                       width: MediaQuery.of(context).size.width * .01),
                   boxShadow: const [
                     BoxShadow(
                         color: Color(0xFFE8F3FA),
-                        blurRadius: 10,
+                        blurRadius: 2,
                         offset: Offset(0, 0))
                   ],
-                  color: Colors.blue[100], // the full column color
+                  color: color.gamesContainer, // the full column color
                   // color: Colors.blue[200], // the full column color
                   shape: BoxShape.rectangle,
                 ),
@@ -339,15 +343,15 @@ class _FirstGameState extends State<FirstGame> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20)),
                           border: Border.all(
-                              color: Color(0xFFEDF6FA),
+                              color: color.gamesContainerStroke,
                               width: MediaQuery.of(context).size.width * .01),
                           boxShadow: const [
                             BoxShadow(
                                 color: Color(0xFFE8F3FA),
-                                blurRadius: 10,
+                                blurRadius: 2,
                                 offset: Offset(0, 0))
                           ],
-                          color: Colors.white,
+                          color: color.biggestnumbersNumbers,
                           shape: BoxShape.rectangle,
                         ),
                         margin: const EdgeInsets.symmetric(horizontal: 12),
@@ -360,7 +364,7 @@ class _FirstGameState extends State<FirstGame> {
                                 _startFeedbackTimer();
                               },
                               // color: Colors.white, // Background color
-                              textColor: Colors.white, // Text color
+                              textColor: color.textForHomeScreen, // Text color
                               elevation: 4,
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 15),
@@ -371,12 +375,12 @@ class _FirstGameState extends State<FirstGame> {
                               child: Text(
                                 num1,
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 1.2,
                                   fontFamily: "Montserrat",
-                                  color: Color.fromARGB(221, 26, 26, 26),
+                                  color: color.textForHomeScreen,
                                 ),
                               ),
                             ),
@@ -388,15 +392,15 @@ class _FirstGameState extends State<FirstGame> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20)),
                           border: Border.all(
-                              color: const Color(0xFFEDF6FA),
+                              color: color.gamesContainerStroke,
                               width: MediaQuery.of(context).size.width * .01),
                           boxShadow: const [
                             BoxShadow(
                                 color: Color(0xFFE8F3FA),
-                                blurRadius: 10,
+                                blurRadius: 2,
                                 offset: Offset(0, 0))
                           ],
-                          color: Colors.white,
+                          color: color.biggestnumbersNumbers,
                           shape: BoxShape.rectangle,
                         ),
                         margin: const EdgeInsets.symmetric(horizontal: 12),
@@ -411,7 +415,8 @@ class _FirstGameState extends State<FirstGame> {
                                     _startFeedbackTimer();
                                   },
                                   // color: Colors.white, // Background color
-                                  textColor: Colors.white, // Text color
+                                  textColor:
+                                      color.textForHomeScreen, // Text color
                                   elevation: 4,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 15),
@@ -422,12 +427,12 @@ class _FirstGameState extends State<FirstGame> {
                                   child: Text(
                                     num2,
                                     textAlign: TextAlign.center,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                       letterSpacing: 1.2,
                                       fontFamily: "Montserrat",
-                                      color: Color.fromARGB(221, 26, 26, 26),
+                                      color: color.textForHomeScreen,
                                     ),
                                   ),
                                 ),
@@ -453,7 +458,8 @@ class _FirstGameState extends State<FirstGame> {
                         // Start the feedback timer when the main timer starts
                         _startFeedbackTimer();
                       },
-                      color: Colors.green[200], // Background color
+                      color: color
+                          .biggestnumbergame_equalbutton, // Background color
                       textColor: Colors.white, // Text color
                       elevation: 4,
                       padding: const EdgeInsets.symmetric(
@@ -463,7 +469,7 @@ class _FirstGameState extends State<FirstGame> {
                         // You can customize the shape of the button here
                       ),
                       child: const Text(
-                        '                Equall                ',
+                        '                Equal                ',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

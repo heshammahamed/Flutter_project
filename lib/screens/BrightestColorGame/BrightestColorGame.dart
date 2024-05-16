@@ -144,6 +144,8 @@ class _MohamedGameState extends State<MohamedGame> {
   @override
   Widget build(BuildContext context) {
     Score score = Provider.of<Score>(context, listen: true);
+    DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
 
     return Scaffold(
         appBar: AppBar(
@@ -152,7 +154,7 @@ class _MohamedGameState extends State<MohamedGame> {
           scrolledUnderElevation: 50,
           elevation: 10,
           centerTitle: true,
-          backgroundColor: const Color(0xFF1976D2),
+          backgroundColor: color.gamesAppbar,
           title: const Text(
             'Brightest Color Game',
             style: TextStyle(
@@ -164,6 +166,7 @@ class _MohamedGameState extends State<MohamedGame> {
             ),
           ),
         ),
+        backgroundColor: color.backgroundForHomeScreen,
         body: Column(children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.03),
           Row(
@@ -173,7 +176,8 @@ class _MohamedGameState extends State<MohamedGame> {
                   decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(color: Colors.black, width: 0.5),
+                      border: Border.all(
+                          color: color.textForHomeScreen, width: 0.5),
                       boxShadow: const [
                         BoxShadow(
                             color: Colors.black12,
@@ -182,18 +186,18 @@ class _MohamedGameState extends State<MohamedGame> {
                       ]),
                   padding: const EdgeInsets.all(5),
                   child: Row(children: [
-                    const Icon(
+                    Icon(
                       Icons.timer,
-                      color: Color.fromARGB(221, 26, 26, 26),
+                      color: color.textForHomeScreen,
                     ),
                     Text(
                       ' Timer : $_secondsRemaining',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1.2,
                         fontFamily: "Montserrat",
-                        color: Color.fromARGB(221, 26, 26, 26),
+                        color: color.textForHomeScreen,
                       ),
                     )
                   ])),
@@ -201,7 +205,8 @@ class _MohamedGameState extends State<MohamedGame> {
                 decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    border: Border.all(color: Colors.black, width: 0.5),
+                    border:
+                        Border.all(color: color.textForHomeScreen, width: 0.5),
                     boxShadow: const [
                       BoxShadow(
                           color: Colors.black12,
@@ -211,18 +216,18 @@ class _MohamedGameState extends State<MohamedGame> {
                 padding: const EdgeInsets.all(5),
                 child: Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.leaderboard,
-                      color: Color.fromARGB(221, 26, 26, 26),
+                      color: color.textForHomeScreen,
                     ),
                     Text(
                       ' Score : ${score.scoreForObservationGame}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1.2,
                         fontFamily: "Montserrat",
-                        color: Color.fromARGB(221, 26, 26, 26),
+                        color: color.textForHomeScreen,
                       ),
                     )
                   ],
@@ -231,12 +236,14 @@ class _MohamedGameState extends State<MohamedGame> {
             ],
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-          const Text(
+          Text(
             "Choose the brightest Color!",
             style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
               fontFamily: "Montserrat",
-              fontSize: 20,
-              letterSpacing: 1.0,
+              color: color.textForHomeScreen,
             ),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.05),
@@ -252,14 +259,15 @@ class _MohamedGameState extends State<MohamedGame> {
               height: 550,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(color: const Color(0xFFEDF6FA), width: 0.5),
+                border:
+                    Border.all(color: color.gamesContainerStroke, width: 0.5),
                 boxShadow: const [
                   BoxShadow(
                       color: Color(0xFFE8F3FA),
-                      blurRadius: 10,
+                      blurRadius: 2,
                       offset: Offset(0, 0))
                 ],
-                color: Colors.white,
+                color: color.gamesContainer,
                 shape: BoxShape.rectangle,
               ),
               child: GridView.builder(

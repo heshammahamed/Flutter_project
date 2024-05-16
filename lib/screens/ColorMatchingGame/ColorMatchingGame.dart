@@ -135,6 +135,8 @@ class _SameColorState extends State<SameColor> {
   @override
   Widget build(BuildContext context) {
     Score score = Provider.of<Score>(context, listen: false);
+    DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
 
     trueCheckScore() {
       if (meaining == textColorString) {
@@ -182,7 +184,7 @@ class _SameColorState extends State<SameColor> {
           scrolledUnderElevation: 50,
           elevation: 10,
           centerTitle: true,
-          backgroundColor: const Color(0xFF1976D2),
+          backgroundColor: color.gamesAppbar,
           title: const Text(
             'Color Matching Game',
             style: TextStyle(
@@ -194,236 +196,239 @@ class _SameColorState extends State<SameColor> {
             ),
           ),
         ),
-        backgroundColor: const Color(0xFFF7F8FA),
-        body: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-            decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xFFF7F8FA), width: 5),
-            ),
-            child: Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        backgroundColor: color.backgroundForHomeScreen,
+        body: Column(children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    border:
+                        Border.all(color: color.textForHomeScreen, width: 0.5),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black12,
+                          offset: Offset(0, 0),
+                          blurRadius: 20)
+                    ]),
+                padding: const EdgeInsets.all(5),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.timer,
+                      color: color.textForHomeScreen,
+                    ),
+                    Text(
+                      ' Timer : $_secondsRemaining',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
+                        fontFamily: "Montserrat",
+                        color: color.textForHomeScreen,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    border:
+                        Border.all(color: color.textForHomeScreen, width: 0.5),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black12,
+                          offset: Offset(0, 0),
+                          blurRadius: 20)
+                    ]),
+                padding: const EdgeInsets.all(5),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.leaderboard,
+                      color: color.textForHomeScreen,
+                    ),
+                    Text(
+                      ' Score : ${score.scoreForObservationGame}',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
+                        fontFamily: "Montserrat",
+                        color: color.textForHomeScreen,
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ), // Timer & Score Row
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          Container(
+              child: Column(
+            children: [
+              Text(
+                  "Is the meaning at the top the same as the color at the bottom?",
+                  style: TextStyle(
+                      fontFamily: "Montserrat",
+                      color: color.textForHomeScreen,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500)),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+              Column(
                 children: [
-                  // timer section
                   Container(
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(20),
+                        color: Color.fromARGB(255, 137, 163, 176),
+                        borderRadius: BorderRadius.circular(10),
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black12,
                               offset: Offset(0, 0),
                               blurRadius: 20)
                         ]),
-                    padding: const EdgeInsets.all(5),
-                    child: Row(
-                      children: [
-                        Icon(Icons.timer),
-                        Container(
-                          child: Text("Timer : $_secondsRemaining",
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1.2,
-                                fontFamily: "Montserrat",
-                                color: Color.fromARGB(221, 26, 26, 26),
-                              )),
-                        )
-                      ],
-                    ),
-                  ),
-
-                  // score section
-                  Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 0),
-                                blurRadius: 20)
-                          ]),
-                      padding: const EdgeInsets.all(5),
-                      child: Row(children: [
-                        Icon(Icons.leaderboard),
-                        Container(
-                          child:
-                              Text("Score : ${score.scoreForObservationGame}",
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: Color.fromARGB(221, 26, 26, 26),
-                                  )),
-                        ),
-                      ])),
-                ],
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-              Container(
-                  child: Column(
-                children: [
-                  const Text(
-                      "Is the meaning at the top the same as the color at the bottom?",
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      "meaning",
                       style: TextStyle(
                           fontFamily: "Montserrat",
-                          color: Color.fromARGB(221, 26, 26, 26),
                           fontSize: 20,
-                          fontWeight: FontWeight.w500)),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.06),
-                  Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 137, 163, 176),
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 0),
-                                  blurRadius: 20)
-                            ]),
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        alignment: Alignment.center,
-                        child: const Text(
-                          "meaning",
-                          style: TextStyle(
-                              fontFamily: "Montserrat",
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.03),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 0),
-                                  blurRadius: 20)
-                            ]),
-                        width: MediaQuery.of(context).size.width * 0.7,
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        alignment: Alignment.center,
-                        child: Text(meaining,
-                            style: const TextStyle(
-                              fontSize: 50,
-                              fontFamily: "Montserrat",
-                            )),
-                      )
-                    ],
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                  Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 0),
-                                  blurRadius: 20)
-                            ]),
-                        width: MediaQuery.of(context).size.width * 0.7,
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        alignment: Alignment.center,
-                        child: Text(text,
-                            style: TextStyle(
-                              color: textColor,
-                              fontSize: 50,
-                              fontFamily: "Montserrat",
-                            )),
-                      ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.03),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 137, 163, 176),
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 0),
-                                  blurRadius: 20)
-                            ]),
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        alignment: Alignment.center,
-                        child: const Text(
-                          "color",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Montserrat",
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.09),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      GestureDetector(
-                          onTap: () => trueCheckScore(),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  borderRadius: BorderRadius.circular(40),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 0),
-                                        blurRadius: 20)
-                                  ]),
-                              alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width * 0.3,
-                              height: MediaQuery.of(context).size.height * 0.07,
-                              child: const Text(
-                                "True",
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: "Montserrat",
-                                ),
-                              ))),
-                      GestureDetector(
-                          onTap: () => falseCheckScore(),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius: BorderRadius.circular(40),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 0),
-                                        blurRadius: 20)
-                                  ]),
-                              alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width * 0.3,
-                              height: MediaQuery.of(context).size.height * 0.07,
-                              child: const Text(
-                                "False",
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: "Montserrat",
-                                ),
-                              ))),
-                    ],
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: color.gamesContainer,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 0),
+                              blurRadius: 20)
+                        ]),
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    alignment: Alignment.center,
+                    child: Text(meaining,
+                        style: TextStyle(
+                          fontSize: 50,
+                          fontFamily: "Montserrat",
+                          color: color.textForHomeScreen,
+                        )),
                   )
                 ],
-              ))
-            ])));
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: color.gamesContainer,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 0),
+                              blurRadius: 20)
+                        ]),
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    alignment: Alignment.center,
+                    child: Text(text,
+                        style: TextStyle(
+                          color: textColor,
+                          fontSize: 50,
+                          fontFamily: "Montserrat",
+                        )),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 137, 163, 176),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 0),
+                              blurRadius: 20)
+                        ]),
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      "color",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Montserrat",
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.09),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                      onTap: () => trueCheckScore(),
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(40),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 0),
+                                    blurRadius: 20)
+                              ]),
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          height: MediaQuery.of(context).size.height * 0.07,
+                          child: const Text(
+                            "True",
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Montserrat",
+                            ),
+                          ))),
+                  GestureDetector(
+                      onTap: () => falseCheckScore(),
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(40),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 0),
+                                    blurRadius: 20)
+                              ]),
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          height: MediaQuery.of(context).size.height * 0.07,
+                          child: const Text(
+                            "False",
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Montserrat",
+                            ),
+                          ))),
+                ],
+              )
+            ],
+          ))
+        ]));
   }
 }
