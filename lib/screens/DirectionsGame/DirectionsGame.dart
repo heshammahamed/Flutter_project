@@ -115,7 +115,7 @@ class _FifthGameState extends State<FifthGame> {
                 Navigator.of(context).pop();
                 // Rebuild the current screen
                 setState(() {
-                  _secondsRemaining = 60; // Reset timer
+                  _secondsRemaining = 30; // Reset timer
                   _startTimer(); // Start timer again
                 });
               },
@@ -130,60 +130,276 @@ class _FifthGameState extends State<FifthGame> {
   @override
   Widget build(BuildContext context) {
     Score score = Provider.of<Score>(context, listen: true);
+    DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
     checkSwap() {
-    if (!directionSwapped) {
-      if (arrowColor == Colors.green) {
-        if (iconDirectionString == swap) {
-          setState(() {
-            score.addScoreForObservationGames();
-            feedbackMessage = "Correct +500";
-            feedbackColor = Colors.green;
-            displayFeedback = true;
-          });
+      if (!directionSwapped) {
+        if (arrowColor == Colors.green) {
+          if (iconDirectionString == swap) {
+            setState(() {
+              score.addScoreForObservationGames();
+              feedbackMessage = "Correct +500";
+              feedbackColor = Colors.green;
+              displayFeedback = true;
+            });
+          } else {
+            setState(() {
+              score.minScoreForObservationGames();
+              feedbackMessage = "Wrong -400";
+              feedbackColor = Colors.red;
+              displayFeedback = true;
+            });
+          }
         } else {
-          setState(() {
-            score.minScoreForObservationGames();
-            feedbackMessage = "Wrong -400";
-            feedbackColor = Colors.red;
-            displayFeedback = true;
-          });
+          if (direction == swap) {
+            setState(() {
+              score.addScoreForObservationGames();
+              feedbackMessage = "Correct +500";
+              feedbackColor = Colors.green;
+              displayFeedback = true;
+            });
+          } else {
+            setState(() {
+              score.minScoreForObservationGames();
+              feedbackMessage = "Wrong -400";
+              feedbackColor = Colors.red;
+              displayFeedback = true;
+            });
+          }
         }
-      } else {
-        if (direction == swap) {
-          setState(() {
-            score.addScoreForObservationGames();
-            feedbackMessage = "Correct +500";
-            feedbackColor = Colors.green;
-            displayFeedback = true;
-          });
-        } else {
-          setState(() {
-            score.minScoreForObservationGames();
-            feedbackMessage = "Wrong -40";
-            feedbackColor = Colors.red;
-            displayFeedback = true;
-          });
-        }
-      }
 
-      changeDirectionOfArrow();
-      setState(() {
-        direction = directionsList[Random().nextInt(4)];
-        arrowColor = arrowColors[Random().nextInt(5)];
-        iconDirection = iconDirections[i];
-        iconDirectionString = directionsList[i];
-        directionSwapped = true;
-      });
+        changeDirectionOfArrow();
+        setState(() {
+          direction = directionsList[Random().nextInt(4)];
+          arrowColor = arrowColors[Random().nextInt(5)];
+          iconDirection = iconDirections[i];
+          iconDirectionString = directionsList[i];
+          directionSwapped = true;
+        });
+      }
     }
-  }
-    return Scaffold(
+
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            shadowColor: Colors.black45,
+            scrolledUnderElevation: 50,
+            elevation: 10,
+            centerTitle: true,
+            backgroundColor: color.gamesAppbar,
+            title: const Text(
+              'Rotate Arrow Game',
+              style: TextStyle(
+                fontFamily: "Montserrat",
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.2,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          backgroundColor: color.backgroundForHomeScreen,
+          body: Column(
+            children: [
+              const SizedBox(height: 20),
+              // Timer & Score
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(
+                            color: color.textForHomeScreen, width: 0.5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 0),
+                              blurRadius: 20)
+                        ]),
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.timer,
+                          color: color.textForHomeScreen,
+                        ),
+                        Text(
+                          ' Timer : $_secondsRemaining',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.2,
+                            fontFamily: "Montserrat",
+                            color: color.textForHomeScreen,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(
+                            color: color.textForHomeScreen, width: 0.5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 0),
+                              blurRadius: 20)
+                        ]),
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.leaderboard,
+                          color: color.textForHomeScreen,
+                        ),
+                        Text(
+                          ' Score : ${score.scoreForObservationGame}',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.2,
+                            fontFamily: "Montserrat",
+                            color: color.textForHomeScreen,
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ), // Timer & Score Row
+              const SizedBox(
+                height: 40,
+              ),
+              GestureDetector(
+                onVerticalDragUpdate: (details) {
+                  int sensitivity = 8;
+
+                  if (details.delta.dy > sensitivity) {
+                    swap = "Down";
+                    directionSwapped = false;
+                  }
+
+                  if (details.delta.dy < -sensitivity) {
+                    swap = "Up";
+                    directionSwapped = false;
+                  }
+                },
+                onHorizontalDragUpdate: (details) {
+                  int sensitivity = 8;
+
+                  if (details.delta.dx > sensitivity) {
+                    swap = "Right";
+                    directionSwapped = false;
+                  }
+
+                  if (details.delta.dx < -sensitivity) {
+                    swap = "Left";
+                    directionSwapped = false;
+                  }
+                },
+                onVerticalDragEnd: (details) {
+                  Timer(const Duration(milliseconds: 200), () {
+                    checkSwap();
+                    _startFeedbackTimer();
+                  });
+                },
+                onHorizontalDragEnd: (details) {
+                  Timer(const Duration(milliseconds: 200), () {
+                    checkSwap();
+                    _startFeedbackTimer();
+                  });
+                },
+                child: Container(
+                  height: 500,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    border: Border.all(
+                        color: color.gamesContainerStroke, width: 0.5),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color(0xFFE8F3FA),
+                          blurRadius: 2,
+                          offset: Offset(0, 0)),
+                    ],
+                    color: color.gamesContainer,
+                    shape: BoxShape.rectangle,
+                  ),
+                  margin: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(vertical: 7),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(
+                                color: color.textForHomeScreen, width: 1),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 0),
+                                  blurRadius: 20)
+                            ]),
+                        padding: const EdgeInsets.all(5),
+                        margin: const EdgeInsets.all(20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text("Swap : $direction",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.2,
+                                  fontFamily: "Montserrat",
+                                  color: color.textForHomeScreen,
+                                )),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                        child: Visibility(
+                          visible: displayFeedback,
+                          child: Text(
+                            feedbackMessage,
+                            style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 20,
+                                color: feedbackColor),
+                          ),
+                        ), // Display feedback only when required,
+                      ),
+                      Center(
+                          child: FaIcon(
+                        iconDirection,
+                        color: arrowColor,
+                        size: 190.0,
+                      ))
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          )),
+    );
+
+    /*Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         shadowColor: Colors.black45,
         scrolledUnderElevation: 50,
         elevation: 10,
         centerTitle: true,
-        backgroundColor: const Color(0xFF1976D2),
+        backgroundColor: color.gamesAppbar,
         title: const Text(
           'Direction Game',
           style: TextStyle(
@@ -196,11 +412,11 @@ class _FifthGameState extends State<FifthGame> {
         ),
       ),
       // back ground color for the screen
-      backgroundColor: const Color(0xFFF7F8FA),
+      backgroundColor: color.backgroundForHomeScreen,
       body: Container(
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           decoration: BoxDecoration(
-            border: Border.all(color: const Color(0xFFF7F8FA), width: 5),
+            border: Border.all(color: Colors.pink, width: 5),
           ),
           child: Column(children: [
             // first child in the column
@@ -217,7 +433,7 @@ class _FifthGameState extends State<FifthGame> {
                       Container(
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(color: Colors.black),
+                            border: Border.all(color: color.textForHomeScreen),
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: const [
                               BoxShadow(
@@ -228,15 +444,18 @@ class _FifthGameState extends State<FifthGame> {
                         padding: const EdgeInsets.all(5),
                         child: Row(
                           children: [
-                            Icon(Icons.timer),
+                            Icon(
+                              Icons.timer,
+                              color: color.textForHomeScreen,
+                            ),
                             Container(
                               child: Text("Timer : $_secondsRemaining",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                     letterSpacing: 1.2,
                                     fontFamily: "Montserrat",
-                                    color: Color.fromARGB(221, 26, 26, 26),
+                                    color: color.textForHomeScreen,
                                   )),
                             )
                           ],
@@ -248,7 +467,8 @@ class _FifthGameState extends State<FifthGame> {
                       Container(
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              border: Border.all(color: Colors.black),
+                              border:
+                                  Border.all(color: color.textForHomeScreen),
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: const [
                                 BoxShadow(
@@ -258,15 +478,19 @@ class _FifthGameState extends State<FifthGame> {
                               ]),
                           padding: const EdgeInsets.all(5),
                           child: Row(children: [
-                            Icon(Icons.leaderboard),
+                            Icon(
+                              Icons.leaderboard,
+                              color: color.textForHomeScreen,
+                            ),
                             Container(
-                              child: Text("Score : ${score.scoreForObservationGame}",
-                                  style: const TextStyle(
+                              child: Text(
+                                  "Score : ${score.scoreForObservationGame}",
+                                  style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                     letterSpacing: 1.2,
                                     fontFamily: "Montserrat",
-                                    color: Color.fromARGB(221, 26, 26, 26),
+                                    color: color.textForHomeScreen,
                                   )),
                             ),
                           ])),
@@ -315,7 +539,7 @@ class _FifthGameState extends State<FifthGame> {
                 },
                 child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: const Color.fromARGB(255, 233, 7, 7),
                         border: Border.all(
                             color: const Color(0xFFEDF6FA), width: 0.5),
                         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -369,6 +593,6 @@ class _FifthGameState extends State<FifthGame> {
                       ))
                     ]))),
           ])),
-    );
+    );*/
   }
 }

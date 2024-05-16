@@ -88,16 +88,25 @@ class Score extends ChangeNotifier {
 
   minScoreForObservationGames() {
     scoreForObservationGame = scoreForObservationGame - 400;
+    if (scoreForObservationGame < 0) {
+      scoreForObservationGame = 0;
+    }
     notifyListeners();
   }
 
   minScoreForAccuracyGames() {
     scoreForAccuracyGame = scoreForAccuracyGame - 400;
+    if (scoreForAccuracyGame < 0) {
+      scoreForAccuracyGame = 0;
+    }
     notifyListeners();
   }
 
   minScoreForMathematicsGames() {
     scoreForMathematicsGame = scoreForMathematicsGame - 400;
+    if (scoreForMathematicsGame < 0) {
+      scoreForMathematicsGame = 0;
+    }
     notifyListeners();
   }
 
@@ -167,9 +176,9 @@ class DarkAndLightMode extends ChangeNotifier {
   bool IsDark = true;
   var backgroundForHomeScreen = const Color(0xFF161616);
   var textForHomeScreen = Colors.white;
-  var rotatearrowgame_container = const Color.fromARGB(255, 1, 0, 19);
-  var rotatearrowgame_containerstroke = const Color(0xFF2C2C2E);
-  var rotatearrowgame_appbar = const Color(0xFF263238);
+  var gamesContainer = const Color.fromARGB(255, 1, 0, 19);
+  var gamesContainerStroke = const Color(0xFF2C2C2E);
+  var gamesAppbar = const Color(0xFF263238);
   var rotatearrowgame_mainarrow = const Color(0xFF0DAAFF);
   var rotatearrowgame_userarrow = Colors.white;
   var rotatearrowgame_rotatebuttons = const Color(0xFFA6A6A6);
@@ -182,12 +191,11 @@ class DarkAndLightMode extends ChangeNotifier {
         : const Color.fromARGB(255, 242, 249, 255);
     textForHomeScreen =
         (IsDark) ? Colors.white : const Color.fromARGB(221, 26, 26, 26);
-    rotatearrowgame_container =
+    gamesContainer =
         (IsDark) ? const Color.fromARGB(255, 1, 0, 19) : Colors.white;
-    rotatearrowgame_containerstroke =
+    gamesContainerStroke =
         (IsDark) ? const Color(0xFF2C2C2E) : const Color(0xFFEDF6FA);
-    rotatearrowgame_appbar =
-        (IsDark) ? const Color(0xFF263238) : const Color(0xFF1976D2);
+    gamesAppbar = (IsDark) ? const Color(0xFF263238) : const Color(0xFF1976D2);
     rotatearrowgame_mainarrow =
         (IsDark) ? const Color(0xFF0DAAFF) : const Color(0xFF1976D2);
     rotatearrowgame_userarrow =
