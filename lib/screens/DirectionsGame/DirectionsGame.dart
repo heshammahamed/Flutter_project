@@ -188,7 +188,7 @@ class _FifthGameState extends State<FifthGame> {
             centerTitle: true,
             backgroundColor: color.gamesAppbar,
             title: const Text(
-              'Rotate Arrow Game',
+              'Directions Game',
               style: TextStyle(
                 fontFamily: "Montserrat",
                 fontSize: 22,
