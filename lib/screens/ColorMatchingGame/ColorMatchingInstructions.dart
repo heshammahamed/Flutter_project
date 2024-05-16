@@ -34,7 +34,7 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
         body: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.09,
+              height: MediaQuery.of(context).size.height * 0.05,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -68,7 +68,7 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
               ],
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.07,
+              height: MediaQuery.of(context).size.height * 0.05,
             ),
             Container(
                 width: MediaQuery.of(context).size.width * 9,
@@ -77,53 +77,59 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Column(
                   children: [
-                    Text('-  There will be two text showen on the screen.',
+                    const Text(
+                        '-  There will be two text showen on the screen.',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontFamily: "Montserrat",
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.06,
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
-                    Text(
+                    const Text(
                         '-  If the top text is the second text color then press true button.',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontFamily: "Montserrat",
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.06,
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
-                    Text(
+                    const Text(
                         '-  If the top text is not the second text color then press false button.',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontFamily: "Montserrat",
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.06,
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
-                    Text(
+                    const Text(
                         '-  You will get + 500 if you swap in the correct direction.',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontFamily: "Montserrat",
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.06,
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
-                    Text(
+                    const Text(
                         '-  You will get - 400 if you swap in the wrong direction.',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontFamily: "Montserrat",
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
@@ -155,8 +161,9 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                     // You can customize the shape of the button here
                   ),
                   child: const Text(
-                    'Play',
+                    '              Play              ',
                     style: TextStyle(
+                      fontFamily: "Montserrat",
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.2,
