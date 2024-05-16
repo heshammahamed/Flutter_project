@@ -7,7 +7,7 @@ import 'screens/BiggestNumberGame/BiggestNumberInstructions.dart';
 import 'screens/Rotate Arrow Game/RotateArrowInstructions.dart';
 import 'screens/BrightestColorGame/BrightestColorInstructions.dart';
 import 'screens/DirectionsGame/DirectionInstructions.dart';
-import 'screens/Color Matching Game/ColorMatchingInstructions.dart';
+import 'screens/ColorMatchingGame/ColorMatchingInstructions.dart';
 import 'package:game_project/screens/TertiesGame/board.dart';
 import 'package:game_project/screens/TertiesGame/instructions.dart';
 import 'package:provider/provider.dart';
