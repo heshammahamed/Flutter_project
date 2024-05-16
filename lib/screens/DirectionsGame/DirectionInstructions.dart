@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 import '../DirectionsGame/timer.dart';
 
 class DirectionInstructions extends StatefulWidget {
@@ -11,6 +13,8 @@ class DirectionInstructions extends StatefulWidget {
 class _DirectionInstructionsState extends State<DirectionInstructions> {
   @override
   Widget build(BuildContext context) {
+    DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -18,7 +22,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
           scrolledUnderElevation: 50,
           elevation: 10,
           centerTitle: true,
-          backgroundColor: const Color(0xFF1976D2),
+          backgroundColor: color.gamesAppbar,
           title: const Text(
             'Directions Game',
             style: TextStyle(
@@ -30,7 +34,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
             ),
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 242, 249, 255),
+        backgroundColor: color.backgroundForHomeScreen,
         body: Column(
           children: [
             const SizedBox(height: 40),
@@ -41,7 +45,8 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                   decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(color: Colors.black, width: 0.5),
+                      border: Border.all(
+                          color: color.textForHomeScreen, width: 0.5),
                       boxShadow: const [
                         BoxShadow(
                             color: Colors.black12,
@@ -49,7 +54,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                             blurRadius: 20)
                       ]),
                   padding: const EdgeInsets.all(5),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Text(
                         '       Game Instructions       ',
@@ -58,7 +63,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         ),
                       )
                     ],
@@ -74,7 +79,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: const Column(
+                child: Column(
                   children: [
                     Text('-  There will be arrow with a various directions',
                         style: TextStyle(
@@ -82,9 +87,9 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -94,9 +99,9 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -106,9 +111,9 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -118,9 +123,9 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -130,9 +135,9 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -142,7 +147,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
                   ],
                 )),

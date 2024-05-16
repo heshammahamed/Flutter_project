@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 import "BiggestNumberGame.dart";
 import 'dart:async';
 
@@ -48,8 +50,10 @@ class _TimerGameState extends State<TimerGame> {
 
   @override
   Widget build(BuildContext context) {
+    DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 242, 249, 255),
+        backgroundColor: color.backgroundForHomeScreen,
         body: Center(
           child: CircularPercentIndicator(
               radius: 300,
@@ -59,10 +63,11 @@ class _TimerGameState extends State<TimerGame> {
               progressColor: Color(0xFF1976D2),
               center: Text(
                 "$_secondsRemaining",
-                style: const TextStyle(
+                style: TextStyle(
                     fontFamily: "Montserrat",
-                    color: Colors.black,
-                    fontSize: 70),
+                    fontSize: 70,
+                    fontWeight: FontWeight.bold,
+                    color: color.textForHomeScreen),
               )),
         ));
   }

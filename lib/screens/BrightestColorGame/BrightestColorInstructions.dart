@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../main.dart';
 import 'timer.dart';
 
 class ColorBoxInstructions extends StatefulWidget {
@@ -12,6 +14,8 @@ class ColorBoxInstructions extends StatefulWidget {
 class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
   @override
   Widget build(BuildContext context) {
+    DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -19,7 +23,7 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
           scrolledUnderElevation: 50,
           elevation: 10,
           centerTitle: true,
-          backgroundColor: const Color(0xFF1976D2),
+          backgroundColor: color.gamesAppbar,
           title: const Text(
             'Brightest Color Game',
             style: TextStyle(
@@ -31,7 +35,7 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
             ),
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 242, 249, 255),
+        backgroundColor: color.backgroundForHomeScreen,
         body: Column(
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * 0.05),
@@ -42,7 +46,8 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                   decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(color: Colors.black, width: 0.5),
+                      border: Border.all(
+                          color: color.textForHomeScreen, width: 0.5),
                       boxShadow: const [
                         BoxShadow(
                             color: Colors.black12,
@@ -50,7 +55,7 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                             blurRadius: 20)
                       ]),
                   padding: const EdgeInsets.all(5),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Text(
                         '       Game Instructions       ',
@@ -58,7 +63,7 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         ),
                       )
                     ],
@@ -76,46 +81,45 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Column(
                   children: [
-                    const Text(
+                    Text(
                         '- You have to rotate the second arrow to match the direction of the first blue arrow',
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.09,
+                    const SizedBox(
+                      height: 20,
                     ),
-                    const Text(
+                    Text(
                         '-  You have to collect as many points as possible before time runs out',
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.09,
+                    const SizedBox(
+                      height: 20,
                     ),
-                    const Text(
-                        '-  Each correct matching you will get +500 points',
+                    Text('-  Each correct matching you will get +500 points',
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.09,
+                    const SizedBox(
+                      height: 20,
                     ),
-                    const Text(
+                    Text(
                         "-  If you didn't get the correct matching, you will lose -400 points",
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
                   ],
                 )),

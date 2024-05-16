@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 import 'timer.dart';
 
 class InstructionsBuildGame extends StatefulWidget {
@@ -11,6 +13,8 @@ class InstructionsBuildGame extends StatefulWidget {
 class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
   @override
   Widget build(BuildContext context) {
+    DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -18,7 +22,7 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
           scrolledUnderElevation: 50,
           elevation: 10,
           centerTitle: true,
-          backgroundColor: const Color(0xFF1976D2),
+          backgroundColor: color.gamesAppbar,
           title: const Text(
             'Tetris Game',
             style: TextStyle(
@@ -30,7 +34,7 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
             ),
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 242, 249, 255),
+        backgroundColor: color.backgroundForHomeScreen,
         body: Column(
           children: [
             const SizedBox(height: 20),
@@ -41,7 +45,8 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
                   decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(color: Colors.black, width: 0.5),
+                      border: Border.all(
+                          color: color.textForHomeScreen, width: 0.5),
                       boxShadow: const [
                         BoxShadow(
                             color: Colors.black12,
@@ -49,7 +54,7 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
                             blurRadius: 20)
                       ]),
                   padding: const EdgeInsets.all(5),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Text(
                         '       Game Instructions       ',
@@ -57,7 +62,7 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         ),
                       )
                     ],
@@ -73,7 +78,7 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: const Column(
+                child: Column(
                   children: [
                     Text(
                         '-  Your goal is to manipulate falling tetrominoes to create complete horizontal lines at the bottom of the screen.',
@@ -81,9 +86,9 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -92,19 +97,20 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Text('- To rotate them, simply press the rotate icon which shown in the bottom of the screen.',
+                    Text(
+                        '- To rotate them, simply press the rotate icon which shown in the bottom of the screen.',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -113,9 +119,9 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -124,9 +130,9 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -135,7 +141,7 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
                   ],
                 )),

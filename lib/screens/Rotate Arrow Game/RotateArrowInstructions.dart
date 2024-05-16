@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 import "timer.dart";
 
 class ArrowInstructions extends StatefulWidget {
@@ -11,6 +13,8 @@ class ArrowInstructions extends StatefulWidget {
 class _ArrowInstructionsState extends State<ArrowInstructions> {
   @override
   Widget build(BuildContext context) {
+    DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -18,7 +22,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
           scrolledUnderElevation: 50,
           elevation: 10,
           centerTitle: true,
-          backgroundColor: const Color(0xFF1976D2),
+          backgroundColor: color.gamesAppbar,
           title: const Text(
             'Rotate Arrow Game',
             style: TextStyle(
@@ -30,7 +34,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
             ),
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 242, 249, 255),
+        backgroundColor: color.backgroundForHomeScreen,
         body: Column(
           children: [
             const SizedBox(height: 40),
@@ -41,7 +45,8 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                   decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(color: Colors.black, width: 0.5),
+                      border: Border.all(
+                          color: color.textForHomeScreen, width: 0.5),
                       boxShadow: const [
                         BoxShadow(
                             color: Colors.black12,
@@ -49,7 +54,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                             blurRadius: 20)
                       ]),
                   padding: const EdgeInsets.all(5),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Text(
                         '       Game Instructions       ',
@@ -57,7 +62,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         ),
                       )
                     ],
@@ -73,7 +78,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: const Column(
+                child: Column(
                   children: [
                     Text(
                         '-  You have to rotate the second arrow to match the direction of the first blue arrow',
@@ -81,9 +86,9 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -93,9 +98,9 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text('-  Each correct matching you will gain +500 points',
@@ -104,9 +109,9 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -116,9 +121,9 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -128,7 +133,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
                   ],
                 )),

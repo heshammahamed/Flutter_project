@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 import 'timer.dart';
 
 class BiggestNumInstructions extends StatefulWidget {
@@ -11,6 +13,8 @@ class BiggestNumInstructions extends StatefulWidget {
 class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
   @override
   Widget build(BuildContext context) {
+    DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -18,7 +22,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
           scrolledUnderElevation: 50,
           elevation: 10,
           centerTitle: true,
-          backgroundColor: const Color(0xFF1976D2),
+          backgroundColor: color.gamesAppbar,
           title: const Text(
             'Biggest Number Game',
             style: TextStyle(
@@ -30,7 +34,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
             ),
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 242, 249, 255),
+        backgroundColor: color.backgroundForHomeScreen,
         body: Column(
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * 0.09),
@@ -41,7 +45,8 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                   decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(color: Colors.black, width: 0.5),
+                      border: Border.all(
+                          color: color.textForHomeScreen, width: 0.5),
                       boxShadow: const [
                         BoxShadow(
                             color: Colors.black12,
@@ -49,7 +54,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                             blurRadius: 20)
                       ]),
                   padding: const EdgeInsets.all(5),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Text(
                         '       Game Instructions       ',
@@ -58,7 +63,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         ),
                       )
                     ],
@@ -73,49 +78,48 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Column(
                   children: [
-                    const Text(
-                        '-  There will be two numbers showen on the screen.',
+                    Text('-  There will be two numbers showen on the screen.',
                         style: TextStyle(
                           fontFamily: "Montserrat",
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.07,
                     ),
-                    const Text('-  You must press on the biggest number box.',
+                    Text('-  You must press on the biggest number box.',
                         style: TextStyle(
                           fontFamily: "Montserrat",
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.07,
                     ),
-                    const Text(
+                    Text(
                         '-  You will get +500 points if you choose the correct answer.',
                         style: TextStyle(
                           fontFamily: "Montserrat",
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.07,
                     ),
-                    const Text(
+                    Text(
                         '-  You will lose -400 points if you choose the wrong answer.',
                         style: TextStyle(
                           fontFamily: "Montserrat",
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
-                          color: Color.fromARGB(221, 26, 26, 26),
+                          color: color.textForHomeScreen,
                         )),
                   ],
                 )),
