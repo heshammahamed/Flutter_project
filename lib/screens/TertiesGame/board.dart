@@ -40,7 +40,7 @@ class _GameBoardState extends State<GameBoard>{
   void startgame(){
     currentpiece.intializepiece();
 
-    Duration frameRate = const Duration(milliseconds: 200);
+    Duration frameRate = const Duration(milliseconds: 600);
     gameloop(frameRate);
   }
 
@@ -174,6 +174,7 @@ bool isgameover(){
 
 void showgameoverdialog(){
     Score score = Provider.of<Score>(context, listen: false);
+    
   showDialog(
     context: context,
      builder: (context) => AlertDialog(
@@ -214,6 +215,8 @@ void resetgame(){
 
   @override
   Widget build(BuildContext context){
+      DarkAndLightMode color =
+        Provider.of<DarkAndLightMode>(context, listen: true);
     Score score = Provider.of<Score>(context, listen: false);
     return Scaffold( 
       appBar: AppBar(
@@ -222,7 +225,7 @@ void resetgame(){
         scrolledUnderElevation: 50,
         elevation: 10,
         centerTitle: true,
-        backgroundColor: const Color(0xFF1976D2),
+        backgroundColor: color.gamesAppbar,
         title: const Text(
           'Tetris Game',
           style: TextStyle(
@@ -234,7 +237,7 @@ void resetgame(){
           ),
         ),
       ),
-      backgroundColor: const Color(0xFFF7F8FA),
+      backgroundColor: color.backgroundForHomeScreen,
       body: Column(
         children: [
 
@@ -244,13 +247,13 @@ void resetgame(){
             padding : EdgeInsets.only(top: 10), 
             margin: EdgeInsets.only(bottom : 5 , top : 10),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: color.gamesContainerStroke,
               border: Border.all(
-                  color: const Color(0xFFEDF6FA), width: 0.5),
+                  color: color.textForHomeScreen, width: 0.5),
               borderRadius: BorderRadius.all(Radius.circular(10)),
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
-                    color: Color(0xFFE8F3FA),
+                    color: color.gamesContainer,
                     offset: Offset(0, 0),
                     blurRadius: 20)
               ]),
@@ -278,7 +281,7 @@ void resetgame(){
                 
                 else{
                 return pixel(
-                 color: Colors.grey[900],
+                 color: color.textForHomeScreen,
               
                 );}
               },
@@ -287,13 +290,13 @@ void resetgame(){
           Container(
             padding : EdgeInsets.only(top : 10),
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: color.gamesContainerStroke,
               border: Border.all(
-                  color: const Color(0xFFEDF6FA), width: 0.5),
+                  color: color.textForHomeScreen, width: 0.5),
               borderRadius: BorderRadius.all(Radius.circular(20)),
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
-                    color: Color(0xFFE8F3FA),
+                    color: color.gamesContainer,
                     offset: Offset(0, 0),
                     blurRadius: 20)
               ]),
@@ -303,7 +306,7 @@ void resetgame(){
 
              Text(
               'Score: ${score.scoreForLogicGame}',
-              style: const TextStyle(fontFamily: "Montserrat",fontSize: 25, fontWeight: FontWeight.bold,letterSpacing: 1.2,color: Colors.black,),
+              style: TextStyle(fontFamily: "Montserrat",fontSize: 25, fontWeight: FontWeight.bold,letterSpacing: 1.2,color: color.textForHomeScreen,),
             ),
 
 
@@ -325,13 +328,13 @@ void resetgame(){
                     child: Text ("START!!" , style : TextStyle(color :Colors.white)))
                 ),
 
-              IconButton(onPressed: moveleft,color: Colors.black,
+              IconButton(onPressed: moveleft,color: color.textForHomeScreen,
                icon: Icon(Icons.arrow_back_ios)),
             
-              IconButton(onPressed: rotatepiece, color: Colors.black,
+              IconButton(onPressed: rotatepiece, color: color.textForHomeScreen,
                icon: Icon(Icons.rotate_right)),
             
-              IconButton(onPressed: moveright, color: Colors.black,
+              IconButton(onPressed: moveright, color: color.textForHomeScreen,
                icon: Icon(Icons.arrow_forward_ios)),   
             ],
             ),
