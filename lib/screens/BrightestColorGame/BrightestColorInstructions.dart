@@ -34,7 +34,7 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
         backgroundColor: const Color.fromARGB(255, 242, 249, 255),
         body: Column(
           children: [
-            const SizedBox(height: 20),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -66,60 +66,61 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 70,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.09,
             ),
             Container(
-                width: 350,
+                width: MediaQuery.of(context).size.width * 5,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: const Column(
+                child: Column(
                   children: [
-                    Text(
+                    const Text(
                         '- You have to rotate the second arrow to match the direction of the first blue arrow',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height * 0.09,
                     ),
-                    Text(
+                    const Text(
                         '-  You have to collect as many points as possible before time runs out',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height * 0.09,
                     ),
-                    Text('-  Each correct matching you will get +500 points',
+                    const Text(
+                        '-  Each correct matching you will get +500 points',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height * 0.09,
                     ),
-                    Text(
+                    const Text(
                         "-  If you didn't get the correct matching, you will lose -400 points",
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                   ],
                 )),
-            const SizedBox(
-              height: 90,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

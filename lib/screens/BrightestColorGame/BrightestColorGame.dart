@@ -12,12 +12,31 @@ class MohamedGame extends StatefulWidget {
 }
 
 class _MohamedGameState extends State<MohamedGame> {
-
   // int score = 0; // عدد النقاط
 
   // list of colors
-  List mainColors = [Colors.red[500] , Colors.blue[500] , Colors.amber[500] , Colors.brown[500] , Colors.green[500] , Colors.lightGreen[500], Colors.purple[500]];
-  List brightestColors = [Colors.red[400] , Colors.blue[400] , Colors.amber[400] , Colors.brown[400] , Colors.green[400] , Colors.lightGreen[400], Colors.purple[400]];
+  List mainColors = [
+    Colors.red[500],
+    Colors.blue[500],
+    Colors.amber[500],
+    Colors.brown[500],
+    Colors.green[500],
+    Colors.lightGreen[500],
+    Colors.purple[500],
+    Colors.teal[500],
+    Colors.pink[500]
+  ];
+  List brightestColors = [
+    Colors.red[400],
+    Colors.blue[400],
+    Colors.amber[400],
+    Colors.brown[400],
+    Colors.green[400],
+    Colors.lightGreen[400],
+    Colors.purple[400],
+    Colors.teal[400],
+    Colors.pink[400]
+  ];
 
   Color mainColor = Colors.red[500]!; // اللون الأساسي
   Color brightestColor = Colors.red[400]!; // اللون الأساسي المشرق
@@ -26,7 +45,7 @@ class _MohamedGameState extends State<MohamedGame> {
   int differentColorIndex = 0;
 
   // loop on the colrs list
-  int i = 0 ;
+  int i = 0;
 
   int _secondsRemaining = 10; // قيمة الوقت بالثواني
   late Timer _timer; // تايمر
@@ -49,7 +68,6 @@ class _MohamedGameState extends State<MohamedGame> {
     super.dispose();
   }
 
-
   void _startFeedbackTimer() {
     setState(() {
       displayFeedback = true;
@@ -62,46 +80,44 @@ class _MohamedGameState extends State<MohamedGame> {
     });
   }
 
-void _showPopup() {
-  Score score = Provider.of<Score>(context, listen: false);
-  
-  showDialog(
+  void _showPopup() {
+    Score score = Provider.of<Score>(context, listen: false);
 
-    context: context,
-    barrierDismissible: false,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text("Time Is Over"),
-        content: Text("Your Score : ${score.scoreForObservationGame}"),
-        actions: [
-          TextButton(
-            onPressed: () {
-              score.restartScoreForObservationGames();
-              Navigator.of(context).pop();
-              // Navigate to the main menu
-              // You can replace '/home' with your main menu route
-              Navigator.pushNamed(context, '/home');
-            },
-            child: Text("Main Menu"),
-          ),
-          TextButton(
-            onPressed: () {
-              score.restartScoreForObservationGames(); // Reset Score
-              Navigator.of(context).pop();
-              // Rebuild the current screen
-              setState(() {
-                _secondsRemaining = 30; // Reset timer
-                _startTimer(); // Start timer again
-              });
-            },
-            child: Text("Play Again"),
-          ),
-        ],
-      );
-    },
-  );
-}
-
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Time Is Over"),
+          content: Text("Your Score : ${score.scoreForObservationGame}"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                score.restartScoreForObservationGames();
+                Navigator.of(context).pop();
+                // Navigate to the main menu
+                // You can replace '/home' with your main menu route
+                Navigator.pushNamed(context, '/home');
+              },
+              child: Text("Main Menu"),
+            ),
+            TextButton(
+              onPressed: () {
+                score.restartScoreForObservationGames(); // Reset Score
+                Navigator.of(context).pop();
+                // Rebuild the current screen
+                setState(() {
+                  _secondsRemaining = 30; // Reset timer
+                  _startTimer(); // Start timer again
+                });
+              },
+              child: Text("Play Again"),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -117,21 +133,20 @@ void _showPopup() {
     });
   }
 
-changeColor () {
-  (i == mainColors.length - 1) ? i = 0 : i++;
-  setState(() {
-    mainColor = mainColors[i];
-    brightestColor = brightestColors[i];
-  });
-}
+  changeColor() {
+    (i == mainColors.length - 1) ? i = 0 : i++;
+    setState(() {
+      mainColor = mainColors[i];
+      brightestColor = brightestColors[i];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-
     Score score = Provider.of<Score>(context, listen: true);
 
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
           automaticallyImplyLeading: false,
           shadowColor: Colors.black45,
           scrolledUnderElevation: 50,
@@ -149,14 +164,12 @@ changeColor () {
             ),
           ),
         ),
-      body: 
-      Column(
-        children : [
-          const SizedBox(height: 30),
-          Row (
+        body: Column(children: [
+          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-                Container(
+              Container(
                   decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -168,68 +181,75 @@ changeColor () {
                             blurRadius: 20)
                       ]),
                   padding: const EdgeInsets.all(5),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.timer,
+                  child: Row(children: [
+                    const Icon(
+                      Icons.timer,
+                      color: Color.fromARGB(221, 26, 26, 26),
+                    ),
+                    Text(
+                      ' Timer : $_secondsRemaining',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
+                        fontFamily: "Montserrat",
                         color: Color.fromARGB(221, 26, 26, 26),
                       ),
-                      Text(
-                        ' Timer : $_secondsRemaining',
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          fontFamily: "Montserrat",
-                          color: Color.fromARGB(221, 26, 26, 26),
-                        ),
-                      )])),
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(color: Colors.black, width: 0.5),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(0, 0),
-                            blurRadius: 20)
-                      ]),
-                  padding: const EdgeInsets.all(5),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.leaderboard,
+                    )
+                  ])),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    border: Border.all(color: Colors.black, width: 0.5),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black12,
+                          offset: Offset(0, 0),
+                          blurRadius: 20)
+                    ]),
+                padding: const EdgeInsets.all(5),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.leaderboard,
+                      color: Color.fromARGB(221, 26, 26, 26),
+                    ),
+                    Text(
+                      ' Score : ${score.scoreForObservationGame}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
+                        fontFamily: "Montserrat",
                         color: Color.fromARGB(221, 26, 26, 26),
                       ),
-                      Text(
-                        ' Score : ${score.scoreForObservationGame}',
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          fontFamily: "Montserrat",
-                          color: Color.fromARGB(221, 26, 26, 26),
-                        ),
-                      )
-                    ],
-                  ),
-                )
+                    )
+                  ],
+                ),
+              )
             ],
           ),
-          const SizedBox(height: 50),
-          const Text("Choose the brightest Color!" , style: TextStyle(fontFamily: "Montserrat", fontSize: 20 , letterSpacing: 1.0 ,),),
-          const SizedBox(height: 50),
-      Center(
-        child: Container(
-          padding: const EdgeInsets.only(
-            top: 50,
-            right: 10,
-            left: 10,
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          const Text(
+            "Choose the brightest Color!",
+            style: TextStyle(
+              fontFamily: "Montserrat",
+              fontSize: 20,
+              letterSpacing: 1.0,
+            ),
           ),
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          width: 500,
-          height: 500,
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          Center(
+            child: Container(
+              padding: const EdgeInsets.only(
+                top: 50,
+                right: 10,
+                left: 10,
+              ),
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              width: 500,
+              height: 550,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
                 border: Border.all(color: const Color(0xFFEDF6FA), width: 0.5),
@@ -242,66 +262,66 @@ changeColor () {
                 color: Colors.white,
                 shape: BoxShape.rectangle,
               ),
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, // Number of columns in the grid
-              crossAxisSpacing: 10.0, // Spacing between columns
-              mainAxisSpacing: 10.0, // Spacing between rows
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3, // Number of columns in the grid
+                  crossAxisSpacing: 10.0, // Spacing between columns
+                  mainAxisSpacing: 10.0, // Spacing between rows
+                ),
+
+                itemCount: 12, // Total number of items in the grid
+                itemBuilder: (BuildContext context, int index) {
+                  // تحديد مكان ظهور اللون المختلف
+                  if (index == differentColorIndex) {
+                    return GestureDetector(
+                      onTap: () {
+                        // عندما يضغط المستخدم على اللون المختلف
+                        setState(() {
+                          // تحديث النقاط
+                          score.addScoreForObservationGames();
+                          // change the colors
+                          changeColor();
+                          // توليد رقم عشوائي لتحديد مكان جديد للون المختلف
+                          differentColorIndex = Random().nextInt(9);
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: brightestColor,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(7)),
+                        ),
+                        width: 111,
+                        height: 370,
+                      ),
+                    );
+                  } else {
+                    // This function is called for every item in the grid
+                    // It returns the widget to display for each item
+                    return GestureDetector(
+                      onTap: () {
+                        // عندما يضغط المستخدم على الألوان الأخرى
+                        setState(() {
+                          // تحديث النقاط
+                          score.minScoreForObservationGames();
+                          changeColor();
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: mainColor,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(7)),
+                        ),
+                        width: 111,
+                        height: 370,
+                      ),
+                    );
+                  }
+                },
+              ),
             ),
-
-            itemCount: 12, // Total number of items in the grid
-            itemBuilder: (BuildContext context, int index) {
-              // تحديد مكان ظهور اللون المختلف
-              if (index == differentColorIndex) {
-                return GestureDetector(
-                  onTap: () {
-                    // عندما يضغط المستخدم على اللون المختلف
-                    setState(() {
-                      // تحديث النقاط
-                      score.addScoreForObservationGames();
-                      // change the colors
-                      changeColor (); 
-                      // توليد رقم عشوائي لتحديد مكان جديد للون المختلف
-                      differentColorIndex = Random().nextInt(9);
-                    });
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: brightestColor,
-                      borderRadius: const BorderRadius.all(Radius.circular(7)),
-                    ),
-                    width: 111,
-                    height: 370,
-                  ),
-                );
-              } else {
-                // This function is called for every item in the grid
-                // It returns the widget to display for each item
-                return GestureDetector(
-                  onTap: () {
-                    // عندما يضغط المستخدم على الألوان الأخرى
-                    setState(() {
-                      // تحديث النقاط
-                      score.minScoreForObservationGames();
-                      changeColor();
-                    });
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: mainColor,
-                      borderRadius: const BorderRadius.all(Radius.circular(7)),
-                    ),
-                    width: 111,
-                    height: 370,
-                  ),
-                );
-              }
-            },
           ),
-        ),
-      ),
-    ]));
+        ]));
   }
-
-
 }
