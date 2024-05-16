@@ -37,7 +37,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
         backgroundColor: color.backgroundForHomeScreen,
         body: Column(
           children: [
-            const SizedBox(height: 40),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -71,8 +71,8 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
             ),
             Container(
                 width: 350,
@@ -84,75 +84,75 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                     Text('-  There will be arrow with a various directions',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     Text(
                         '-  You have two directions : Arrow Direction, Word Direction',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     Text(
                         '-  If the arrow color is green then swap towards the Arrow Direction',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     Text(
                         '- If the arrow color is red then swap towards the Word Direction',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     Text(
                         '-  If you swapped in the correct direction you will gain +500 points',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     Text(
                         '-  If you swapped in the wrong direction you will lose -400 points',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
                   ],
                 )),
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -170,7 +170,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                   textColor: Colors.white, // Text color
                   elevation: 10,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                     // You can customize the shape of the button here
@@ -179,7 +179,7 @@ class _DirectionInstructionsState extends State<DirectionInstructions> {
                     '              Play              ',
                     style: TextStyle(
                       fontFamily: "Montserrat",
-                      fontSize: 18,
+                      fontSize: 17,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.2,
                     ),

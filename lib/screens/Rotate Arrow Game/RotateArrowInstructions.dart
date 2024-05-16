@@ -37,7 +37,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
         backgroundColor: color.backgroundForHomeScreen,
         body: Column(
           children: [
-            const SizedBox(height: 40),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -70,8 +70,8 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
             ),
             Container(
                 width: 350,
@@ -83,62 +83,62 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                     Text(
                         '-  You have to rotate the second arrow to match the direction of the first blue arrow',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.04,
                     ),
                     Text(
                         '-  You have to collect as many points as possible before time runs out',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.04,
                     ),
                     Text('-  Each correct matching you will gain +500 points',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.04,
                     ),
                     Text(
                         '-  If you get close to the correct matching you will gain +300 points',
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.04,
                     ),
                     Text(
                         "-  If you didn't get the correct matching, you will lose -400 points",
                         style: TextStyle(
                           fontFamily: "Montserrat",
-                          fontSize: 15,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
                   ],
                 )),
-            const SizedBox(
-              height: 60,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.04,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -156,7 +156,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                   textColor: Colors.white, // Text color
                   elevation: 10,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                     // You can customize the shape of the button here
@@ -165,7 +165,7 @@ class _ArrowInstructionsState extends State<ArrowInstructions> {
                     '              Play              ',
                     style: TextStyle(
                       fontFamily: "Montserrat",
-                      fontSize: 18,
+                      fontSize: 17,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.2,
                     ),

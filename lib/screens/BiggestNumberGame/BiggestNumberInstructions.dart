@@ -148,7 +148,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
                     // You can customize the shape of the button here
                   ),
                   child: const Text(
-                    'Play',
+                    '              Play              ',
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 18,

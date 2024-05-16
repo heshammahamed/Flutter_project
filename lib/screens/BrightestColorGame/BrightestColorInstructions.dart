@@ -72,10 +72,10 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
               ],
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.09,
+              height: MediaQuery.of(context).size.height * 0.05,
             ),
             Container(
-                width: MediaQuery.of(context).size.width * 5,
+                width: MediaQuery.of(context).size.width * 10,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -89,8 +89,8 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.08,
                     ),
                     Text(
                         '-  You have to collect as many points as possible before time runs out',
@@ -100,8 +100,8 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.08,
                     ),
                     Text('-  Each correct matching you will get +500 points',
                         style: TextStyle(
@@ -110,8 +110,8 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                           letterSpacing: 1.2,
                           color: color.textForHomeScreen,
                         )),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.08,
                     ),
                     Text(
                         "-  If you didn't get the correct matching, you will lose -400 points",
@@ -124,7 +124,7 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                   ],
                 )),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
+              height: MediaQuery.of(context).size.height * 0.1,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -148,9 +148,10 @@ class _ColorBoxInstructionsState extends State<ColorBoxInstructions> {
                     // You can customize the shape of the button here
                   ),
                   child: const Text(
-                    'Play ',
+                    '              Play              ',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontFamily: "Montserrat",
+                      fontSize: 17,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.2,
                     ),
