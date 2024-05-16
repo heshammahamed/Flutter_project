@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../ColorMatchingGame/timer.dart';
+import 'timer.dart';
 
 class SameColorInstructions extends StatefulWidget {
   const SameColorInstructions({super.key});
@@ -33,7 +33,9 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
         backgroundColor: const Color.fromARGB(255, 242, 249, 255),
         body: Column(
           children: [
-            const SizedBox(height: 20),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.09,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -65,15 +67,15 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 70,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.07,
             ),
             Container(
-                width: 350,
+                width: MediaQuery.of(context).size.width * 9,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: const Column(
+                child: Column(
                   children: [
                     Text('-  There will be two text showen on the screen.',
                         style: TextStyle(
@@ -83,7 +85,7 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height * 0.06,
                     ),
                     Text(
                         '-  If the top text is the second text color then press true button.',
@@ -94,7 +96,7 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height * 0.06,
                     ),
                     Text(
                         '-  If the top text is not the second text color then press false button.',
@@ -105,7 +107,7 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height * 0.06,
                     ),
                     Text(
                         '-  You will get + 500 if you swap in the correct direction.',
@@ -116,7 +118,7 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                           color: Color.fromARGB(221, 26, 26, 26),
                         )),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height * 0.06,
                     ),
                     Text(
                         '-  You will get - 400 if you swap in the wrong direction.',
@@ -128,8 +130,8 @@ class _SameColorInstructionsState extends State<SameColorInstructions> {
                         )),
                   ],
                 )),
-            const SizedBox(
-              height: 90,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
