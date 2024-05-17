@@ -170,7 +170,7 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
                     // You can customize the shape of the button here
                   ),
                   child: const Text(
-                    'Play',
+                    '              Play              ',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

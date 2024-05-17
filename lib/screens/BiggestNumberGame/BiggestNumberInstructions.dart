@@ -37,7 +37,7 @@ class _BiggestNumInstructionsState extends State<BiggestNumInstructions> {
         backgroundColor: color.backgroundForHomeScreen,
         body: Column(
           children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.09),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
