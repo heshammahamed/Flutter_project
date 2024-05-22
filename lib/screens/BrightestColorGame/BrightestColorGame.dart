@@ -42,7 +42,7 @@ class _MohamedGameState extends State<MohamedGame> {
   // Brightest Color Place
   int differentColorIndex = 0;
 
-  // loop on the colrs list
+  // loop on the colors list
   int i = 0;
 
   int _secondsRemaining = 30; // Time in Seconds
@@ -303,7 +303,7 @@ class _MohamedGameState extends State<MohamedGame> {
                           // change the colors
                           changeColor();
                           // Generate a random index to select a new location for the different color
-                          differentColorIndex = Random().nextInt(9);
+                          differentColorIndex = Random().nextInt(12);
                         });
                       },
                       child: Container(
