@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,8 +13,6 @@ class FifthGame extends StatefulWidget {
 }
 
 class _FifthGameState extends State<FifthGame> {
-// variables
-
   int _secondsRemaining = 30;
   late Timer _timer;
   String feedbackMessage = "";
@@ -25,7 +22,7 @@ class _FifthGameState extends State<FifthGame> {
       Timer(Duration.zero, () {}); // Initialize with an empty timer
 
   List<String> directionsList = ["Down", "Up", "Left", "Right"];
-  String swap = "right"; // wich direction the user swap
+  String swap = "right"; // which direction the user swap
   List iconDirections = [
     FontAwesomeIcons.arrowDown,
     FontAwesomeIcons.arrowUp,
@@ -39,7 +36,7 @@ class _FifthGameState extends State<FifthGame> {
     Colors.green,
     Colors.red
   ];
-  String direction = "Right"; // the direction wich display in the screen
+  String direction = "Right"; // the direction which display in the screen
   var iconDirection = FontAwesomeIcons.arrowDown;
   String iconDirectionString = "Down"; // arrow direction
   var arrowColor = Colors.red;
@@ -82,7 +79,7 @@ class _FifthGameState extends State<FifthGame> {
       displayFeedback = true;
     });
 
-    _feedbackTimer = Timer(Duration(milliseconds: 1000), () {
+    _feedbackTimer = Timer(const Duration(milliseconds: 1000), () {
       setState(() {
         displayFeedback = false;
       });
@@ -273,7 +270,7 @@ class _FifthGameState extends State<FifthGame> {
                     ),
                   )
                 ],
-              ), // Timer & Score Row
+              ),
               const SizedBox(
                 height: 40,
               ),
@@ -391,208 +388,5 @@ class _FifthGameState extends State<FifthGame> {
             ],
           )),
     );
-
-    /*Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        shadowColor: Colors.black45,
-        scrolledUnderElevation: 50,
-        elevation: 10,
-        centerTitle: true,
-        backgroundColor: color.gamesAppbar,
-        title: const Text(
-          'Direction Game',
-          style: TextStyle(
-            fontFamily: "Montserrat",
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1.2,
-            color: Colors.white,
-          ),
-        ),
-      ),
-      // back ground color for the screen
-      backgroundColor: color.backgroundForHomeScreen,
-      body: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.pink, width: 5),
-          ),
-          child: Column(children: [
-            // first child in the column
-            Container(
-                decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(width: 2, color: Colors.transparent)),
-                width: 400,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      // Timer section
-
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: color.textForHomeScreen),
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 0),
-                                  blurRadius: 20)
-                            ]),
-                        padding: const EdgeInsets.all(5),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.timer,
-                              color: color.textForHomeScreen,
-                            ),
-                            Container(
-                              child: Text("Timer : $_secondsRemaining",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: color.textForHomeScreen,
-                                  )),
-                            )
-                          ],
-                        ),
-                      ),
-
-                      // Score section
-
-                      Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              border:
-                                  Border.all(color: color.textForHomeScreen),
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 20)
-                              ]),
-                          padding: const EdgeInsets.all(5),
-                          child: Row(children: [
-                            Icon(
-                              Icons.leaderboard,
-                              color: color.textForHomeScreen,
-                            ),
-                            Container(
-                              child: Text(
-                                  "Score : ${score.scoreForObservationGame}",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2,
-                                    fontFamily: "Montserrat",
-                                    color: color.textForHomeScreen,
-                                  )),
-                            ),
-                          ])),
-                    ])),
-
-            // space between the first and second child in column
-            SizedBox(height: MediaQuery.of(context).size.height * 0.09),
-
-            // second element in the tree
-            GestureDetector(
-                onVerticalDragUpdate: (details) {
-                  int sensitivity = 8;
-
-                  if (details.delta.dy > sensitivity) {
-                    swap = "Down";
-                    directionSwapped = false;
-                  }
-
-                  if (details.delta.dy < -sensitivity) {
-                    swap = "Up";
-                    directionSwapped = false;
-                  }
-                },
-                onHorizontalDragUpdate: (details) {
-                  int sensitivity = 8;
-
-                  if (details.delta.dx > sensitivity) {
-                    swap = "Right";
-                    directionSwapped = false;
-                  }
-
-                  if (details.delta.dx < -sensitivity) {
-                    swap = "Left";
-                    directionSwapped = false;
-                  }
-                },
-                onVerticalDragEnd: (details) {
-                  Timer(const Duration(milliseconds: 200), () {
-                    checkSwap();
-                  });
-                },
-                onHorizontalDragEnd: (details) {
-                  Timer(const Duration(milliseconds: 200), () {
-                    checkSwap();
-                  });
-                },
-                child: Container(
-                    decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 233, 7, 7),
-                        border: Border.all(
-                            color: const Color(0xFFEDF6FA), width: 0.5),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Color(0xFFE8F3FA),
-                              offset: Offset(0, 0),
-                              blurRadius: 20)
-                        ]),
-                    height: MediaQuery.of(context).size.height * 0.6,
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Column(children: [
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.05),
-                      // show swap text and direction text
-                      Container(
-                        decoration: BoxDecoration(
-                          border:
-                              Border.all(color: Color(0xFF607D8B), width: 0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: const Color(0xFF607D8B),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            const Text("Swap : ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 40,
-                                  fontFamily: "Montserrat",
-                                )),
-                            Text(direction,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 35,
-                                  fontFamily: "Montserrat",
-                                )),
-                          ],
-                        ),
-                      ),
-
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.2),
-                      // show the arrow icon
-
-                      Center(
-                          child: FaIcon(
-                        iconDirection,
-                        color: arrowColor,
-                        size: 190.0,
-                      ))
-                    ]))),
-          ])),
-    );*/
   }
 }

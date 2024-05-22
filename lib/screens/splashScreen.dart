@@ -12,16 +12,16 @@ class splash extends StatefulWidget {
 }
 
 class _splashState extends State<splash> with SingleTickerProviderStateMixin {
-  //SingleTickerProviderStateMixin ديه بتخلينا نعمل مده لهذه الصفحه قبل التنقل للصفحه التانيه د
+  // delay before loading the home screen
 
   @override
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 1), () {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => Homescreen()));
+          MaterialPageRoute(builder: (_) => const Homescreen()));
     });
   }
 
@@ -37,18 +37,19 @@ class _splashState extends State<splash> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: double
-            .infinity, // double . infinty بتخلى ال كونتينر ياخذ اكبر وwidth
+        width: double.infinity,
         decoration: const BoxDecoration(
-          color: const Color(0xFF161616),
+          color: Color(0xFF161616),
         ),
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FaIcon(FontAwesomeIcons.brain , color: Colors.white , size: 50,),
-            SizedBox(
-                height:
-                    50), //ده بوكس ممكن نحط فيه اى حاجه هنا حاطط اسم البرنامج مثلا
+            FaIcon(
+              FontAwesomeIcons.brain,
+              color: Colors.white,
+              size: 50,
+            ),
+            SizedBox(height: 50),
             Text(
               "MiniGames",
               style: TextStyle(

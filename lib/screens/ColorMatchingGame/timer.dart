@@ -50,7 +50,7 @@ class _TimerGameState extends State<TimerGame> {
 
   @override
   Widget build(BuildContext context) {
-      DarkAndLightMode color =
+    DarkAndLightMode color =
         Provider.of<DarkAndLightMode>(context, listen: true);
     return Scaffold(
         backgroundColor: color.backgroundForHomeScreen,
@@ -60,7 +60,7 @@ class _TimerGameState extends State<TimerGame> {
               lineWidth: 10,
               percent: percent,
               circularStrokeCap: CircularStrokeCap.round,
-              progressColor: Color(0xFF1976D2),
+              progressColor: const Color(0xFF1976D2),
               center: Text(
                 "$_secondsRemaining",
                 style: TextStyle(

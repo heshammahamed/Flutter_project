@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:game_project/screens/TertiesGame/pixel.dart';
 import 'package:game_project/screens/TertiesGame/piece.dart';
 import 'package:game_project/screens/TertiesGame/values.dart';
@@ -95,11 +93,11 @@ class _GameBoardState extends State<GameBoard> {
         int col = currentpiece.position[i] % rowlength;
         if (row >= 0 && col >= 0) gameBoard[row][col] = currentpiece.type;
       }
-      CreateNewpiece();
+      createNewpiece();
     }
   }
 
-  void CreateNewpiece() {
+  void createNewpiece() {
     Random rand = Random();
 
     Tetromino randomtype =
@@ -171,7 +169,7 @@ class _GameBoardState extends State<GameBoard> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Text('Game Over'),
+              title: const Text('Time Is Over'),
               content: Text("Your Score is: ${score.scoreForLogicGame}"),
               actions: [
                 TextButton(
@@ -179,7 +177,7 @@ class _GameBoardState extends State<GameBoard> {
                       resetgame();
                       Navigator.pop(context);
                     },
-                    child: Text('Play Again')),
+                    child: const Text('Play Again')),
                 TextButton(
                     onPressed: () {
                       resetgame();
@@ -202,7 +200,7 @@ class _GameBoardState extends State<GameBoard> {
 
     gameover = false;
     score.restartScoreForLogicGames();
-    CreateNewpiece();
+    createNewpiece();
   }
 
   @override
@@ -235,16 +233,16 @@ class _GameBoardState extends State<GameBoard> {
           Container(
             height: 640,
             width: 500,
-            padding: EdgeInsets.only(top: 10),
-            margin: EdgeInsets.only(bottom: 10, top: 10),
+            padding: const EdgeInsets.only(top: 10),
+            margin: const EdgeInsets.only(bottom: 10, top: 10),
             decoration: BoxDecoration(
                 color: color.gamesContainerStroke,
                 border: Border.all(color: color.textForHomeScreen, width: 0.5),
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
                 boxShadow: [
                   BoxShadow(
                       color: color.gamesContainer,
-                      offset: Offset(0, 0),
+                      offset: const Offset(0, 0),
                       blurRadius: 20)
                 ]),
             child: GridView.builder(
@@ -273,18 +271,17 @@ class _GameBoardState extends State<GameBoard> {
               },
             ),
           ),
-          // SizedBox(height: 50),
           Container(
-              padding: EdgeInsets.only(top: 5),
+              padding: const EdgeInsets.only(top: 5),
               decoration: BoxDecoration(
                   color: color.gamesContainerStroke,
                   border:
                       Border.all(color: color.textForHomeScreen, width: 0.5),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
                   boxShadow: [
                     BoxShadow(
                         color: color.gamesContainer,
-                        offset: Offset(0, 0),
+                        offset: const Offset(0, 0),
                         blurRadius: 20)
                   ]),
               child: Column(
@@ -311,21 +308,21 @@ class _GameBoardState extends State<GameBoard> {
                                   color: Colors.green,
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
-                                padding: EdgeInsets.all(10),
-                                child: Text("START!!",
+                                padding: const EdgeInsets.all(10),
+                                child: const Text("START!!",
                                     style: TextStyle(color: Colors.white)))),
                         IconButton(
                             onPressed: moveleft,
                             color: color.textForHomeScreen,
-                            icon: Icon(Icons.arrow_back_ios)),
+                            icon: const Icon(Icons.arrow_back_ios)),
                         IconButton(
                             onPressed: rotatepiece,
                             color: color.textForHomeScreen,
-                            icon: Icon(Icons.rotate_right)),
+                            icon: const Icon(Icons.rotate_right)),
                         IconButton(
                             onPressed: moveright,
                             color: color.textForHomeScreen,
-                            icon: Icon(Icons.arrow_forward_ios)),
+                            icon: const Icon(Icons.arrow_forward_ios)),
                       ],
                     ),
                   )

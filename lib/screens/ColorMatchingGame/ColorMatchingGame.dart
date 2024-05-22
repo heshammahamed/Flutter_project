@@ -1,17 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'dart:async';
 import 'package:provider/provider.dart';
 import '../../main.dart';
-
-// features :
-
-// problems :
-// clean the code and add comments
-// the timer show 5 4 2 0 in the UI but print  5 4 3 2 1 0
-// add sound win the anser is correct and if it wrong
-// change the UI because its very very bad
 
 class SameColor extends StatefulWidget {
   const SameColor({super.key});
@@ -25,25 +16,45 @@ class _SameColorState extends State<SameColor> {
   late Timer _timer;
 
   String feedbackMessage = "";
-  Color feedbackColor = Colors.transparent; // Set default color
+  Color feedbackColor = Colors.transparent;
   bool displayFeedback = false;
   late Timer _feedbackTimer =
       Timer(Duration.zero, () {}); // Initialize with an empty timer
 
-  List<String> colors = ["Red", "Blue", "Black", "Purple"];
+  List<String> colors = [
+    "Red",
+    "Blue",
+    "Black",
+    "Purple",
+    "Yellow",
+    "Brown",
+    "Green",
+    "Teal",
+    "Pink"
+  ];
 
   String meaining = "Red";
   String text = "Green";
 
-  List textColors = [Colors.red, Colors.blue, Colors.black, Colors.purple];
-  var textColor = Colors.red;
+  List textColors = [
+    Colors.red,
+    Colors.blue,
+    Colors.black,
+    Colors.purple,
+    Colors.yellow,
+    Colors.brown,
+    Colors.green,
+    Colors.teal,
+    Colors.pink
+  ];
+  Color textColor = Colors.red;
   String textColorString = "Red";
 
   int i =
       0; // used to pick up the same value from the iconDirections list and direction list
 
   changeDirectionOfArrow() {
-    i = Random().nextInt(4);
+    i = Random().nextInt(textColors.length);
   }
 
   @override
@@ -77,7 +88,7 @@ class _SameColorState extends State<SameColor> {
       displayFeedback = true;
     });
 
-    _feedbackTimer = Timer(Duration(milliseconds: 1000), () {
+    _feedbackTimer = Timer(const Duration(milliseconds: 1000), () {
       setState(() {
         displayFeedback = false;
       });
@@ -125,8 +136,8 @@ class _SameColorState extends State<SameColor> {
 
   changeState() {
     setState(() {
-      meaining = colors[Random().nextInt(4)];
-      text = colors[Random().nextInt(4)];
+      meaining = colors[Random().nextInt(colors.length)];
+      text = colors[Random().nextInt(colors.length)];
       textColor = textColors[i];
       textColorString = colors[i];
     });
@@ -180,6 +191,7 @@ class _SameColorState extends State<SameColor> {
 
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           shadowColor: Colors.black45,
           scrolledUnderElevation: 50,
           elevation: 10,
@@ -198,6 +210,8 @@ class _SameColorState extends State<SameColor> {
         ),
         backgroundColor: color.backgroundForHomeScreen,
         body: Column(children: [
+          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+          // Timer & Score Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -266,25 +280,27 @@ class _SameColorState extends State<SameColor> {
                 ),
               )
             ],
-          ), // Timer & Score Row
+          ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.05),
           Container(
               child: Column(
             children: [
-              Text(
-                  "Is the meaning at the top the same as the color at the bottom?",
-                  style: TextStyle(
-                      fontFamily: "Montserrat",
-                      color: color.textForHomeScreen,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500)),
+              Container(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                      "Is the meaning at the top the same as the color at the bottom?",
+                      style: TextStyle(
+                          fontFamily: "Montserrat",
+                          color: color.textForHomeScreen,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500))),
               SizedBox(height: MediaQuery.of(context).size.height * 0.06),
               Column(
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 137, 163, 176),
-                        borderRadius: BorderRadius.circular(10),
+                        color: const Color.fromARGB(255, 137, 163, 176),
+                        borderRadius: BorderRadius.circular(5),
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black12,
@@ -306,14 +322,15 @@ class _SameColorState extends State<SameColor> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   Container(
                     decoration: BoxDecoration(
-                        color: color.gamesContainer,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 0),
-                              blurRadius: 20)
-                        ]),
+                      color: const Color.fromARGB(255, 72, 0, 0),
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color(0xFFE8F3FA),
+                            blurRadius: 2,
+                            offset: Offset(0, 0))
+                      ],
+                    ),
                     width: MediaQuery.of(context).size.width * 0.7,
                     height: MediaQuery.of(context).size.height * 0.1,
                     alignment: Alignment.center,
@@ -331,14 +348,15 @@ class _SameColorState extends State<SameColor> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                        color: color.gamesContainer,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 0),
-                              blurRadius: 20)
-                        ]),
+                      color: const Color.fromARGB(255, 72, 0, 0),
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color(0xFFE8F3FA),
+                            blurRadius: 2,
+                            offset: Offset(0, 0))
+                      ],
+                    ),
                     width: MediaQuery.of(context).size.width * 0.7,
                     height: MediaQuery.of(context).size.height * 0.1,
                     alignment: Alignment.center,
@@ -353,7 +371,7 @@ class _SameColorState extends State<SameColor> {
                   Container(
                     decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 137, 163, 176),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(5),
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black12,
@@ -375,12 +393,27 @@ class _SameColorState extends State<SameColor> {
                   ),
                 ],
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.09),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.09,
+                child: Visibility(
+                  visible: displayFeedback,
+                  child: Text(
+                    feedbackMessage,
+                    style: TextStyle(
+                        fontFamily: "Montserrat",
+                        fontSize: 20,
+                        color: feedbackColor),
+                  ),
+                ), // Display feedback only when required,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   GestureDetector(
-                      onTap: () => trueCheckScore(),
+                      onTap: () {
+                        trueCheckScore();
+                        _startFeedbackTimer();
+                      },
                       child: Container(
                           decoration: BoxDecoration(
                               color: Colors.green,
@@ -403,7 +436,10 @@ class _SameColorState extends State<SameColor> {
                             ),
                           ))),
                   GestureDetector(
-                      onTap: () => falseCheckScore(),
+                      onTap: () {
+                        falseCheckScore();
+                        _startFeedbackTimer();
+                      },
                       child: Container(
                           decoration: BoxDecoration(
                               color: Colors.red,

@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:provider/provider.dart';
@@ -30,10 +31,65 @@ class _FirstGameState extends State<FirstGame> {
     "5 + 10",
     "999",
     "23",
-    "13"
+    "13",
+    "7 + 8",
+    "100 - 20",
+    "50 * 2",
+    "40 / 5",
+    "6 * 6",
+    "144 / 12",
+    "11 + 11",
+    "10 - 1",
+    "8 * 3",
+    "81 / 9"
   ];
-  List<int> numbers1 = [9, 12, 19, 9 * 9, 20 ~/ 3, 134, 5 + 10, 999, 23, 13];
-  List<int> numbers2 = [6, 21, 16, 81, 20 ~/ 2, 143, 20 - 10, 969, 32, 13];
+
+  List<int> numbers1 = [
+    9,
+    12,
+    19,
+    9 * 9,
+    20 ~/ 3,
+    134,
+    5 + 10,
+    999,
+    23,
+    13,
+    7 + 8,
+    100 - 20,
+    50 * 2,
+    40 ~/ 5,
+    6 * 6,
+    144 ~/ 12,
+    11 + 11,
+    10 - 1,
+    8 * 3,
+    81 ~/ 9
+  ];
+
+  List<int> numbers2 = [
+    6,
+    21,
+    16,
+    81,
+    20 ~/ 2,
+    143,
+    20 - 10,
+    969,
+    32,
+    13,
+    14,
+    80,
+    100,
+    8,
+    36,
+    12,
+    22,
+    9,
+    24,
+    9
+  ];
+
   List<String> numbersAsString2 = [
     "6",
     "21",
@@ -44,7 +100,17 @@ class _FirstGameState extends State<FirstGame> {
     "20 - 10",
     "969",
     "32",
-    "13"
+    "13",
+    "14",
+    "80",
+    "100",
+    "8",
+    "36",
+    "12",
+    "22",
+    "9",
+    "24",
+    "9"
   ];
 
   int first = 0;
@@ -54,15 +120,9 @@ class _FirstGameState extends State<FirstGame> {
   String num2 = "6";
 
   changeState() {
-    if (first != 9) {
-      first++;
-      seco++;
-    } else {
-      first = 0;
-      seco = 0;
-    }
-
     setState(() {
+      first = Random().nextInt(numbers1.length);
+      seco = Random().nextInt(numbers2.length);
       num1 = numbersAsString1[first];
       num2 = numbersAsString2[seco];
     });
@@ -99,7 +159,7 @@ class _FirstGameState extends State<FirstGame> {
       displayFeedback = true;
     });
 
-    _feedbackTimer = Timer(Duration(milliseconds: 1000), () {
+    _feedbackTimer = Timer(const Duration(milliseconds: 1000), () {
       setState(() {
         displayFeedback = false;
       });
@@ -303,7 +363,7 @@ class _FirstGameState extends State<FirstGame> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.09),
 
               Text(
-                "Chosse The Biggest Number",
+                "Choose The Biggest Number",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -328,7 +388,6 @@ class _FirstGameState extends State<FirstGame> {
                         offset: Offset(0, 0))
                   ],
                   color: color.gamesContainer, // the full column color
-                  // color: Colors.blue[200], // the full column color
                   shape: BoxShape.rectangle,
                 ),
                 margin: const EdgeInsets.symmetric(horizontal: 12),
@@ -363,7 +422,6 @@ class _FirstGameState extends State<FirstGame> {
                                 firstBoxCheckScore();
                                 _startFeedbackTimer();
                               },
-                              // color: Colors.white, // Background color
                               textColor: color.textForHomeScreen, // Text color
                               elevation: 4,
                               padding: const EdgeInsets.symmetric(
@@ -414,7 +472,6 @@ class _FirstGameState extends State<FirstGame> {
                                     secondBoxCheckScore();
                                     _startFeedbackTimer();
                                   },
-                                  // color: Colors.white, // Background color
                                   textColor:
                                       color.textForHomeScreen, // Text color
                                   elevation: 4,
@@ -455,11 +512,10 @@ class _FirstGameState extends State<FirstGame> {
                     MaterialButton(
                       onPressed: () {
                         equalBoxCheckScore();
-                        // Start the feedback timer when the main timer starts
                         _startFeedbackTimer();
                       },
                       color: color
-                          .biggestnumbergame_equalbutton, // Background color
+                          .biggestnumbergameEqualbutton, // Background color
                       textColor: Colors.white, // Text color
                       elevation: 4,
                       padding: const EdgeInsets.symmetric(
@@ -485,101 +541,5 @@ class _FirstGameState extends State<FirstGame> {
                 ),
               )
             ])));
-
-    /*Scaffold(
-        backgroundColor: const Color(0xFF161616),
-        body: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.white, width: 5),
-            ),
-            child: Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // timer section
-                  Container(
-                      child: Text("Timer : $_secondsRemaining",
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 25))),
-
-                  // score section
-                  Container(
-                      child: Text("Score : ${score}",
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 25))),
-                ],
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.09),
-              Container(
-                  child: Column(
-                children: [
-                  const Text("Chosse the biggest number",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500)),
-                  const SizedBox(height: 70),
-                  Column(
-                    children: [
-                      const SizedBox(height: 20),
-                      GestureDetector(
-                        onTap: () => firstBoxCheckScore(),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          width: 300,
-                          height: 100,
-                          alignment: Alignment.center,
-                          child: Text(num1,
-                              style: const TextStyle(
-                                  fontSize: 50, color: Colors.black)),
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 55),
-                  Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () => secondBoxCheckScore(),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          width: 300,
-                          height: 100,
-                          alignment: Alignment.center,
-                          child: Text(num2,
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 50)),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 50),
-                  Center(
-                    child: GestureDetector(
-                        onTap: () => equalBoxCheckScore(),
-                        child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.amber,
-                                borderRadius: BorderRadius.circular(40)),
-                            alignment: Alignment.center,
-                            width: 250,
-                            height: 70,
-                            child: const Text(
-                              "equall",
-                              style: TextStyle(
-                                  fontSize: 40, fontWeight: FontWeight.w400),
-                            ))),
-                  )
-                ],
-              ))
-            ]))
-            );*/
   }
 }

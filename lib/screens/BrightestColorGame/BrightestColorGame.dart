@@ -12,8 +12,6 @@ class MohamedGame extends StatefulWidget {
 }
 
 class _MohamedGameState extends State<MohamedGame> {
-  // int score = 0; // عدد النقاط
-
   // list of colors
   List mainColors = [
     Colors.red[500],
@@ -38,17 +36,17 @@ class _MohamedGameState extends State<MohamedGame> {
     Colors.pink[400]
   ];
 
-  Color mainColor = Colors.red[500]!; // اللون الأساسي
-  Color brightestColor = Colors.red[400]!; // اللون الأساسي المشرق
+  Color mainColor = Colors.red[500]!; // Main color
+  Color brightestColor = Colors.red[400]!; // Brightest Color
 
-  // مكان ظهور اللون المختلف
+  // Brightest Color Place
   int differentColorIndex = 0;
 
   // loop on the colrs list
   int i = 0;
 
-  int _secondsRemaining = 10; // قيمة الوقت بالثواني
-  late Timer _timer; // تايمر
+  int _secondsRemaining = 30; // Time in Seconds
+  late Timer _timer; // Timer
   String feedbackMessage = "";
   Color feedbackColor = Colors.transparent; // Set default color
   bool displayFeedback = false;
@@ -73,7 +71,7 @@ class _MohamedGameState extends State<MohamedGame> {
       displayFeedback = true;
     });
 
-    _feedbackTimer = Timer(Duration(milliseconds: 1000), () {
+    _feedbackTimer = Timer(const Duration(milliseconds: 1000), () {
       setState(() {
         displayFeedback = false;
       });
@@ -99,7 +97,7 @@ class _MohamedGameState extends State<MohamedGame> {
                 // You can replace '/home' with your main menu route
                 Navigator.pushNamed(context, '/home');
               },
-              child: Text("Main Menu"),
+              child: const Text("Main Menu"),
             ),
             TextButton(
               onPressed: () {
@@ -111,7 +109,7 @@ class _MohamedGameState extends State<MohamedGame> {
                   _startTimer(); // Start timer again
                 });
               },
-              child: Text("Play Again"),
+              child: const Text("Play Again"),
             ),
           ],
         );
@@ -237,7 +235,7 @@ class _MohamedGameState extends State<MohamedGame> {
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.05),
           Text(
-            "Choose the brightest Color!",
+            "Choose the brightest Color !",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -246,7 +244,19 @@ class _MohamedGameState extends State<MohamedGame> {
               color: color.textForHomeScreen,
             ),
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.05,
+            child: Visibility(
+              visible: displayFeedback,
+              child: Text(
+                feedbackMessage,
+                style: TextStyle(
+                    fontFamily: "Montserrat",
+                    fontSize: 20,
+                    color: feedbackColor),
+              ),
+            ), // Display feedback only when required,
+          ),
           Center(
             child: Container(
               padding: const EdgeInsets.only(
@@ -254,7 +264,7 @@ class _MohamedGameState extends State<MohamedGame> {
                 right: 10,
                 left: 10,
               ),
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               width: 500,
               height: 550,
               decoration: BoxDecoration(
@@ -279,17 +289,20 @@ class _MohamedGameState extends State<MohamedGame> {
 
                 itemCount: 12, // Total number of items in the grid
                 itemBuilder: (BuildContext context, int index) {
-                  // تحديد مكان ظهور اللون المختلف
+                  // Determine where the different color appears
                   if (index == differentColorIndex) {
                     return GestureDetector(
                       onTap: () {
-                        // عندما يضغط المستخدم على اللون المختلف
+                        // When user press on the differet color
+                        feedbackMessage = "Correct +500";
+                        feedbackColor = Colors.green;
                         setState(() {
-                          // تحديث النقاط
+                          _startFeedbackTimer();
+                          // Update score
                           score.addScoreForObservationGames();
                           // change the colors
                           changeColor();
-                          // توليد رقم عشوائي لتحديد مكان جديد للون المختلف
+                          // Generate a random index to select a new location for the different color
                           differentColorIndex = Random().nextInt(9);
                         });
                       },
@@ -308,9 +321,12 @@ class _MohamedGameState extends State<MohamedGame> {
                     // It returns the widget to display for each item
                     return GestureDetector(
                       onTap: () {
-                        // عندما يضغط المستخدم على الألوان الأخرى
+                        // When user press on the other main colors
                         setState(() {
-                          // تحديث النقاط
+                          feedbackMessage = "Wrong -400";
+                          feedbackColor = Colors.red;
+                          _startFeedbackTimer();
+                          // Update score
                           score.minScoreForObservationGames();
                           changeColor();
                         });

@@ -1,23 +1,18 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import './screens/homescreen.dart';
 import 'screens/BiggestNumberGame/BiggestNumberInstructions.dart';
 import 'screens/Rotate Arrow Game/RotateArrowInstructions.dart';
 import 'screens/BrightestColorGame/BrightestColorInstructions.dart';
 import 'screens/DirectionsGame/DirectionInstructions.dart';
 import 'screens/ColorMatchingGame/ColorMatchingInstructions.dart';
-import 'package:game_project/screens/TertiesGame/board.dart';
 import 'package:game_project/screens/TertiesGame/instructions.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/cupertino.dart';
 import './screens/splashScreen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(const MyApp());
 }
-//tt
 
 class Score extends ChangeNotifier {
   int scoreForObservationGame = 0;
@@ -49,7 +44,7 @@ class Score extends ChangeNotifier {
   }
 
   addScoreForMathematicsGameGames() {
-    scoreForMathematicsGame = scoreForMathematicsGame + 300;
+    scoreForMathematicsGame = scoreForMathematicsGame + 500;
     notifyListeners();
   }
 
@@ -159,59 +154,58 @@ class Score extends ChangeNotifier {
   }
 
   updateTotalIndicator() {
-    if (totalPercent >= 1.0) {
+    totalPercent += 0.1;
+    if (totalPercent > 1.0) {
       totalPercent = 0.1;
       level++;
-    } else {
-      totalPercent += 0.1;
     }
     notifyListeners();
   }
 }
 
-// when press on the icon
-//  how tochange????
-
 class DarkAndLightMode extends ChangeNotifier {
-  bool IsDark = true;
+  bool isDark = true;
   var backgroundForHomeScreen = const Color(0xFF161616);
   var textForHomeScreen = Colors.white;
   var gamesContainer = const Color.fromARGB(255, 1, 0, 19);
   var gamesContainerStroke = const Color(0xFF2C2C2E);
   var gamesAppbar = const Color(0xFF263238);
-  var rotatearrowgame_mainarrow = const Color(0xFF0DAAFF);
-  var rotatearrowgame_userarrow = Colors.white;
-  var rotatearrowgame_rotatebuttons = const Color(0xFFA6A6A6);
-  var rotatearrowgame_checkbutton = const Color(0xFF00C853);
-  var biggestnumbergame_equalbutton = const Color(0xFF00C853);
+  var rotatearrowgameMainarrow = const Color(0xFF0DAAFF);
+  var rotatearrowgameUserarrow = Colors.white;
+  var rotatearrowgameRotatebuttons = const Color(0xFFA6A6A6);
+  var rotatearrowgameCheckbutton = const Color(0xFF00C853);
+  var biggestnumbergameEqualbutton = const Color(0xFF00C853);
   var biggestnumbersNumbers = const Color.fromARGB(255, 72, 0, 0);
+  var darklightIcon = FontAwesomeIcons.solidSun;
 
   changeMode() {
-    (IsDark) ? IsDark = false : IsDark = true;
-    backgroundForHomeScreen = (IsDark)
+    (isDark) ? isDark = false : isDark = true;
+    backgroundForHomeScreen = (isDark)
         ? const Color(0xFF161616)
         : const Color.fromARGB(255, 242, 249, 255);
     textForHomeScreen =
-        (IsDark) ? Colors.white : const Color.fromARGB(221, 26, 26, 26);
+        (isDark) ? Colors.white : const Color.fromARGB(221, 26, 26, 26);
     gamesContainer =
-        (IsDark) ? const Color.fromARGB(255, 1, 0, 19) : Colors.white;
+        (isDark) ? const Color.fromARGB(255, 1, 0, 19) : Colors.white;
     gamesContainerStroke =
-        (IsDark) ? const Color(0xFF2C2C2E) : const Color(0xFFEDF6FA);
-    gamesAppbar = (IsDark) ? const Color(0xFF263238) : const Color(0xFF1976D2);
-    rotatearrowgame_mainarrow =
-        (IsDark) ? const Color(0xFF0DAAFF) : const Color(0xFF1976D2);
-    rotatearrowgame_userarrow =
-        (IsDark) ? Colors.white : const Color.fromARGB(221, 26, 26, 26);
-    rotatearrowgame_rotatebuttons =
-        (IsDark) ? const Color(0xFFA6A6A6) : const Color(0xFF607D8B);
-    rotatearrowgame_checkbutton = (IsDark)
+        (isDark) ? const Color(0xFF2C2C2E) : const Color(0xFFEDF6FA);
+    gamesAppbar = (isDark) ? const Color(0xFF263238) : const Color(0xFF1976D2);
+    rotatearrowgameMainarrow =
+        (isDark) ? const Color(0xFF0DAAFF) : const Color(0xFF1976D2);
+    rotatearrowgameUserarrow =
+        (isDark) ? Colors.white : const Color.fromARGB(221, 26, 26, 26);
+    rotatearrowgameRotatebuttons =
+        (isDark) ? const Color(0xFFA6A6A6) : const Color(0xFF607D8B);
+    rotatearrowgameCheckbutton = (isDark)
         ? const Color(0xFF00C853)
         : const Color.fromARGB(255, 0, 149, 5);
     biggestnumbersNumbers =
-        (IsDark) ? const Color.fromARGB(255, 72, 0, 0) : Colors.white;
-    biggestnumbergame_equalbutton = (IsDark)
+        (isDark) ? const Color.fromARGB(255, 72, 0, 0) : Colors.white;
+    biggestnumbergameEqualbutton = (isDark)
         ? const Color(0xFF00C853)
         : const Color.fromARGB(255, 0, 149, 5);
+    darklightIcon =
+        (isDark) ? FontAwesomeIcons.solidSun : FontAwesomeIcons.solidMoon;
     notifyListeners();
   }
 }
@@ -228,16 +222,6 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          // home: Gameboard(),
-          /*
-      
-      there is error occured when we run the main dart because 
-      there are already initial route  for the app so we can not add home property.
-
-
-      so i change the Gameboard() secreen to be in kholoud section in the home screen 
-      
-      */
           title: 'Games app',
           initialRoute: '/',
           routes: {

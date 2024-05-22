@@ -5,14 +5,6 @@ import 'dart:async';
 import '../../main.dart';
 import 'package:provider/provider.dart';
 
-/*
-Score
-Game Timer
-Feedback Timer
-Game Logic
-Popup
-*/
-
 class SecondGame extends StatefulWidget {
   const SecondGame({super.key});
 
@@ -62,7 +54,7 @@ class _SecondGameState extends State<SecondGame> {
       displayFeedback = true;
     });
 
-    _feedbackTimer = Timer(Duration(milliseconds: 1000), () {
+    _feedbackTimer = Timer(const Duration(milliseconds: 1000), () {
       setState(() {
         displayFeedback = false;
       });
@@ -129,17 +121,6 @@ class _SecondGameState extends State<SecondGame> {
       }
     });
   }
-
-// 1 ==> total point
-// (2 , 0.5)
-
-// 20 / 20 == 1  ===> 100
-// 20 / 30  == 0.6   (10)
-// 20 / 10  == 2   (10)
-
-// 20 / 40  == 0.5  diffrent (20) 0
-
-// [.5 , 1]
 
   List<double> mainArrowAngles = [
     0,
@@ -219,11 +200,11 @@ class _SecondGameState extends State<SecondGame> {
       }
 
       setState(() {
-        mainArrowAngle = mainArrowAngles[
-            Random().nextInt(mainArrowAngles.length)]; // 0 , 1 , 2 ,3 , 4 ,5
+        mainArrowAngle =
+            mainArrowAngles[Random().nextInt(mainArrowAngles.length)];
 
-        userArrowAngle = userArrowAngles[
-            Random().nextInt(userArrowAngles.length)]; // 0 , 1 , 2 ,3 , 4 ,5
+        userArrowAngle =
+            userArrowAngles[Random().nextInt(userArrowAngles.length)];
       });
     }
 
@@ -250,7 +231,6 @@ class _SecondGameState extends State<SecondGame> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            // const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -320,9 +300,6 @@ class _SecondGameState extends State<SecondGame> {
                 )
               ],
             ), // Timer & Score Row
-            // const SizedBox(
-            //   height: 50,
-            // ),
             Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -346,15 +323,12 @@ class _SecondGameState extends State<SecondGame> {
                       angle: mainArrowAngle * (pi / 180),
                       child: Icon(
                         Icons.arrow_right_alt_rounded,
-                        color: color.rotatearrowgame_mainarrow,
+                        color: color.rotatearrowgameMainarrow,
                         size: 115,
                       ))
                 ],
               ),
             ), // Game's Arrow
-            // const SizedBox(
-            //   height: 10,
-            // ),
             Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -396,15 +370,12 @@ class _SecondGameState extends State<SecondGame> {
                         angle: userArrowAngle * (pi / 180),
                         child: Icon(
                           Icons.arrow_right_alt_rounded,
-                          color: color.rotatearrowgame_userarrow,
+                          color: color.rotatearrowgameUserarrow,
                           size: 115,
                         ),
                       )
                     ],
                   ), // User's Arrow
-                  // const SizedBox(
-                  //   height: 50,
-                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -413,7 +384,7 @@ class _SecondGameState extends State<SecondGame> {
                           rotateLeft();
                         },
                         color: color
-                            .rotatearrowgame_rotatebuttons, // Background color
+                            .rotatearrowgameRotatebuttons, // Background color
                         textColor: Colors.white, // Text color
                         elevation: 4,
                         padding: const EdgeInsets.symmetric(
@@ -437,7 +408,7 @@ class _SecondGameState extends State<SecondGame> {
                           rotateRight();
                         },
                         color: color
-                            .rotatearrowgame_rotatebuttons, // Background color
+                            .rotatearrowgameRotatebuttons, // Background color
                         textColor: Colors.white, // Text color
                         elevation: 4,
                         padding: const EdgeInsets.symmetric(
@@ -458,20 +429,16 @@ class _SecondGameState extends State<SecondGame> {
                       ),
                     ],
                   ),
-                  // const SizedBox(
-                  //   height: 15,
-                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       MaterialButton(
                         onPressed: () {
                           checkThedirection();
-                          // Start the feedback timer when the main timer starts
                           _startFeedbackTimer();
                         },
                         color: color
-                            .rotatearrowgame_checkbutton, // Background color
+                            .rotatearrowgameCheckbutton, // Background color
                         textColor: Colors.white, // Text color
                         elevation: 4,
                         padding: const EdgeInsets.symmetric(
@@ -501,24 +468,3 @@ class _SecondGameState extends State<SecondGame> {
     );
   }
 }
-
-
-/*
-Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(color: const Color(0xFFEDF6FA), width: 0.5),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Color(0xFFE8F3FA),
-                      blurRadius: 10,
-                      offset: Offset(0, 0))
-                ],
-                color: Colors.white,
-                shape: BoxShape.rectangle,
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 12),
-              padding: const EdgeInsets.symmetric(vertical: 7),
-              child: 
-              )
-*/
