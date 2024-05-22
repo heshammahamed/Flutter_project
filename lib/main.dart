@@ -176,6 +176,7 @@ class DarkAndLightMode extends ChangeNotifier {
   var rotatearrowgameCheckbutton = const Color(0xFF00C853);
   var biggestnumbergameEqualbutton = const Color(0xFF00C853);
   var biggestnumbersNumbers = const Color.fromARGB(255, 72, 0, 0);
+  var darklightIconcolor = const Color(0xFFFDB813);
   var darklightIcon = FontAwesomeIcons.solidSun;
 
   changeMode() {
@@ -204,6 +205,8 @@ class DarkAndLightMode extends ChangeNotifier {
     biggestnumbergameEqualbutton = (isDark)
         ? const Color(0xFF00C853)
         : const Color.fromARGB(255, 0, 149, 5);
+    darklightIconcolor =
+        (isDark) ? const Color(0xFFFDB813) : const Color(0xFF91A3B0);
     darklightIcon =
         (isDark) ? FontAwesomeIcons.solidSun : FontAwesomeIcons.solidMoon;
     notifyListeners();

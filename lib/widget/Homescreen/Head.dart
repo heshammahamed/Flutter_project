@@ -36,7 +36,7 @@ class _HeadState extends State<Head> {
               onPressed: () => color.changeMode(),
               icon: FaIcon(
                 color.darklightIcon,
-                color: color.textForHomeScreen,
+                color: color.darklightIconcolor,
                 size: 30.0,
               )),
         ]);

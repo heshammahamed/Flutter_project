@@ -322,7 +322,7 @@ class _SameColorState extends State<SameColor> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   Container(
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 72, 0, 0),
+                      color: const Color.fromARGB(255, 120, 0, 0),
                       borderRadius: BorderRadius.circular(5),
                       boxShadow: const [
                         BoxShadow(
@@ -348,7 +348,7 @@ class _SameColorState extends State<SameColor> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 72, 0, 0),
+                      color: const Color.fromARGB(255, 120, 0, 0),
                       borderRadius: BorderRadius.circular(5),
                       boxShadow: const [
                         BoxShadow(
