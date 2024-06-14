@@ -19,10 +19,14 @@ class _MohamedGameState extends State<MohamedGame> {
     Colors.amber[500],
     Colors.brown[500],
     Colors.green[500],
-    Colors.lightGreen[500],
     Colors.purple[500],
     Colors.teal[500],
-    Colors.pink[500]
+    Colors.pink[500],
+    Colors.yellow[500],
+    Colors.cyan[500],
+    Colors.grey[500],
+    Colors.lime[500],
+    Colors.orange[500],
   ];
   List brightestColors = [
     Colors.red[400],
@@ -30,10 +34,14 @@ class _MohamedGameState extends State<MohamedGame> {
     Colors.amber[400],
     Colors.brown[400],
     Colors.green[400],
-    Colors.lightGreen[400],
     Colors.purple[400],
     Colors.teal[400],
-    Colors.pink[400]
+    Colors.pink[400],
+    Colors.yellow[400],
+    Colors.cyan[400],
+    Colors.grey[400],
+    Colors.lime[400],
+    Colors.orange[400],
   ];
 
   Color mainColor = Colors.red[500]!; // Main color
@@ -165,8 +173,8 @@ class _MohamedGameState extends State<MohamedGame> {
           ),
         ),
         backgroundColor: color.backgroundForHomeScreen,
-        body: Column(children: [
-          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+        body:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -233,17 +241,6 @@ class _MohamedGameState extends State<MohamedGame> {
               )
             ],
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-          Text(
-            "Choose the brightest Color !",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.2,
-              fontFamily: "Montserrat",
-              color: color.textForHomeScreen,
-            ),
-          ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.05,
             child: Visibility(
@@ -257,29 +254,24 @@ class _MohamedGameState extends State<MohamedGame> {
               ),
             ), // Display feedback only when required,
           ),
-          Center(
-            child: Container(
-              padding: const EdgeInsets.only(
-                top: 50,
-                right: 10,
-                left: 10,
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              width: 500,
-              height: 550,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border:
-                    Border.all(color: color.gamesContainerStroke, width: 0.5),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Color(0xFFE8F3FA),
-                      blurRadius: 2,
-                      offset: Offset(0, 0))
-                ],
-                color: color.gamesContainer,
-                shape: BoxShape.rectangle,
-              ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            width: 500,
+            height: 425,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              border: Border.all(color: color.gamesContainerStroke, width: 0.5),
+              boxShadow: const [
+                BoxShadow(
+                    color: Color(0xFFE8F3FA),
+                    blurRadius: 2,
+                    offset: Offset(0, 0))
+              ],
+              color: color.gamesContainer,
+              shape: BoxShape.rectangle,
+            ),
+            child: Center(
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3, // Number of columns in the grid

@@ -33,7 +33,7 @@ class _SameColorState extends State<SameColor> {
     "Pink"
   ];
 
-  String meaining = "Red";
+  String meaning = "Red";
   String text = "Green";
 
   List textColors = [
@@ -136,7 +136,7 @@ class _SameColorState extends State<SameColor> {
 
   changeState() {
     setState(() {
-      meaining = colors[Random().nextInt(colors.length)];
+      meaning = colors[Random().nextInt(colors.length)];
       text = colors[Random().nextInt(colors.length)];
       textColor = textColors[i];
       textColorString = colors[i];
@@ -150,7 +150,7 @@ class _SameColorState extends State<SameColor> {
         Provider.of<DarkAndLightMode>(context, listen: true);
 
     trueCheckScore() {
-      if (meaining == textColorString) {
+      if (meaning == textColorString) {
         setState(() {
           score.addScoreForObservationGames();
           feedbackMessage = "Correct +500";
@@ -170,7 +170,7 @@ class _SameColorState extends State<SameColor> {
     }
 
     falseCheckScore() {
-      if (meaining != textColorString) {
+      if (meaning != textColorString) {
         setState(() {
           score.addScoreForObservationGames();
           feedbackMessage = "Correct +500";
@@ -209,8 +209,9 @@ class _SameColorState extends State<SameColor> {
           ),
         ),
         backgroundColor: color.backgroundForHomeScreen,
-        body: Column(children: [
-          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+        body:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          // SizedBox(height: MediaQuery.of(context).size.height * 0.03),
           // Timer & Score Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -281,190 +282,190 @@ class _SameColorState extends State<SameColor> {
               )
             ],
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          // SizedBox(height: MediaQuery.of(context).size.height * 0.05),
           Container(
-              child: Column(
+            padding: const EdgeInsets.only(left: 10),
+            child: Center(
+              child: Text(
+                  "Is the meaning at the top the same as the color at the bottom ?",
+                  style: TextStyle(
+                      fontFamily: "Montserrat",
+                      color: color.textForHomeScreen,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500)),
+            ),
+          ),
+          // SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+          Container(
+            decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 137, 163, 176),
+                borderRadius: BorderRadius.circular(5),
+                boxShadow: const [
+                  BoxShadow(
+                      color: Colors.black12,
+                      offset: Offset(0, 0),
+                      blurRadius: 20)
+                ]),
+            width: MediaQuery.of(context).size.width * 0.3,
+            height: MediaQuery.of(context).size.height * 0.05,
+            alignment: Alignment.center,
+            child: const Center(
+              child: Text(
+                "meaning",
+                style: TextStyle(
+                    fontFamily: "Montserrat",
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ),
+          ),
+          // SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+          Container(
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 120, 0, 0),
+              borderRadius: BorderRadius.circular(5),
+              boxShadow: const [
+                BoxShadow(
+                    color: Color(0xFFE8F3FA),
+                    blurRadius: 2,
+                    offset: Offset(0, 0))
+              ],
+            ),
+            width: MediaQuery.of(context).size.width * 0.7,
+            height: MediaQuery.of(context).size.height * 0.1,
+            alignment: Alignment.center,
+            child: Text(meaning,
+                style: const TextStyle(
+                  fontSize: 50,
+                  fontFamily: "Montserrat",
+                  color: Colors.white,
+                )),
+          ),
+          // SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          Container(
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 120, 0, 0),
+              borderRadius: BorderRadius.circular(5),
+              boxShadow: const [
+                BoxShadow(
+                    color: Color(0xFFE8F3FA),
+                    blurRadius: 2,
+                    offset: Offset(0, 0))
+              ],
+            ),
+            width: MediaQuery.of(context).size.width * 0.7,
+            height: MediaQuery.of(context).size.height * 0.1,
+            alignment: Alignment.center,
+            child: Text(text,
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: 50,
+                  fontFamily: "Montserrat",
+                )),
+          ),
+          // SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+          Container(
+            decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 137, 163, 176),
+                borderRadius: BorderRadius.circular(5),
+                boxShadow: const [
+                  BoxShadow(
+                      color: Colors.black12,
+                      offset: Offset(0, 0),
+                      blurRadius: 20)
+                ]),
+            width: MediaQuery.of(context).size.width * 0.3,
+            height: MediaQuery.of(context).size.height * 0.05,
+            alignment: Alignment.center,
+            child: const Center(
+              child: Text(
+                "color",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Montserrat",
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            // height: MediaQuery.of(context).size.height * 0.09,
+            height: 30,
+            child: Visibility(
+              visible: displayFeedback,
+              child: Text(
+                feedbackMessage,
+                style: TextStyle(
+                    fontFamily: "Montserrat",
+                    fontSize: 20,
+                    color: feedbackColor),
+              ),
+            ), // Display feedback only when required,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Text(
-                      "Is the meaning at the top the same as the color at the bottom?",
-                      style: TextStyle(
-                          fontFamily: "Montserrat",
-                          color: color.textForHomeScreen,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500))),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.06),
-              Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 137, 163, 176),
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 0),
-                              blurRadius: 20)
-                        ]),
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    alignment: Alignment.center,
-                    child: const Text(
-                      "meaning",
-                      style: TextStyle(
-                          fontFamily: "Montserrat",
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 120, 0, 0),
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Color(0xFFE8F3FA),
-                            blurRadius: 2,
-                            offset: Offset(0, 0))
-                      ],
-                    ),
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    height: MediaQuery.of(context).size.height * 0.1,
-                    alignment: Alignment.center,
-                    child: Text(meaining,
+              GestureDetector(
+                  onTap: () {
+                    trueCheckScore();
+                    _startFeedbackTimer();
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(40),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 0),
+                                blurRadius: 20)
+                          ]),
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: MediaQuery.of(context).size.height * 0.07,
+                      child: const Text(
+                        "True",
                         style: TextStyle(
-                          fontSize: 50,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w400,
                           fontFamily: "Montserrat",
-                          color: color.textForHomeScreen,
-                        )),
-                  )
-                ],
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 120, 0, 0),
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Color(0xFFE8F3FA),
-                            blurRadius: 2,
-                            offset: Offset(0, 0))
-                      ],
-                    ),
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    height: MediaQuery.of(context).size.height * 0.1,
-                    alignment: Alignment.center,
-                    child: Text(text,
+                          color: Colors.white,
+                        ),
+                      ))),
+              GestureDetector(
+                  onTap: () {
+                    falseCheckScore();
+                    _startFeedbackTimer();
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(40),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 0),
+                                blurRadius: 20)
+                          ]),
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: MediaQuery.of(context).size.height * 0.07,
+                      child: const Text(
+                        "False",
                         style: TextStyle(
-                          color: textColor,
-                          fontSize: 50,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w400,
                           fontFamily: "Montserrat",
-                        )),
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 137, 163, 176),
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 0),
-                              blurRadius: 20)
-                        ]),
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    alignment: Alignment.center,
-                    child: const Text(
-                      "color",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Montserrat",
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.09,
-                child: Visibility(
-                  visible: displayFeedback,
-                  child: Text(
-                    feedbackMessage,
-                    style: TextStyle(
-                        fontFamily: "Montserrat",
-                        fontSize: 20,
-                        color: feedbackColor),
-                  ),
-                ), // Display feedback only when required,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        trueCheckScore();
-                        _startFeedbackTimer();
-                      },
-                      child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(40),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 20)
-                              ]),
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.height * 0.07,
-                          child: const Text(
-                            "True",
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Montserrat",
-                            ),
-                          ))),
-                  GestureDetector(
-                      onTap: () {
-                        falseCheckScore();
-                        _startFeedbackTimer();
-                      },
-                      child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(40),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 20)
-                              ]),
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.height * 0.07,
-                          child: const Text(
-                            "False",
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Montserrat",
-                            ),
-                          ))),
-                ],
-              )
+                          color: Colors.white,
+                        ),
+                      ))),
             ],
-          ))
+          ),
+          const SizedBox(
+            height: 30,
+          )
         ]));
   }
 }

@@ -23,18 +23,18 @@ class GameBoard extends StatefulWidget {
 }
 
 class _GameBoardState extends State<GameBoard> {
-  piece currentpiece = piece(type: Tetromino.L);
+  Piece currentpiece = Piece(type: Tetromino.L);
 
   bool gameover = false;
+  bool gameStarted = false;
 
-  @override
   void initstate() {
     super.initState();
     startgame();
   }
 
   void startgame() {
-    currentpiece.intializepiece();
+    resetgame();
 
     Duration frameRate = const Duration(milliseconds: 600);
     gameloop(frameRate);
@@ -102,10 +102,12 @@ class _GameBoardState extends State<GameBoard> {
 
     Tetromino randomtype =
         Tetromino.values[rand.nextInt(Tetromino.values.length)];
-    currentpiece = piece(type: randomtype);
+    currentpiece = Piece(type: randomtype);
     currentpiece.intializepiece();
     if (isgameover()) {
       gameover = true;
+      // Show game over dialog again if the new piece immediately causes a game over
+      // showgameoverdialog();
     }
   }
 
@@ -148,8 +150,11 @@ class _GameBoardState extends State<GameBoard> {
           gameBoard[r] = List.from(gameBoard[r - 1]);
         }
 
-        gameBoard[0] = List.generate(row, (index) => null);
+        // Clear the top row
+        gameBoard[0] = List.generate(rowlength, (index) => null);
         score.addScoreForLogicGameGames();
+        // After clearing a row, check the same row again in case multiple rows are cleared
+        row++;
       }
     }
   }
@@ -165,27 +170,44 @@ class _GameBoardState extends State<GameBoard> {
 
   void showgameoverdialog() {
     Score score = Provider.of<Score>(context, listen: false);
-
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: const Text('Time Is Over'),
-              content: Text("Your Score is: ${score.scoreForLogicGame}"),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      resetgame();
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Play Again')),
-                TextButton(
-                    onPressed: () {
-                      resetgame();
-                      Navigator.pushNamed(context, '/');
-                    },
-                    child: const Text('Main Menu'))
-              ],
-            ));
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Game Over"),
+          content: Text(
+            "Your Score : ${score.scoreForLogicGame}",
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                resetgame();
+                score.restartScoreForLogicGames();
+                Navigator.of(context).pop();
+                // Navigate to the main menu
+                // You can replace '/home' with your main menu route
+                Navigator.pushNamed(context, '/home');
+              },
+              child: const Text("Main Menu"),
+            ),
+            TextButton(
+              onPressed: () {
+                resetgame();
+                score.restartScoreForLogicGames();
+                Navigator.of(context).pop();
+                // Rebuild the current screen
+                // startgame();
+                setState(() {
+                  gameStarted = false;
+                });
+              },
+              child: const Text("Play Again"),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void resetgame() {
@@ -200,6 +222,10 @@ class _GameBoardState extends State<GameBoard> {
 
     gameover = false;
     score.restartScoreForLogicGames();
+    // Reset the gameStarted variable to false to show the start button again
+    // setState(() {
+    //   gameStarted = false;
+    // });
     createNewpiece();
   }
 
@@ -229,42 +255,30 @@ class _GameBoardState extends State<GameBoard> {
       ),
       backgroundColor: color.backgroundForHomeScreen,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Container(
-            height: 640,
+          SizedBox(
+            height: 430,
             width: 500,
-            padding: const EdgeInsets.only(top: 10),
-            margin: const EdgeInsets.only(bottom: 10, top: 10),
-            decoration: BoxDecoration(
-                color: color.gamesContainerStroke,
-                border: Border.all(color: color.textForHomeScreen, width: 0.5),
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                boxShadow: [
-                  BoxShadow(
-                      color: color.gamesContainer,
-                      offset: const Offset(0, 0),
-                      blurRadius: 20)
-                ]),
             child: GridView.builder(
               itemCount: rowlength * collength,
               physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: rowlength),
               itemBuilder: (context, index) {
                 int row = (index / rowlength).floor();
                 int col = index % rowlength;
-
                 if (currentpiece.position.contains(index)) {
-                  return pixel(
+                  return Pixel(
                     color: currentpiece.color,
                   );
                 } else if (gameBoard[row][col] != null) {
                   final Tetromino? tetrominotype = gameBoard[row][col];
-                  return pixel(
+                  return Pixel(
                     color: tetrominoColors[tetrominotype],
                   );
                 } else {
-                  return pixel(
+                  return Pixel(
                     color: color.textForHomeScreen,
                   );
                 }
@@ -272,12 +286,12 @@ class _GameBoardState extends State<GameBoard> {
             ),
           ),
           Container(
-              padding: const EdgeInsets.only(top: 5),
+              height: 100,
               decoration: BoxDecoration(
                   color: color.gamesContainerStroke,
                   border:
                       Border.all(color: color.textForHomeScreen, width: 0.5),
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  borderRadius: const BorderRadius.all(Radius.circular(13)),
                   boxShadow: [
                     BoxShadow(
                         color: color.gamesContainer,
@@ -285,47 +299,72 @@ class _GameBoardState extends State<GameBoard> {
                         blurRadius: 20)
                   ]),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'Score: ${score.scoreForLogicGame}',
+                    'Score : ${score.scoreForLogicGame}',
                     style: TextStyle(
                       fontFamily: "Montserrat",
-                      fontSize: 25,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.2,
                       color: color.textForHomeScreen,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 0.0, top: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      // Show the "Start" button only if the game hasn't started yet
+                      if (!gameStarted)
                         GestureDetector(
-                            onTap: () => startgame(),
-                            child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  borderRadius: BorderRadius.circular(20.0),
+                          onTap: () {
+                            // When "Start" button is pressed, set gameStarted to true
+                            setState(() {
+                              gameStarted = true;
+                            });
+                            startgame(); // Start the game
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            padding: const EdgeInsets.all(10),
+                            child: const Center(
+                              child: Text(
+                                "               Start               ",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.2,
+                                  fontFamily: "Montserrat",
                                 ),
-                                padding: const EdgeInsets.all(10),
-                                child: const Text("START!!",
-                                    style: TextStyle(color: Colors.white)))),
+                              ),
+                            ),
+                          ),
+                        ),
+                      // Show the control buttons only if the game has started
+                      if (gameStarted)
                         IconButton(
-                            onPressed: moveleft,
-                            color: color.textForHomeScreen,
-                            icon: const Icon(Icons.arrow_back_ios)),
+                          onPressed: moveleft,
+                          color: color.textForHomeScreen,
+                          icon: const Icon(Icons.arrow_back_ios),
+                        ),
+                      if (gameStarted)
                         IconButton(
-                            onPressed: rotatepiece,
-                            color: color.textForHomeScreen,
-                            icon: const Icon(Icons.rotate_right)),
+                          onPressed: rotatepiece,
+                          color: color.textForHomeScreen,
+                          icon: const Icon(Icons.rotate_right),
+                        ),
+                      if (gameStarted)
                         IconButton(
-                            onPressed: moveright,
-                            color: color.textForHomeScreen,
-                            icon: const Icon(Icons.arrow_forward_ios)),
-                      ],
-                    ),
-                  )
+                          onPressed: moveright,
+                          color: color.textForHomeScreen,
+                          icon: const Icon(Icons.arrow_forward_ios),
+                        ),
+                    ],
+                  ),
                 ],
               )),
         ],

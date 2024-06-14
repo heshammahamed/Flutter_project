@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import "../ColorMatchingGame/ColorMatchingGame.dart";
+import "colormatchinggame.dart";
 import 'package:provider/provider.dart';
 import '../../main.dart';
 import 'dart:async';

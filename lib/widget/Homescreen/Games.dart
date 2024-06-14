@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../main.dart';
 
 class Games extends StatefulWidget {
   const Games({Key? key}) : super(key: key);
@@ -33,21 +31,9 @@ class _GamesState extends State<Games> {
 
   @override
   Widget build(BuildContext context) {
-    DarkAndLightMode color =
-        Provider.of<DarkAndLightMode>(context, listen: true);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("  Games : ",
-            style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.2,
-                fontFamily: "Montserrat",
-                color: color.textForHomeScreen)),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.02,
-        ),
         SizedBox(
           height: MediaQuery.of(context).size.height *
               0.3, // Adjust the height as needed

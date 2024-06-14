@@ -26,7 +26,17 @@ class _HomescreenState extends State<Homescreen> {
               const Head(),
               SizedBox(height: MediaQuery.of(context).size.height * 0.09),
               const Progress(),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.028),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              Text("  Games : ",
+                  style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.2,
+                      fontFamily: "Montserrat",
+                      color: color.textForHomeScreen)),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.04,
+              ),
               const Games()
             ],
           ),

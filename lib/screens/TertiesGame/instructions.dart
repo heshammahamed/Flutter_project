@@ -35,142 +35,89 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
           ),
         ),
         backgroundColor: color.backgroundForHomeScreen,
-        body: Column(
-          children: [
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
+        body: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
                   decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(
-                          color: color.textForHomeScreen, width: 0.5),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(0, 0),
-                            blurRadius: 20)
-                      ]),
+                    color: Colors.transparent,
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    border:
+                        Border.all(color: color.textForHomeScreen, width: 0.5),
+                  ),
                   padding: const EdgeInsets.all(5),
-                  child: Row(
-                    children: [
-                      Text(
-                        '       Game Instructions       ',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: color.textForHomeScreen,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Container(
-                width: 350,
+                  child: Center(
+                    child: Text(
+                      'Game Instructions',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
+                        color: color.textForHomeScreen,
+                      ),
+                    ),
+                  )),
+              Text(
+                  '-  Your goal is to manipulate falling tetrominoes to create complete horizontal lines at the bottom',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                    color: color.textForHomeScreen,
+                  )),
+              Text(
+                  '-  You can move tetrominoes left or right using the left and right arrow',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                    color: color.textForHomeScreen,
+                  )),
+              Text(
+                  '- To rotate them, simply press the rotate icon which shown in the bottom',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                    color: color.textForHomeScreen,
+                  )),
+              Text(
+                  '-  when you successfully create a horizontal line with no gaps across the playing area it will vanish and you will get +100 points.',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                    color: color.textForHomeScreen,
+                  )),
+              Text(
+                  '-  The game will over if the tetrominoes stack up to the top of the screen.',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                    color: color.textForHomeScreen,
+                  )),
+              MaterialButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const TimerGame()),
+                  );
+                },
+                color: const Color.fromARGB(255, 0, 149, 5), // Background color
+                textColor: Colors.white, // Text color
+                elevation: 10,
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Column(
-                  children: [
-                    Text(
-                        '-  Your goal is to manipulate falling tetrominoes to create complete horizontal lines at the bottom of the screen.',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: color.textForHomeScreen,
-                        )),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                        '-  You can move tetrominoes left or right using the left and right arrow on your screen.',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: color.textForHomeScreen,
-                        )),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                        '- To rotate them, simply press the rotate icon which shown in the bottom of the screen.',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: color.textForHomeScreen,
-                        )),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                        '-  when you successfully create a horizontal line with no gaps across the playing area it will vanish.',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: color.textForHomeScreen,
-                        )),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                        '-  You will earn +100 ponits when you successfully create a horizontal line with no gaps across the playing area.',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: color.textForHomeScreen,
-                        )),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                        '-  The game will over when if the tetrominoes stack up to the top of the screen.',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: color.textForHomeScreen,
-                        )),
-                  ],
-                )),
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const TimerGame()),
-                    );
-                  },
-                  color:
-                      const Color.fromARGB(255, 0, 149, 5), // Background color
-                  textColor: Colors.white, // Text color
-                  elevation: 10,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    // You can customize the shape of the button here
-                  ),
-                  child: const Text(
-                    '              Play              ',
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                  // You can customize the shape of the button here
+                ),
+                child: const Center(
+                  child: Text(
+                    'Play',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -178,9 +125,9 @@ class _InstructionsBuildGameState extends State<InstructionsBuildGame> {
                     ),
                   ),
                 ),
-              ],
-            )
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );

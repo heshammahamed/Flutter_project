@@ -17,12 +17,12 @@ class _HeadState extends State<Head> {
         Provider.of<DarkAndLightMode>(context, listen: true);
     return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           FaIcon(
             FontAwesomeIcons.brain,
             color: color.textForHomeScreen,
-            size: 30.0,
+            size: 34,
           ),
           Text(
             "MiniGames",
@@ -30,14 +30,14 @@ class _HeadState extends State<Head> {
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.bold,
                 color: color.textForHomeScreen,
-                fontSize: 35),
+                fontSize: 34),
           ),
           IconButton(
               onPressed: () => color.changeMode(),
               icon: FaIcon(
                 color.darklightIcon,
                 color: color.darklightIconcolor,
-                size: 30.0,
+                size: 34,
               )),
         ]);
   }

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-int rowlength = 10;
-int collength = 15;
-enum Direction{
+const int rowlength = 10;
+const int collength = 12;
+
+enum Direction {
   left,
   right,
   down,
 }
-enum Tetromino{
+
+enum Tetromino {
   L,
   J,
   I,
@@ -16,7 +18,6 @@ enum Tetromino{
   Z,
   T,
 }
-
 
 const Map<Tetromino, Color> tetrominoColors = {
   Tetromino.L: Color(0xFFFFA500),

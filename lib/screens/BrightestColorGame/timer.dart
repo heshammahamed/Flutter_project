@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import '../../main.dart';
-import "BrightestColorGame.dart";
+import "brightestcolorgame.dart";
 import 'dart:async';
 
 class TimerGame extends StatefulWidget {

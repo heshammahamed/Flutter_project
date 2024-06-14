@@ -41,7 +41,17 @@ class _FirstGameState extends State<FirstGame> {
     "11 + 11",
     "10 - 1",
     "8 * 3",
-    "81 / 9"
+    "81 / 9",
+    "2^5",
+    "sqrt(64)",
+    "7 * 13",
+    "150 / 3",
+    "98 + 45",
+    "120 - 15",
+    "11^2",
+    "sqrt(169)",
+    "56 * 4",
+    "800 / 25"
   ];
 
   List<int> numbers1 = [
@@ -64,7 +74,17 @@ class _FirstGameState extends State<FirstGame> {
     11 + 11,
     10 - 1,
     8 * 3,
-    81 ~/ 9
+    81 ~/ 9,
+    pow(2, 5).toInt(),
+    sqrt(64).toInt(),
+    7 * 13,
+    150 ~/ 3,
+    98 + 45,
+    120 - 15,
+    pow(11, 2).toInt(),
+    sqrt(169).toInt(),
+    56 * 4,
+    800 ~/ 25
   ];
 
   List<int> numbers2 = [
@@ -87,7 +107,17 @@ class _FirstGameState extends State<FirstGame> {
     22,
     9,
     24,
-    9
+    9,
+    pow(3, 4).toInt(),
+    sqrt(49).toInt(),
+    9 * 8,
+    200 ~/ 5,
+    76 + 89,
+    110 - 25,
+    pow(13, 2).toInt(),
+    sqrt(225).toInt(),
+    63 * 3,
+    900 ~/ 30
   ];
 
   List<String> numbersAsString2 = [
@@ -110,7 +140,17 @@ class _FirstGameState extends State<FirstGame> {
     "22",
     "9",
     "24",
-    "9"
+    "9",
+    "3^4",
+    "sqrt(49)",
+    "9 * 8",
+    "200 / 5",
+    "76 + 89",
+    "110 - 25",
+    "13^2",
+    "sqrt(225)",
+    "63 * 3",
+    "900 / 30"
   ];
 
   int first = 0;
@@ -287,149 +327,146 @@ class _FirstGameState extends State<FirstGame> {
               ),
             ),
             backgroundColor: color.backgroundForHomeScreen,
-            body: Column(children: [
-              SizedBox(height: MediaQuery.of(context).size.height * .07),
-              Row(
+            body: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
-                        border: Border.all(
-                            color: color.textForHomeScreen, width: .5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 0),
-                              blurRadius: 20)
-                        ]),
-                    padding: const EdgeInsets.all(5),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.timer,
-                          color: color.textForHomeScreen,
-                        ),
-                        Text(
-                          ' Timer : $_secondsRemaining',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.2,
-                            fontFamily: "Montserrat",
-                            color: color.textForHomeScreen,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
-                        border: Border.all(
-                            color: color.textForHomeScreen, width: .5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 0),
-                              blurRadius: 20)
-                        ]),
-                    padding: const EdgeInsets.all(5),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.leaderboard,
-                          color: color.textForHomeScreen,
-                        ),
-                        Text(
-                          ' Score : ${score.scoreForMathematicsGame}',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.2,
-                            fontFamily: "Montserrat",
-                            color: color.textForHomeScreen,
-                          ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ), // Timer & Score Row
-              SizedBox(height: MediaQuery.of(context).size.height * 0.09),
-
-              Text(
-                "Choose The Biggest Number",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                  fontFamily: "Montserrat",
-                  color: color.textForHomeScreen,
-                ),
-              ),
-
-              SizedBox(height: MediaQuery.of(context).size.height * 0.07),
-
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  border: Border.all(
-                      color: color.gamesContainerStroke,
-                      width: MediaQuery.of(context).size.width * .01),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Color(0xFFE8F3FA),
-                        blurRadius: 2,
-                        offset: Offset(0, 0))
-                  ],
-                  color: color.gamesContainer, // the full column color
-                  shape: BoxShape.rectangle,
-                ),
-                margin: const EdgeInsets.symmetric(horizontal: 12),
-                padding: const EdgeInsets.symmetric(vertical: 7),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.05,
-                    ),
-                    Container(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
                         decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20)),
-                          border: Border.all(
-                              color: color.gamesContainerStroke,
-                              width: MediaQuery.of(context).size.width * .01),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Color(0xFFE8F3FA),
-                                blurRadius: 2,
-                                offset: Offset(0, 0))
-                          ],
-                          color: color.biggestnumbersNumbers,
-                          shape: BoxShape.rectangle,
-                        ),
-                        margin: const EdgeInsets.symmetric(horizontal: 12),
-                        padding: const EdgeInsets.symmetric(vertical: 7),
-                        child: Row(children: [
-                          Expanded(
-                            child: MaterialButton(
-                              onPressed: () {
-                                firstBoxCheckScore();
-                                _startFeedbackTimer();
-                              },
-                              textColor: color.textForHomeScreen, // Text color
-                              elevation: 4,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 15),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                                // You can customize the shape of the button here
+                            color: Colors.transparent,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(
+                                color: color.textForHomeScreen, width: .5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 0),
+                                  blurRadius: 20)
+                            ]),
+                        padding: const EdgeInsets.all(5),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.timer,
+                              color: color.textForHomeScreen,
+                            ),
+                            Text(
+                              ' Timer : $_secondsRemaining',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2,
+                                fontFamily: "Montserrat",
+                                color: color.textForHomeScreen,
                               ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(
+                                color: color.textForHomeScreen, width: .5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 0),
+                                  blurRadius: 20)
+                            ]),
+                        padding: const EdgeInsets.all(5),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.leaderboard,
+                              color: color.textForHomeScreen,
+                            ),
+                            Text(
+                              ' Score : ${score.scoreForMathematicsGame}',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2,
+                                fontFamily: "Montserrat",
+                                color: color.textForHomeScreen,
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ), // Timer & Score Row
+                  Container(
+                    height: 500,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(
+                          color: color.gamesContainerStroke,
+                          width: MediaQuery.of(context).size.width * .01),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color(0xFFE8F3FA),
+                            blurRadius: 2,
+                            offset: Offset(0, 0))
+                      ],
+                      color: color.gamesContainer, // the full column color
+                      shape: BoxShape.rectangle,
+                    ),
+                    margin: const EdgeInsets.symmetric(horizontal: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 7),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Choose The Biggest Number",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.2,
+                            fontFamily: "Montserrat",
+                            color: color.textForHomeScreen,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: Visibility(
+                            visible: displayFeedback,
+                            child: Text(
+                              feedbackMessage,
+                              style:
+                                  TextStyle(fontSize: 20, color: feedbackColor),
+                            ),
+                          ), // Display feedback only when required,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(
+                              color: color.gamesContainerStroke,
+                            ),
+                            color: color.biggestnumbersNumbers,
+                            shape: BoxShape.rectangle,
+                          ),
+                          margin: const EdgeInsets.symmetric(horizontal: 12),
+                          child: MaterialButton(
+                            onPressed: () {
+                              firstBoxCheckScore();
+                              _startFeedbackTimer();
+                            },
+                            textColor: color.textForHomeScreen, // Text color
+                            elevation: 10,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            child: Center(
                               child: Text(
                                 num1,
                                 textAlign: TextAlign.center,
@@ -442,104 +479,83 @@ class _FirstGameState extends State<FirstGame> {
                                 ),
                               ),
                             ),
-                          )
-                        ])),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.08),
-                    Container(
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20)),
-                          border: Border.all(
-                              color: color.gamesContainerStroke,
-                              width: MediaQuery.of(context).size.width * .01),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Color(0xFFE8F3FA),
-                                blurRadius: 2,
-                                offset: Offset(0, 0))
-                          ],
-                          color: color.biggestnumbersNumbers,
-                          shape: BoxShape.rectangle,
+                          ),
                         ),
-                        margin: const EdgeInsets.symmetric(horizontal: 12),
-                        padding: const EdgeInsets.symmetric(vertical: 7),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: MaterialButton(
-                                  onPressed: () {
-                                    secondBoxCheckScore();
-                                    _startFeedbackTimer();
-                                  },
-                                  textColor:
-                                      color.textForHomeScreen, // Text color
-                                  elevation: 4,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 15),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25),
-                                    // You can customize the shape of the button here
-                                  ),
-                                  child: Text(
-                                    num2,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1.2,
-                                      fontFamily: "Montserrat",
-                                      color: color.textForHomeScreen,
-                                    ),
-                                  ),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(
+                              color: color.gamesContainerStroke,
+                            ),
+                            color: color.biggestnumbersNumbers,
+                            shape: BoxShape.rectangle,
+                          ),
+                          margin: const EdgeInsets.symmetric(horizontal: 12),
+                          child: MaterialButton(
+                            onPressed: () {
+                              secondBoxCheckScore();
+                              _startFeedbackTimer();
+                            },
+                            textColor: color.textForHomeScreen, // Text color
+                            elevation: 10,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            child: Center(
+                              child: Text(
+                                num2,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.2,
+                                  fontFamily: "Montserrat",
+                                  color: color.textForHomeScreen,
                                 ),
                               ),
-                            ])),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.04,
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.04,
-                      child: Visibility(
-                        visible: displayFeedback,
-                        child: Text(
-                          feedbackMessage,
-                          style: TextStyle(fontSize: 20, color: feedbackColor),
+                            ),
+                          ),
                         ),
-                      ), // Display feedback only when required,
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                    MaterialButton(
-                      onPressed: () {
-                        equalBoxCheckScore();
-                        _startFeedbackTimer();
-                      },
-                      color: color
-                          .biggestnumbergameEqualbutton, // Background color
-                      textColor: Colors.white, // Text color
-                      elevation: 4,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                        // You can customize the shape of the button here
-                      ),
-                      child: const Text(
-                        '                Equal                ',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          fontFamily: "Montserrat",
+                        Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            shape: BoxShape.rectangle,
+                          ),
+                          margin: const EdgeInsets.symmetric(horizontal: 12),
+                          child: MaterialButton(
+                            onPressed: () {
+                              equalBoxCheckScore();
+                              _startFeedbackTimer();
+                            },
+                            color: color
+                                .biggestnumbergameEqualbutton, // Background color
+                            textColor: Colors.white, // Text color
+                            elevation: 10,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                              // You can customize the shape of the button here
+                            ),
+                            child: const Center(
+                              child: Text(
+                                'Equal',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.2,
+                                  fontFamily: "Montserrat",
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.05,
-                    )
-                  ],
-                ),
-              )
-            ])));
+                  )
+                ])));
   }
 }
